@@ -33,7 +33,7 @@ It includes examples on how to use the framework itselff and how to use some pac
 ##How to Install
 
 ###1) Downloading
-####1.1) Cloning the Repository
+####1.1) Clone the Repository
 
 	git clone http://github.com/brunogaspar/laravel4-starter-kit your-folder
 
@@ -61,7 +61,7 @@ It includes examples on how to use the framework itselff and how to use some pac
 
 Now that you have the Laravel 4 cloned and all the dependencies installed, you need to create a database for it.
 
-After the database is created, open the file ***app/config/database.php*** and update it, just like in Laravel 3.
+After the database is created, open the file `app/config/database.php` and update the needed entries, just like in Laravel 3.
 
 -----
 
@@ -80,3 +80,5 @@ Use the following command to create your default user, user groups and run all t
 To access the administration page, you just need to access `http://your-host/public/admin` on your browser and it will automatically redirect you to the login page, in the login page, just fill in and submit the form.
 
 After you being authenticated, you will be redirected back to the administration page.
+
+Have fun :)
