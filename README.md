@@ -4,7 +4,9 @@ This is a Laravel 4 Starter Kit, it will help you getting started with Laravel 4
 
 It includes examples on how to use the framework itselff and how to use some packages, like the awesome [Sentry 2](http://github.com/cartalyst/sentry) package.
 
-Included goodies
+-----
+
+##Included goodies:
 
 * Twitter Bootstrap 2.2.2
 * Custom CLI Installer
@@ -20,6 +22,11 @@ Included goodies
 	* User login, registration, forgot password
 	* User account area
 	* Simple Blog functionally
+* Packages included:
+	* Cartalyst Sentry 2
+	* Jason Lewis Expressive Date
+	* Meido HTML
+	* Meido Str
 
 -----
 
