@@ -22,9 +22,14 @@ Included goodies
 
 ##How to Install
 
-###1) Cloning the Repository
+###1) Downloading
+####1.1) Cloning the Repository
 
 	git clone http://github.com/brunogaspar/laravel4-starter-kit your-folder
+
+####1.2) Download the Repository
+
+	https://github.com/brunogaspar/laravel4-starter-kit/archive/master.zip
 
 -----
 
