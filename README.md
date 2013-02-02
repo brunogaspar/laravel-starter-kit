@@ -8,15 +8,18 @@ Included goodies
 
 * Twitter Bootstrap 2.2.2
 * Custom CLI Installer
-* Custom Error 404 and Error 500 pages
+* Custom Error Pages
+	* 403 for forbidden page accesses
+	* 404 for not found pages
+	* 500 for internal server problems
 * Cartalyst Sentry 2 for Authentication and Authorization
 * Back-end
-    * Manage users and groups
-    * Manage blog posts and comments
+	* Manage users and groups
+	* Manage blog posts and comments
 * Front-end
-    * User login, registration, forgot password
-    * User account area
-    * Simple Blog functionally
+	* User login, registration, forgot password
+	* User account area
+	* Simple Blog functionally
 
 -----
 
@@ -33,14 +36,14 @@ Included goodies
 
 -----
 
-###2) Install the Dependencies
-#####If you don't have composer installed globally
+###2) Install the Dependencies via Composer
+#####2.1) If you don't have composer installed globally
 
 	cd your-folder
 	curl -s http://getcomposer.org/installer | php
 	php composer.phar install
 
-#####For globally composer installations
+#####2.2) For globally composer installations
 
 	cd your-folder
 	composer install
@@ -55,11 +58,11 @@ After the database is created, open the file ***app/config/database.php*** and u
 
 -----
 
-###) Use custom CLI Installer Command
+###4) Use custom CLI Installer Command
 
 Now, you need to create yourself a user and finish the installation.
 
-Use this command to create your default user, user groups and run all the necessary migrations automatically for you.
+Use the following command to create your default user, user groups and run all the necessary migrations automatically.
 
 	php artisan app:install
 
