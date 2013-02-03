@@ -21,7 +21,7 @@ class CreatePostsTable extends Migration {
 			$table->text('content');
 			$table->string('meta_title');
 			$table->string('meta_description');
-			$table->string('meta_kewords');
+			$table->string('meta_keywords');
 			$table->timestamps();
 
 			#$table->foreign('post_id')->references('id')->on('comments')->on_delete('restrict');
