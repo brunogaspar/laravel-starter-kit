@@ -45,7 +45,6 @@
 <hr />
 @endforeach
 
-
 {{ $posts->links() }}
 
 @stop
