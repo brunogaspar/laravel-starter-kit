@@ -1,0 +1,19 @@
+{
+	"require": {
+		"laravel/framework": "4.0.*",
+		"cartalyst/sentry": "2.0.*",
+		"jasonlewis/expressive-date": "1.*",
+		"meido/html": "1.1.*",
+		"meido/str": "1.1.*"
+	},
+	"autoload": {
+		"classmap": [
+			"app/commands",
+			"app/controllers",
+			"app/models",
+			"app/database/migrations",
+			"app/tests/TestCase.php"
+		]
+	},
+	"minimum-stability": "dev"
+}
