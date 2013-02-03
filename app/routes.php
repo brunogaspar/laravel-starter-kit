@@ -97,6 +97,12 @@ Route::get('account', 'AccountDashboardController@getIndex');
 |
 */
 
+Route::get('about-us', function()
+{
+	//
+	return View::make('site/about-us');
+});
+
 Route::get('{postSlug}', 'BlogController@getView');
 Route::post('{postSlug}', 'BlogController@postView');
 
