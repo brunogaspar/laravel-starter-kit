@@ -16,7 +16,7 @@ It includes examples on how to use the framework itselff and how to use some pac
 	* 500 for internal server errors
 * Cartalyst Sentry 2 for Authentication and Authorization
 * Back-end
-	* Manage users and groups
+	* User and Group management
 	* Manage blog posts and comments
 * Front-end
 	* User login, registration, forgot password
