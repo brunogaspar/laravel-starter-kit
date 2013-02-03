@@ -111,10 +111,10 @@ class AdminGroupsController extends AdminController {
 	/**
 	 * Group update.
 	 *
-	 * @param  int
+	 * @param  int  $groupId
 	 * @return View
 	 */
-	public function getEdit($groupId)
+	public function getEdit($groupId = null)
 	{
 		try
 		{
@@ -140,10 +140,10 @@ class AdminGroupsController extends AdminController {
 	/**
 	 * Group update form processing page.
 	 *
-	 * @param  int
+	 * @param  int  $groupId
 	 * @return Redirect
 	 */
-	public function postEdit($groupId)
+	public function postEdit($groupId = null)
 	{
 		try
 		{
@@ -205,14 +205,13 @@ class AdminGroupsController extends AdminController {
 		return Redirect::to('admin/groups/' . $groupId . '/edit')->withInput()->withErrors($validator);
 	}
 
-
 	/**
 	 * Delete the given group.
 	 *
 	 * @param  int  $groupId
 	 * @return Redirect
 	 */
-	public function getDelete($groupId)
+	public function getDelete($groupId = null)
 	{
 		try
 		{

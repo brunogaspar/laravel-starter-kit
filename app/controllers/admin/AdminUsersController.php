@@ -136,7 +136,7 @@ class AdminUsersController extends AdminController {
 	 * @param  int
 	 * @return View
 	 */
-	public function getEdit($userId)
+	public function getEdit($userId = null)
 	{
 		try
 		{
@@ -172,7 +172,7 @@ class AdminUsersController extends AdminController {
 	 * @return Redirect
 	 * @todo   Update the user groups!!
 	 */
-	public function postEdit($userId)
+	public function postEdit($userId = null)
 	{
 		try
 		{
@@ -286,7 +286,7 @@ class AdminUsersController extends AdminController {
 	 * @param  int  $userId
 	 * @return Redirect
 	 */
-	public function getDelete($userId)
+	public function getDelete($userId = null)
 	{
 		try
 		{
