@@ -32,7 +32,7 @@
 
 	<!-- Tabs Content -->
 	<div class="tab-content">
-		<!-- Tab General -->
+		<!-- General tab -->
 		<div class="tab-pane active" id="tab-general">
 			<!-- First Name -->
 			<div class="control-group {{ $errors->has('first_name') ? 'error' : '' }}">
@@ -114,9 +114,9 @@
 			</div>
 			<!-- ./ groups -->
 		</div>
-		<!-- ./ tab general -->
+		<!-- ./ general tab -->
 
-		<!-- Tab Permissions -->
+		<!-- Permissions tab -->
 		<div class="tab-pane" id="tab-permissions">
 			<div class="control-group">
 				<div class="controls">
@@ -130,7 +130,7 @@
 				</div>
 			</div>
 		</div>
-		<!-- ./ tab permissions -->
+		<!-- ./ permissions tab -->
 	</div>
 	<!-- ./ tabs content -->
 
