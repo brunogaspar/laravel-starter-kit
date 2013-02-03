@@ -74,8 +74,7 @@ class AdminUsersController extends AdminController {
 			try
 			{
 				// Get the inputs, with some exceptions
-				$inputs = Input::except('csrf_token', 'password_confirmation', 'groups', 'permissions');
-				# added permissions for a quick fix for Sentry permissions bug, for now !
+				$inputs = Input::except('csrf_token', 'password_confirmation', 'groups');
 
 				// Was the user create?
 				if ($user = Sentry::getUserProvider()->create($inputs))
@@ -87,20 +86,6 @@ class AdminUsersController extends AdminController {
 
 						$user->addGroup($group);
 					}
-
-					#### quick fix for Sentry permissions issue !
-					if(Input::get('permissions'))
-					{
-						$permissions = array();
-						foreach (Input::get('permissions') as $permissionId => $value)
-						{
-							$permissions[ $permissionId ] = (int) $value;
-						}
-
-						#$user->permissions = $permissions;
-						$user->save();
-					}
-					###########################################
 
 					// Redirect to the new user page
 					return Redirect::to('admin/users/' . $user->id . '/edit')->with('success', Lang::get('admin/users/messages.create.success'));
@@ -208,10 +193,11 @@ class AdminUsersController extends AdminController {
 			try
 			{
 				// Update the user
-				$user->first_name = Input::get('first_name');
-				$user->last_name  = Input::get('last_name');
-				$user->email      = Input::get('email');
-				$user->activated  = Input::get('activated', $user->activated);
+				$user->first_name  = Input::get('first_name');
+				$user->last_name   = Input::get('last_name');
+				$user->email       = Input::get('email');
+				$user->activated   = Input::get('activated', $user->activated);
+				$user->permissions = Input::get('permissions');
 
 				// Do we want to update the user password?
 				if ($password = Input::get('password'))
@@ -245,14 +231,6 @@ class AdminUsersController extends AdminController {
 
 					$user->removeGroup($group);
 				}
-
-				// Update user permissions
-				$permissions = array();
-				foreach (Input::get('permissions') as $permissionId => $value)
-				{
-					$permissions[ $permissionId ] = (int) $value;
-				}
-				$user->permissions = $permissions;
 
 				// Was the user updated?
 				if ($user->save())
