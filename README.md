@@ -21,7 +21,7 @@ It includes examples on how to use the framework itselff and how to use some pac
 * Front-end
 	* User login, registration, forgot password
 	* User account area
-	* Simple Blog functionally
+	* Simple Blog functionality
 * Packages included:
 	* [Cartalyst Sentry 2](https://github.com/cartalyst/sentry)
 	* [Jason Lewis Expressive Date](https://github.com/jasonlewis/expressive-date)
