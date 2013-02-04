@@ -53,31 +53,6 @@ class AppCommand extends Command {
 		$this->comment('');
 		$this->info('  Step: 1');
 		$this->comment('');
-		$this->info('    Preparing your Application');
-		$this->comment('');
-		$this->comment('-------------------------------------');
-		$this->comment('');
-
-
-		// Generate the Application Encryption key
-		$this->call('key:generate');
-
-		// Run the Migrations
-		$this->call('migrate');
-
-		// Seed the tables
-		$this->call('db:seed');
-
-		// Run the Sentry Migrations
-		$this->call('migrate', array('--package' => 'cartalyst/sentry'));
-
-
-		$this->comment('');
-		$this->comment('');
-		$this->comment('=====================================');
-		$this->comment('');
-		$this->info('  Step: 2');
-		$this->comment('');
 		$this->info('    Please follow the following');
 		$this->info('    instructions to create your');
 		$this->info('    default user.');
@@ -86,16 +61,38 @@ class AppCommand extends Command {
 		$this->comment('');
 
 
-		// Let's ask the questions, shall we?
-		//
+		// Let's ask the user some questions, shall we?
 		$this->askUserFirstName();
 		$this->askUserLastName();
 		$this->askUserEmail();
 		$this->askUserPassword();
 
+
+		$this->comment('');
+		$this->comment('');
+		$this->comment('=====================================');
+		$this->comment('');
+		$this->info('  Step: 2');
+		$this->comment('');
+		$this->info('    Preparing your Application');
+		$this->comment('');
+		$this->comment('-------------------------------------');
+		$this->comment('');
+
+		// Generate the Application Encryption key
+		$this->call('key:generate');
+
+		// Run the Migrations
+		$this->call('migrate');
+
+		// Run the Sentry Migrations
+		$this->call('migrate', array('--package' => 'cartalyst/sentry'));
+
 		// Create the default user and default groups.
-		//
 		$this->sentryRunner();
+
+		// Seed the tables with dummy data
+		$this->call('db:seed');
 	}
 
 	/**
@@ -257,7 +254,6 @@ class AppCommand extends Command {
 			//
 			$this->comment('');
 			$this->info('Admin group created successfully.');
-			$this->comment('');
 		}
 		catch (Cartalyst\Sentry\Groups\GroupExistsException $e)
 		{
