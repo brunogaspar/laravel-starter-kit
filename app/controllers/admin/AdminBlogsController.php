@@ -69,7 +69,7 @@ class AdminBlogsController extends AdminController {
 			return Redirect::to('admin/blogs/create')->with('error', Lang::get('admin/blogs/messages.create.error'));
 		}
 
-		// Blog post validation went wrong
+		// Form validation failed
 		return Redirect::to('admin/blogs/create')->withInput()->withErrors($validator);
 	}
 
@@ -138,7 +138,7 @@ class AdminBlogsController extends AdminController {
 			return Redirect::to('admin/blogs/' . $postId . '/edit')->with('error', Lang::get('admin/blogs/messages.update.error'));
 		}
 
-		// Group validation went wrong
+		// Form validation failed
 		return Redirect::to('admin/blogs/' . $postId . '/edit')->withInput()->withErrors($validator);
 	}
 

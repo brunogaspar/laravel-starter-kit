@@ -68,7 +68,7 @@ class AdminUsersController extends AdminController {
 		// Validate the inputs
 		$validator = Validator::make(Input::all(), $rules);
 
-		// Check if the form validates with success
+		// Check if the form was validated with success
 		if ($validator->passes())
 		{
 			try
@@ -76,7 +76,7 @@ class AdminUsersController extends AdminController {
 				// Get the inputs, with some exceptions
 				$inputs = Input::except('csrf_token', 'password_confirmation', 'groups');
 
-				// Was the user create?
+				// Was the user created?
 				if ($user = Sentry::getUserProvider()->create($inputs))
 				{
 					// Assign the selected groups to this user
@@ -111,7 +111,7 @@ class AdminUsersController extends AdminController {
 			return Redirect::to('admin/users/create')->withInput()->with('error', Lang::get('admin/users/messages.' . $error));
 		}
 
-		// User validation went wrong
+		// Form validation failed
 		return Redirect::to('admin/users/create')->withInput()->withErrors($validator);
 	}
 
@@ -253,7 +253,7 @@ class AdminUsersController extends AdminController {
 			return Redirect::to('admin/users/' . $userId . '/edit')->withInput()->with('error', $error);
 		}
 
-		// User validation went wrong
+		// Form validation failed
 		return Redirect::to('admin/users/' . $userId . '/edit')->withInput()->withErrors($validator);
 	}
 
