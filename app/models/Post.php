@@ -4,6 +4,26 @@ use Illuminate\Support\Facades\URL; # not sure why i need this here :c
 
 class Post extends Eloquent {
 
+	/**
+	 * Deletes a blog and the associated comments.
+	 *
+	 * @return bool
+	 */
+	public function delete()
+	{
+		// Delete the comments
+		$this->comments()->delete();
+
+		// Delete the blog post
+		return parent::delete();
+	}
+
+	/**
+	 * Returns a formatted post content entry,
+	 * this ensures that line breaks are returned.
+	 *
+	 * @return string
+	 */
 	public function content()
 	{
 		return nl2br($this->content);
