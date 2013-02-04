@@ -161,6 +161,9 @@ class AdminBlogsController extends AdminController {
 		// Was the blog post deleted?
 		if($post->delete())
 		{
+			// Delete this posts comments
+			$post->comments()->delete();
+
 			// Redirect to the blog posts management page
 			return Redirect::to('admin/blogs')->with('success', Lang::get('admin/blogs/messages.delete.success'));
 		}
