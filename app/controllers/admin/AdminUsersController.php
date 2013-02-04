@@ -155,7 +155,6 @@ class AdminUsersController extends AdminController {
 	 *
 	 * @param  int
 	 * @return Redirect
-	 * @todo   Update the user groups!!
 	 */
 	public function postEdit($userId = null)
 	{
