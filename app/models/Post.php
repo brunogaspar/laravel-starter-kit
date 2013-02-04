@@ -5,7 +5,8 @@ use Illuminate\Support\Facades\URL; # not sure why i need this here :c
 class Post extends Eloquent {
 
 	/**
-	 * Deletes a blog and the associated comments.
+	 * Deletes a blog post and all
+	 * the associated comments.
 	 *
 	 * @return bool
 	 */
