@@ -64,26 +64,11 @@ class AdminGroupsController extends AdminController {
 			try
 			{
 				// Get the inputs, with some exceptions
-				$inputs = Input::except('csrf_token', 'permissions');
-				# added permissions for a quick fix for Sentry permissions bug, for now !
+				$inputs = Input::except('csrf_token');
 
-				// Was the group create?
+				// Was the group created?
 				if ($group = Sentry::getGroupProvider()->create($inputs))
 				{
-					#### quick fix for Sentry permissions issue !
-					if(Input::get('permissions'))
-					{
-						$permissions = array();
-						foreach (Input::get('permissions') as $permissionId => $value)
-						{
-							$permissions[ $permissionId ] = (int) $value;
-						}
-
-						$group->permissions = $permissions;
-						$group->save();
-					}
-					###########################################
-
 					// Redirect to the new group page
 					return Redirect::to('admin/groups/' . $group->id . '/edit')->with('success', Lang::get('admin/groups/messages.create.success'));
 				}
@@ -104,7 +89,7 @@ class AdminGroupsController extends AdminController {
 			return Redirect::to('admin/groups/create')->withInput()->with('error', Lang::get('admin/groups/messages.' . $error));
 		}
 
-		// Group validation went wrong
+		// Form validation failed
 		return Redirect::to('admin/groups/create')->withInput()->withErrors($validator);
 	}
 
@@ -169,16 +154,9 @@ class AdminGroupsController extends AdminController {
 		{
 			try
 			{
-				// Update the group
-				$group->name = Input::get('name');
-
-				// Update group permissions
-				$permissions = array();
-				foreach (Input::get('permissions') as $permissionId => $value)
-				{
-					$permissions[ $permissionId ] = (int) $value;
-				}
-				$group->permissions = $permissions;
+				// Update the group data
+				$group->name        = Input::get('name');
+				$group->permissions = Input::get('permissions');
 
 				// Was the group updated?
 				if ($group->save())
@@ -201,7 +179,7 @@ class AdminGroupsController extends AdminController {
 			return Redirect::to('admin/groups/' . $groupId . '/edit')->withInput()->with('error', $error);
 		}
 
-		// Group validation went wrong
+		// Form validation failed
 		return Redirect::to('admin/groups/' . $groupId . '/edit')->withInput()->withErrors($validator);
 	}
 
