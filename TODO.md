@@ -1,0 +1,2 @@
+- Add option to delete blog post comments on front end and maybe on the back end;
+- When deleting a blog post, it should automatically delete the related comments;
