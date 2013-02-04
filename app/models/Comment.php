@@ -33,7 +33,7 @@ class Comment extends Eloquent {
 	}
 
 	/**
-	 *  Get the comment's post.
+	 * Get the comment's post's.
 	 *
 	 * @return Blog\Post
 	 */
