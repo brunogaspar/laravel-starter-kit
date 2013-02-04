@@ -147,7 +147,6 @@ class AdminBlogsController extends AdminController {
 	 *
 	 * @param  int  $postId
 	 * @return Redirect
-	 * @todo   Be able to delete the post comments
 	 */
 	public function getDelete($postId)
 	{
