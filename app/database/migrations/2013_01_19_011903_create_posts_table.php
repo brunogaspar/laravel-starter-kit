@@ -14,8 +14,8 @@ class CreatePostsTable extends Migration {
 		// Create the `Posts` table
 		Schema::create('posts', function($table)
 		{
-			$table->increments('id');
-			$table->integer('user_id');
+			$table->increments('id')->unsigned();
+			$table->integer('user_id')->unsigned();
 			$table->string('title');
 			$table->string('slug');
 			$table->text('content');
@@ -23,8 +23,6 @@ class CreatePostsTable extends Migration {
 			$table->string('meta_description');
 			$table->string('meta_keywords');
 			$table->timestamps();
-
-			#$table->foreign('post_id')->references('id')->on('comments')->on_delete('restrict');
 		});
 	}
 
