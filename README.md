@@ -82,3 +82,6 @@ To access the administration page, you just need to access `http://your-host/pub
 After you being authenticated, you will be redirected back to the administration page.
 
 Have fun :)
+
+###LICENSE
+DBAD LICENSE
