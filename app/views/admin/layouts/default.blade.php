@@ -107,7 +107,7 @@
 
 		<!-- Javascripts
 		================================================== -->
-		<script src="{{ asset('assets/js/jquery.v1.8.3.min.js') }}"></script>
-		<script src="{{ asset('assets/js/bootstrap-2.2.2/bootstrap.min.js') }}"></script>
+		<script src="{{ asset('assets/js/jquery.v1.9.1.min.js') }}"></script>
+		<script src="{{ asset('assets/js/bootstrap/bootstrap.min.js') }}"></script>
 	</body>
 </html>

@@ -71,7 +71,7 @@
 								@endif
 								<li class="dropdown{{ (Request::is('account*') ? ' active' : '') }}">
 									<a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="{{ URL::to('account') }}">
-										Welcome, {{ Sentry::getUser()->first_name;}}
+										Welcome, {{ Sentry::getUser()->first_name }}
 										<b class="caret"></b>
 									</a>
 									<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
@@ -112,7 +112,7 @@
 
 		<!-- Javascripts
 		================================================== -->
-		<script src="{{ asset('assets/js/jquery.v1.8.3.min.js') }}"></script>
-		<script src="{{ asset('assets/js/bootstrap-2.2.2/bootstrap.min.js') }}"></script>
+		<script src="{{ asset('assets/js/jquery.v1.9.1.min.js') }}"></script>
+		<script src="{{ asset('assets/js/bootstrap/bootstrap.min.js') }}"></script>
 	</body>
 </html>
