@@ -8,7 +8,8 @@ It includes examples on how to use the framework itselff and how to use some pac
 
 ##Included goodies
 
-* Twitter Bootstrap 2.2.2
+* Twitter Bootstrap 2.3.0
+* jQuery 1.9.1
 * Custom CLI Installer
 * Custom Error Pages:
 	* 403 for forbidden page accesses
