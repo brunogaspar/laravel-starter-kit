@@ -130,7 +130,8 @@ class AuthController extends BaseController {
 
 			// Data to be used on the email view
 			$data = array(
-				'user' => $user
+				'user' => $user,
+				'activationcode' => $user->getActivationCode()
 			);
 
 			// Send the activation code through email
