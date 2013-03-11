@@ -2,9 +2,9 @@
 	"require": {
 		"laravel/framework": "4.0.*",
 		"cartalyst/sentry": "2.0.*",
-		"jasonlewis/expressive-date": "1.*",
-		"meido/html": "1.1.*",
-		"meido/str": "1.1.*"
+		"jasonlewis/expressive-date": "1.*",		
+                "opauth/opauth": "*",
+                "opauth/facebook": "*"
 	},
 	"autoload": {
 		"classmap": [
