@@ -107,3 +107,11 @@ Route::get('{postSlug}', 'BlogController@getView');
 Route::post('{postSlug}', 'BlogController@postView');
 
 Route::get('/', 'BlogController@getIndex');
+
+# routes for handling social authentication via opauth 
+Route::get('social/auth/{network?}', 'SocialController@auth');
+Route::get('social/callback', 'SocialController@callback');
+
+Route::get('social/auth/{network?}/int_callback', 'SocialController@auth');
+Route::get('social/auth/{network?}/oauth2callback', 'SocialController@auth');
+Route::get('social/auth/{network?}/oauth_callback', 'SocialController@auth');

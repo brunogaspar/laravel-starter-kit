@@ -69,6 +69,9 @@
 								<li><a href="{{ URL::to('admin') }}">Admin Dashboard</a></li>
 								<li class="divider-vertical"></li>
 								@endif
+                                                                 @if ( Session::has('user_image') )
+                                                                <li class="navbar-text"><img src="{{Session::get('user_image')}}" height="23px" />&nbsp;&nbsp;&nbsp;</li>
+                                                                @endif
 								<li class="dropdown{{ (Request::is('account*') ? ' active' : '') }}">
 									<a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="{{ URL::to('account') }}">
 										Welcome, {{ Sentry::getUser()->first_name }}

@@ -28,6 +28,7 @@ It includes examples on how to use the framework itselff and how to use some pac
 	* [Jason Lewis Expressive Date](https://github.com/jasonlewis/expressive-date)
 	* [Meido HTML](https://github.com/meido/html)
 	* [Meido Str](https://github.com/meido/str)
+        * [Opauth] (https://github.com/opauth/opauth)
 
 -----
 
@@ -81,6 +82,20 @@ Use the following command to create your default user, user groups and run all t
 To access the administration page, you just need to access `http://your-host/public/admin` on your browser and it will automatically redirect you to the login page, in the login page, just fill in and submit the form.
 
 After you being authenticated, you will be redirected back to the administration page.
+
+###6) Opauth Configuration for user authentication via Facebook (or any other supported authentication providers by Opauth)
+1. Create Facebook application at https://developers.facebook.com/apps/
+   - Remember to enter App Domains
+   - "Website with Facebook Login" must be checked, but for "Site URL", you can enter any landing URL.
+2. open the file `app/config/opauth.php` and update it with at least `App ID` and `App Secret`.
+
+Now, you need to create yourself a user and finish the installation.
+
+Use the following command to create your default user, user groups and run all the necessary migrations automatically.
+
+	php artisan app:install
+
+-----
 
 Have fun :)
 
