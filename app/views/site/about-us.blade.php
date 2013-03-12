@@ -1,6 +1,6 @@
 @extends('site.layouts.default')
 
-{{-- Content --}}
+{{-- Page content --}}
 @section('content')
 
 About us page.

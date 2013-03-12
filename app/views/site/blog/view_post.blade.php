@@ -3,7 +3,7 @@
 {{-- Web site Title --}}
 @section('title')
 @parent
-{{ Str::title($post->title) }}
+{{ $post->title }}
 @stop
 
 {{-- Update the Meta Title --}}

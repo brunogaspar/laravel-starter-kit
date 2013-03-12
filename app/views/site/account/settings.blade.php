@@ -1,6 +1,6 @@
 @extends('site.layouts.default')
 
-{{-- Web site Title --}}
+{{-- Page Title --}}
 @section('title')
 @parent
 :: Account
@@ -14,7 +14,7 @@ body {
 }
 @stop
 
-{{-- Content --}}
+{{-- Page content --}}
 @section('content')
 <div class="page-header">
 	<h3>Edit your settings</h3>

@@ -1,12 +1,12 @@
 @extends('site.layouts.default')
 
-{{-- Web site Title --}}
+{{-- Page Title --}}
 @section('title')
 @parent
 :: Forgot Password
 @stop
 
-{{-- Content --}}
+{{-- Page content --}}
 @section('content')
 <div class="page-header">
 	<h3>Forgot Password</h3>
@@ -23,7 +23,6 @@
 			{{ $errors->first('password', '<span class="help-inline">:message</span>') }}
 		</div>
 	</div>
-	<!-- ./ new password -->
 
 	<!-- Password Confirmation -->
 	<div class="control-group {{ $errors->has('password_confirmation') ? 'error' : '' }}">
@@ -33,14 +32,12 @@
 			{{ $errors->first('password_confirmation', '<span class="help-inline">:message</span>') }}
 		</div>
 	</div>
-	<!-- ./ password confirmation -->
 
-	<!-- Submit button -->
+	<!-- Form actions -->
 	<div class="control-group">
 		<div class="controls">
 			<button type="submit" class="btn">Submit</button>
 		</div>
 	</div>
-	<!-- ./ submit button -->
 </form>
 @stop

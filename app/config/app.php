@@ -65,7 +65,7 @@ return array(
 	|
 	*/
 
-	'key' => 'YourSecretKey!!!',
+	'key' => 'p0l8NQVxZWBJuPwsoSluRdhflgGCqr2M',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -92,6 +92,7 @@ return array(
 		'Illuminate\Encryption\EncryptionServiceProvider',
 		'Illuminate\Filesystem\FilesystemServiceProvider',
 		'Illuminate\Hashing\HashServiceProvider',
+		'Illuminate\Html\HtmlServiceProvider',
 		'Illuminate\Foundation\Providers\KeyGeneratorServiceProvider',
 		'Illuminate\Log\LogServiceProvider',
 		'Illuminate\Mail\MailServiceProvider',
@@ -112,8 +113,6 @@ return array(
 
 		'Cartalyst\Sentry\SentryServiceProvider',
 		'ExpressiveDateServiceProvider',
-		'Meido\Str\StrServiceProvider',
-		'Meido\HTML\HTMLServiceProvider',
 
 	),
 
@@ -157,7 +156,9 @@ return array(
 		'Eloquent'        => 'Illuminate\Database\Eloquent\Model',
 		'Event'           => 'Illuminate\Support\Facades\Event',
 		'File'            => 'Illuminate\Support\Facades\File',
+		'Form'            => 'Illuminate\Support\Facades\Form',
 		'Hash'            => 'Illuminate\Support\Facades\Hash',
+		'Html'            => 'Illuminate\Html\HtmlBuilder',
 		'Input'           => 'Illuminate\Support\Facades\Input',
 		'Lang'            => 'Illuminate\Support\Facades\Lang',
 		'Log'             => 'Illuminate\Support\Facades\Log',
@@ -179,8 +180,6 @@ return array(
 		'View'            => 'Illuminate\Support\Facades\View',
 
 		'Sentry'          => 'Cartalyst\Sentry\Facades\Laravel\Sentry',
-		'Str'             => 'Meido\Str\StrFacade',
-		'HTML'            => 'Meido\HTML\HTMLFacade',
 
 	),
 
