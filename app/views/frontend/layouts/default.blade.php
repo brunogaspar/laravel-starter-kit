@@ -69,9 +69,11 @@
 								<li><a href="{{ URL::to('admin') }}">Admin Dashboard</a></li>
 								<li class="divider-vertical"></li>
 								@endif
-                                                                 @if ( Session::has('user_image') )
-                                                                <li class="navbar-text"><img src="{{Session::get('user_image')}}" height="23px" />&nbsp;&nbsp;&nbsp;</li>
-                                                                @endif
+
+								@if ( Session::has('user_image') )
+								<li class="navbar-text"><img src="{{Session::get('user_image')}}" height="23px" />&nbsp;&nbsp;&nbsp;</li>
+								@endif
+
 								<li class="dropdown{{ (Request::is('account*') ? ' active' : '') }}">
 									<a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="{{ URL::to('account') }}">
 										Welcome, {{ Sentry::getUser()->first_name }}
@@ -84,8 +86,8 @@
 									</ul>
 								</li>
 								@else
-								<li {{ (Request::is('account/login') ? 'class="active"' : '') }}><a href="{{ URL::to('account/login') }}">Login</a></li>
-								<li {{ (Request::is('account/register') ? 'class="active"' : '') }}><a href="{{ URL::to('account/register') }}">Register</a></li>
+								<li {{ (Request::is('signin') ? 'class="active"' : '') }}><a href="{{ URL::to('signin') }}">Sign in</a></li>
+								<li {{ (Request::is('signup') ? 'class="active"' : '') }}><a href="{{ URL::to('signup') }}">Sign up</a></li>
 								@endif
 							</ul>
 						</div>
@@ -96,7 +98,7 @@
 			<!-- ./ navbar -->
 
 			<!-- Notifications -->
-			@include('site/notifications')
+			@include('frontend/notifications')
 			<!-- ./ notifications -->
 
 			<!-- Content -->

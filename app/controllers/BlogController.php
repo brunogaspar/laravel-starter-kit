@@ -13,7 +13,7 @@ class BlogController extends BaseController {
 		$posts = Post::orderBy('created_at', 'DESC')->paginate(10);
 
 		// Show the page
-		return View::make('site/blog/index', compact('posts'));
+		return View::make('frontend/blog/index', compact('posts'));
 	}
 
 	/**
@@ -42,7 +42,7 @@ class BlogController extends BaseController {
 		$comments = $post->comments()->orderBy('created_at', 'DESC')->get();
 
 		// Show the page
-		return View::make('site/blog/view_post', compact('post', 'comments'));
+		return View::make('frontend/blog/view_post', compact('post', 'comments'));
 	}
 
 	/**

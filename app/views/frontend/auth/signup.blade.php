@@ -1,22 +1,22 @@
-@extends('site.layouts.default')
+@extends('frontend.layouts.default')
 
 {{-- Page Title --}}
 @section('title')
+Account Signup ::
 @parent
-:: Account Signup
 @stop
 
 {{-- Page content --}}
 @section('content')
 <div class="page-header">
-	<h3>Signup</h3>
+	<h3>Sign up</h3>
 </div>
 <div class="row">
 	<div class="span6">
 		<!-- ./ Facebook Login button -->
 		<form method="post" action="" class="form-horizontal" autocomplete="off">
 			<!-- CSRF Token -->
-			<input type="hidden" name="csrf_token" id="csrf_token" value="{{ csrf_token() }}" />
+			<input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}" />
 
 			<!-- First Name -->
 			<div class="control-group {{ $errors->has('first_name') ? 'error' : '' }}">

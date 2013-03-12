@@ -47,8 +47,8 @@ Route::get('admin', 'AdminDashboardController@getIndex');
 */
 
 # Login
-Route::get('account/login', 'AuthController@getLogin');
-Route::post('account/login', 'AuthController@postLogin');
+Route::get('signin', 'AuthController@getSignin');
+Route::post('signin', 'AuthController@postSignin');
 
 # Register
 Route::get('account/register', 'AuthController@getRegister');
@@ -108,7 +108,7 @@ Route::post('{postSlug}', 'BlogController@postView');
 
 Route::get('/', 'BlogController@getIndex');
 
-# routes for handling social authentication via opauth 
+# routes for handling social authentication via opauth
 Route::get('social/auth/{network?}', 'SocialController@auth');
 Route::get('social/callback', 'SocialController@callback');
 

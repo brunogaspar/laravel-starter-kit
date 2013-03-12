@@ -3,11 +3,11 @@
 class AuthController extends BaseController {
 
 	/**
-	 * Account login.
+	 * Account sign in.
 	 *
 	 * @return View
 	 */
-	public function getLogin()
+	public function getSignin()
 	{
 		// Are we logged in?
 		if (Sentry::check())
@@ -16,20 +16,20 @@ class AuthController extends BaseController {
 		}
 
 		// Show the page
-		return View::make('site/account/login');
+		return View::make('frontend/auth/signin');
 	}
 
 	/**
-	 * Account login form processing.
+	 * Account sign in form processing.
 	 *
 	 * @return Redirect
 	 */
-	public function postLogin()
+	public function postSignin()
 	{
 		// Declare the rules for the form validation
 		$rules = array(
 			'email'    => 'required|email',
-			'password' => 'required'
+			'password' => 'required',
 		);
 
 		// Validate the inputs
@@ -54,7 +54,7 @@ class AuthController extends BaseController {
 				}
 
 				// Redirect to the login page
-				return Redirect::to('account/login')->with('error', Lang::get('account/auth.messages.login.error'));
+				return Redirect::to('signin')->with('error', Lang::get('account/auth.messages.login.error'));
 			}
 			catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
 			{
@@ -74,19 +74,19 @@ class AuthController extends BaseController {
 			}
 
 			// Redirect to the login page
-			return Redirect::to('account/login')->with('error', Lang::get('account/auth.' . $error));
+			return Redirect::to('signin')->with('error', Lang::get('account/auth.' . $error));
 		}
 
 		// Something went wrong
-		return Redirect::to('account/login')->withInput()->withErrors($validator);
+		return Redirect::to('signin')->withInput()->withErrors($validator);
 	}
 
 	/**
-	 * User account creation form page.
+	 * Account sign up.
 	 *
 	 * @return View
 	 */
-	public function getRegister()
+	public function getSignup()
 	{
 		// Are we logged in?
 		if (Sentry::check())
@@ -95,23 +95,23 @@ class AuthController extends BaseController {
 		}
 
 		// Show the page
-		return View::make('site/account/register');
+		return View::make('frontend/auth/signup');
 	}
 
 	/**
-	 * User account creation form processing.
+	 * Account sign up form processing.
 	 *
 	 * @return Redirect
 	 */
-	public function postRegister()
+	public function postSignup()
 	{
 		// Declare the rules for the form validation
 		$rules = array(
 			'first_name'            => 'required',
 			'last_name'             => 'required',
 			'email'                 => 'required|email|unique:users',
-			'password'              => 'required|confirmed',
-			'password_confirmation' => 'required'
+			'password'              => 'required',
+			'password_confirmation' => 'required|same:password',
 		);
 
 		// Validate the inputs
@@ -125,27 +125,28 @@ class AuthController extends BaseController {
 				'first_name' => Input::get('first_name'),
 				'last_name'  => Input::get('last_name'),
 				'email'      => Input::get('email'),
-				'password'   => Input::get('password')
+				'password'   => Input::get('password'),
 			));
 
 			// Data to be used on the email view
 			$data = array(
-				'user' => $user,
-				'activationcode' => $user->getActivationCode()
+				'user'           => $user,
+				'activationcode' => $user->getActivationCode(),
 			);
 
 			// Send the activation code through email
 			Mail::send('emails.welcome', $data, function($m) use ($user)
 			{
-				$m->to($user->email, $user->first_name . ' ' . $user->last_name)->subject('Welcome ' . $user->first_name);
+				$m->to($user->email, $user->first_name . ' ' . $user->last_name);
+				$m->subject('Welcome ' . $user->first_name);
 			});
 
 			// Redirect to the register page
-			return Redirect::to('account/register')->with('success', 'Account created with success!');
+			return Redirect::to('signup')->with('success', 'Account created with success!');
 		}
 
 		// Something went wrong
-		return Redirect::to('account/register')->withInput()->withErrors($validator);
+		return Redirect::to('signup')->withInput()->withErrors($validator);
 	}
 
 	/**
@@ -202,7 +203,7 @@ class AuthController extends BaseController {
 		}
 
 		// Show the page
-		return View::make('site/account/forgot-password');
+		return View::make('frontend/auth/forgot-password');
 	}
 
 	/**
@@ -282,7 +283,7 @@ class AuthController extends BaseController {
 		}
 
 		// Show the page
-		return View::make('site/account/forgot-password-confirmation');
+		return View::make('frontend/auth/forgot-password-confirmation');
 	}
 
 	/**
@@ -295,8 +296,8 @@ class AuthController extends BaseController {
 	{
 		// Declare the rules for the form validation
 		$rules = array(
-			'password'              => 'required|confirmed',
-			'password_confirmation' => 'required'
+			'password'              => 'required',
+			'password_confirmation' => 'required|same:password'
 		);
 
 		// Validate the inputs
@@ -308,7 +309,7 @@ class AuthController extends BaseController {
 
 
 			// Redirect to the register page
-			return Redirect::to('account/login')->with('success', 'Account activated with success!');
+			return Redirect::to('signin')->with('success', 'Account activated with success!');
 		}
 
 		// Something went wrong

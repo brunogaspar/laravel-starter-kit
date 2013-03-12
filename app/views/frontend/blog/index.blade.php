@@ -1,4 +1,4 @@
-@extends('site.layouts.default')
+@extends('frontend.layouts.default')
 
 {{-- Content --}}
 @section('content')

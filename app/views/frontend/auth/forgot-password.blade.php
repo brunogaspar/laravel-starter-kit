@@ -1,4 +1,4 @@
-@extends('site.layouts.default')
+@extends('frontend.layouts.default')
 
 {{-- Page Title --}}
 @section('title')
@@ -13,7 +13,7 @@
 </div>
 <form method="post" action="" class="form-horizontal">
 	<!-- CSRF Token -->
-	<input type="hidden" name="csrf_token" id="csrf_token" value="{{ csrf_token() }}" />
+	<input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}" />
 
 	<!-- Email -->
 	<div class="control-group {{ $errors->has('email') ? 'error' : '' }}">
