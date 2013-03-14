@@ -4,43 +4,47 @@ class PostsSeeder extends Seeder {
 
 	public function run()
 	{
-		// Common
+		// Common data
 		$common = array(
 			'user_id' => 1,
-			'content' => file_get_contents(__DIR__ . '/post-content.txt')
+			'content' => file_get_contents(__DIR__ . '/post-content.txt'),
 		);
 
+		// Initialize empty array
+		$posts = array();
+
 		// Blog post 1
-		$post1 = array_merge($common, array(
+		$date = new DateTime;
+		$posts[] = array_merge($common, array(
 			'title'      => 'Lorem ipsum dolor sit amet',
 			'slug'       => 'lorem-ipsum-dolor-sit-amet',
-			'created_at' => new DateTime,
-			'updated_at' => new DateTime
+			'created_at' => $date->modify('-10 day'),
+			'updated_at' => $date->modify('-10 day'),
 		));
 
 		// Blog post 2
-		$post2 = array_merge($common, array(
+		$date = new DateTime;
+		$posts[] = array_merge($common, array(
 			'title'      => 'Vivendo suscipiantur vim te vix',
 			'slug'       => 'vivendo-suscipiantur-vim-te-vix',
-			'created_at' => new DateTime,
-			'updated_at' => new DateTime
+			'created_at' => $date->modify('-4 day'),
+			'updated_at' => $date->modify('-4 day'),
 		));
 
 		// Blog post 3
-		$post3 = array_merge($common, array(
+		$date = new DateTime;
+		$posts[] = array_merge($common, array(
 			'title'      => 'In iisque similique reprimique eum',
 			'slug'       => 'in-iisque-similique-reprimique-eum',
-			'created_at' => new DateTime,
-			'updated_at' => new DateTime
+			'created_at' => $date->modify('-2 day'),
+			'updated_at' => $date->modify('-2 day'),
 		));
 
 		// Delete all the blog posts
-		DB::table('posts')->delete();
+		DB::table('posts')->truncate();
 
-		// Create the blog posts
-		Post::create($post1);
-		Post::create($post2);
-		Post::create($post3);
+		// Insert the blog posts
+		Post::insert($posts);
 	}
 
 }
