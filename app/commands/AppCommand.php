@@ -105,21 +105,17 @@ class AppCommand extends Command {
 	{
 		do
 		{
-			// Ask the user to input the first name.
-			//
+			// Ask the user to input the first name
 			$first_name = $this->ask('Please enter your first name: ');
 
-			// Check if the first name is valid.
-			//
+			// Check if the first name is valid
 			if ($first_name == '')
 			{
-				// Return an error message.
-				//
+				// Return an error message
 				$this->error('Your first name is invalid. Please try again.');
 			}
 
-			// Store the user first name.
-			//
+			// Store the user first name
 			$this->userData['first_name'] = $first_name;
 		}
 		while( ! $first_name);
@@ -135,21 +131,17 @@ class AppCommand extends Command {
 	{
 		do
 		{
-			// Ask the user to input the last name.
-			//
+			// Ask the user to input the last name
 			$last_name = $this->ask('Please enter your last name: ');
 
 			// Check if the last name is valid.
-			//
 			if ($last_name == '')
 			{
-				// Return an error message.
-				//
+				// Return an error message
 				$this->error('Your last name is invalid. Please try again.');
 			}
 
-			// Store the user last name.
-			//
+			// Store the user last name
 			$this->userData['last_name'] = $last_name;
 		}
 		while( ! $last_name);
@@ -165,21 +157,17 @@ class AppCommand extends Command {
 	{
 		do
 		{
-			// Ask the user to input the email address.
-			//
+			// Ask the user to input the email address
 			$email = $this->ask('Please enter your user email: ');
 
-			// Check if email is valid.
-			//
+			// Check if email is valid
 			if ($email == '')
 			{
-				// Return an error message.
-				//
+				// Return an error message
 				$this->error('Email is invalid. Please try again.');
 			}
 
-			// Store the email address.
-			//
+			// Store the email address
 			$this->userData['email'] = $email;
 		}
 		while ( ! $email);
@@ -195,21 +183,17 @@ class AppCommand extends Command {
 	{
 		do
 		{
-			// Ask the user to input the user password.
-			//
+			// Ask the user to input the user password
 			$password = $this->ask('Please enter your user password: ');
 
-			// Check if email is valid.
-			//
+			// Check if email is valid
 			if ($password == '')
 			{
-				// Return an error message.
-				//
+				// Return an error message
 				$this->error('Password is invalid. Please try again.');
 			}
 
 			// Store the password
-			//
 			$this->userData['password'] = $password;
 		}
 		while( ! $password);
@@ -222,13 +206,14 @@ class AppCommand extends Command {
 	 */
 	protected function sentryRunner()
 	{
-		// Create the default groups.
-		//
+		// Create the default groups
 		$this->sentryCreateDefaultGroups();
 
-		// Create the user.
-		//
+		// Create the user
 		$this->sentryCreateUser();
+
+		// Create dummy user
+		$this->sentryCreateDummyUser();
 	}
 
 	/**
@@ -240,8 +225,7 @@ class AppCommand extends Command {
 	{
 		try
 		{
-			// Create the admin group.
-			//
+			// Create the admin group
 			$group = Sentry::getGroupProvider()->create(array(
 				'name'        => 'Admin',
 				'permissions' => array(
@@ -251,7 +235,6 @@ class AppCommand extends Command {
 			));
 
 			// Show the success message.
-			//
 			$this->comment('');
 			$this->info('Admin group created successfully.');
 		}
@@ -269,29 +252,45 @@ class AppCommand extends Command {
 	protected function sentryCreateUser()
 	{
 		// Prepare the user data array.
-		//
 		$data = array_merge($this->userData, array(
 			'activated'   => 1,
 			'permissions' => array(
 				'admin' => 1,
-				'user'  => 1
-			)
+				'user'  => 1,
+			),
 		));
 
-		// Create the user.
-		//
+		// Create the user
 		$user = Sentry::getUserProvider()->create($data);
 
-		// Associate the Admin group to this user.
-		//
+		// Associate the Admin group to this user
 		$group = Sentry::getGroupProvider()->findById(1);
 		$user->addGroup($group);
 
-		// Show the success message.
-		//
+		// Show the success message
 		$this->comment('');
 		$this->info('Your user was created successfully.');
 		$this->comment('');
+	}
+
+	/**
+	 * Create a dummy user.
+	 *
+	 * @return void
+	 */
+	protected function sentryCreateDummyUser()
+	{
+		// Prepare the user data array.
+		$data = array(
+			'first_name' => 'John',
+			'last_name'  => 'Doe',
+			'email'      => 'john.doe@example.com',
+			'password'   => 'johndoe',
+			'activated'  => 1,
+		);
+
+		// Create the user
+		Sentry::getUserProvider()->create($data);
 	}
 
 }
