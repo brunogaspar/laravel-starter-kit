@@ -2,28 +2,6 @@
 
 /*
 |--------------------------------------------------------------------------
-| Register The 404 Event
-|--------------------------------------------------------------------------
-|
-|
-|
-*/
-/*
-App::error(function(Exception $exception, $code)
-{
-	switch ($code)
-	{
-		case 404:
-			return View::make('error/404');
-
-		case 500:
-			return View::make('error/500');
-	}
-});*
-
-
-/*
-|--------------------------------------------------------------------------
 | Register The Laravel Class Loader
 |--------------------------------------------------------------------------
 |
@@ -72,6 +50,18 @@ Log::useDailyFiles(__DIR__.'/../storage/logs/'.$logFile);
 App::error(function(Exception $exception, $code)
 {
 	Log::error($exception);
+
+	switch ($code)
+	{
+		case 403:
+			return Response::make(View::make('error/403'), 403);
+
+		case 500:
+			return Response::make(View::make('error/500'), 500);
+
+		default:
+			return Response::make(View::make('error/404'), 404);
+	}
 });
 
 /*
