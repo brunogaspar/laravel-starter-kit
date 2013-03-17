@@ -1,37 +1,37 @@
 @extends('frontend.layouts.default')
 
-{{-- Web site Title --}}
+{{-- Page title --}}
 @section('title')
+{{ $post->title }} ::
 @parent
-{{ $post->title }}
 @stop
 
 {{-- Update the Meta Title --}}
 @section('meta_title')
-@parent
 
+@parent
 @stop
 
 {{-- Update the Meta Description --}}
 @section('meta_description')
-@parent
 
+@parent
 @stop
 
 {{-- Update the Meta Keywords --}}
 @section('meta_keywords')
-@parent
 
+@parent
 @stop
 
-{{-- Content --}}
+{{-- Page content --}}
 @section('content')
 <h3>{{ $post->title }}</h3>
 
 <p>{{ $post->content() }}</p>
 
 <div>
-	<span class="badge badge-info">Posted {{ $post->date() }}</span>
+	<span class="badge badge-info" title="{{ $post->created_at }}">Posted {{ $post->date() }}</span>
 </div>
 
 <hr />
@@ -43,21 +43,17 @@
 @foreach ($comments as $comment)
 <div class="row">
 	<div class="span1">
-		<img class="thumbnail" src="http://placehold.it/60x60" alt="">
+		<img class="thumbnail" src="http://gravatar.org/avatar/{{ md5(strtolower(trim($comment->author->email))) }}" alt="">
 	</div>
 	<div class="span11">
 		<div class="row">
 			<div class="span11">
 				<span class="muted">{{ $comment->author->fullName() }}</span>
 				&bull;
-				{{ $comment->date() }}
-			</div>
+				<span title="{{ $comment->created_at }}">{{ $comment->date() }}</span>
 
-			<div class="span11">
 				<hr />
-			</div>
 
-			<div class="span11">
 				{{ $comment->content() }}
 			</div>
 		</div>
@@ -75,9 +71,12 @@ Click <a href="{{ URL::to('account/login') }}">here</a> to login into your accou
 @else
 <h4>Add a Comment</h4>
 <form method="post" action="{{ URL::to($post->slug) }}">
-	<input type="hidden" name="csrf_token" value="{{ Session::getToken() }}" />
+	<!-- CSRF Token -->
+	<input type="hidden" name="_token" value="{{ csrf_token() }}" />
 
-	<textarea class="input-block-level" rows="4" name="comment" id="comment">{{ Request::old('comment') }}</textarea>
+	<textarea class="input-block-level" rows="4" name="comment" id="comment">{{ Input::old('comment') }}</textarea>
+
+	{{ $errors->first('comment', '<span class="help-inline">:message</span>') }}
 
 	<div class="control-group">
 		<div class="controls">

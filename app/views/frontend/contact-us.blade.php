@@ -2,13 +2,13 @@
 
 {{-- Page title --}}
 @section('title')
-About us ::
+Contact us ::
 @parent
 @stop
 
 {{-- Page content --}}
 @section('content')
 
-About us page.
+Contact us page.
 
 @stop

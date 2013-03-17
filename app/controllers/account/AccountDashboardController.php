@@ -10,7 +10,7 @@ class AccountDashboardController extends AuthorizedController {
 	public function getIndex()
 	{
 		// Show the page
-		return View::make('site/account/dashboard');
+		return View::make('frontend/account/dashboard');
 	}
 
 }

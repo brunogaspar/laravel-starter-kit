@@ -26,7 +26,7 @@ class BlogController extends BaseController {
 	public function getView($slug)
 	{
 		// Get this blog post data
-		$post = Post::where('slug', '=', $slug)->first();
+		$post = Post::with('comments')->where('slug', '=', $slug)->first();
 
 		// Check if the blog post exists
 		if (is_null($post))
@@ -56,7 +56,7 @@ class BlogController extends BaseController {
 		// The user needs to be logged in, make that check please.
 		if ( ! Sentry::check())
 		{
-			return Redirect::to($slug . '#comments')->with('error', 'You need to be logged in to post comments!');
+			return Redirect::to($slug.'#comments')->with('error', 'You need to be logged in to post comments!');
 		}
 
 		// Get this blog post data
@@ -64,32 +64,32 @@ class BlogController extends BaseController {
 
 		// Declare the rules for the form validation
 		$rules = array(
-			'comment' => 'required|min:3'
+			'comment' => 'required|min:3',
 		);
 
-		// Validate the inputs
+		// Create a new validator instance from our dynamic rules
 		$validator = Validator::make(Input::all(), $rules);
 
-		// Check if the form validates with success
-		if ($validator->passes())
+		// If validation fails, we'll exit the operation now.
+		if ($validator->fails())
 		{
-			// Save the comment
-			$comment = new Comment;
-			$comment->user_id = Sentry::getUser()->id;
-			$comment->content = Input::get('comment');
-
-			// Was the comment saved with success?
-			if($post->comments()->save($comment))
-			{
-				// Redirect to this blog post page
-				return Redirect::to($slug . '#comments')->with('success', 'Your comment was added with success.');
-			}
-
 			// Redirect to this blog post page
-			return Redirect::to($slug . '#comments')->with('error', 'There was a problem adding your comment, please try again.');
+			return Redirect::to($slug.'#comments')->withInput()->withErrors($validator);
+		}
+
+		// Save the comment
+		$comment = new Comment;
+		$comment->user_id = Sentry::getUser()->id;
+		$comment->content = Input::get('comment');
+
+		// Was the comment saved with success?
+		if($post->comments()->save($comment))
+		{
+			// Redirect to this blog post page
+			return Redirect::to($slug.'#comments')->with('success', 'Your comment was added with success.');
 		}
 
 		// Redirect to this blog post page
-		return Redirect::to($slug)->withInput()->withErrors($validator);
+		return Redirect::to($slug.'#comments')->with('error', 'There was a problem adding your comment, please try again.');
 	}
 }

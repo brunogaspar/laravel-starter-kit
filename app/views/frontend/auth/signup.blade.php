@@ -1,8 +1,8 @@
 @extends('frontend.layouts.default')
 
-{{-- Page Title --}}
+{{-- Page title --}}
 @section('title')
-Account Signup ::
+Account Sign up ::
 @parent
 @stop
 
@@ -12,14 +12,13 @@ Account Signup ::
 	<h3>Sign up</h3>
 </div>
 <div class="row">
-	<div class="span6">
-		<!-- ./ Facebook Login button -->
-		<form method="post" action="" class="form-horizontal" autocomplete="off">
+	<div class="span8">
+		<form method="post" action="{{ URL::route('signup') }}" class="form-horizontal" autocomplete="off">
 			<!-- CSRF Token -->
-			<input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}" />
+			<input type="hidden" name="_token" value="{{ csrf_token() }}" />
 
 			<!-- First Name -->
-			<div class="control-group {{ $errors->has('first_name') ? 'error' : '' }}">
+			<div class="control-group{{ $errors->first('first_name', ' error') }}">
 			<label class="control-label" for="first_name">First Name</label>
 				<div class="controls">
 					<input type="text" name="first_name" id="first_name" value="{{ Input::old('first_name') }}" />
@@ -28,7 +27,7 @@ Account Signup ::
 			</div>
 
 			<!-- Last Name -->
-			<div class="control-group {{ $errors->has('last_name') ? 'error' : '' }}">
+			<div class="control-group{{ $errors->first('last_name', ' error') }}">
 				<label class="control-label" for="last_name">Last Name</label>
 				<div class="controls">
 					<input type="text" name="last_name" id="last_name" value="{{ Input::old('last_name') }}" />
@@ -37,7 +36,7 @@ Account Signup ::
 			</div>
 
 			<!-- Email -->
-			<div class="control-group {{ $errors->has('email') ? 'error' : '' }}">
+			<div class="control-group{{ $errors->first('email', ' error') }}">
 				<label class="control-label" for="email">Email</label>
 				<div class="controls">
 					<input type="text" name="email" id="email" value="{{ Input::old('email') }}" />
@@ -45,8 +44,17 @@ Account Signup ::
 				</div>
 			</div>
 
+			<!-- Email Confirm -->
+			<div class="control-group{{ $errors->first('email_confirm', ' error') }}">
+				<label class="control-label" for="email_confirm">Confirm Email</label>
+				<div class="controls">
+					<input type="text" name="email_confirm" id="email_confirm" value="{{ Input::old('email_confirm') }}" />
+					{{ $errors->first('email_confirm', '<span class="help-inline">:message</span>') }}
+				</div>
+			</div>
+
 			<!-- Password -->
-			<div class="control-group {{ $errors->has('password') ? 'error' : '' }}">
+			<div class="control-group{{ $errors->first('password', ' error') }}">
 				<label class="control-label" for="password">Password</label>
 				<div class="controls">
 					<input type="password" name="password" id="password" value="" />
@@ -55,23 +63,25 @@ Account Signup ::
 			</div>
 
 			<!-- Password Confirm -->
-			<div class="control-group {{ $errors->has('password_confirmation') ? 'error' : '' }}">
-				<label class="control-label" for="password_confirmation">Password Confirm</label>
+			<div class="control-group{{ $errors->first('password_confirm', ' error') }}">
+				<label class="control-label" for="password_confirm">Confirm Password</label>
 				<div class="controls">
-					<input type="password" name="password_confirmation" id="password_confirmation" value="" />
-					{{ $errors->first('password_confirmation', '<span class="help-inline">:message</span>') }}
+					<input type="password" name="password_confirm" id="password_confirm" value="" />
+					{{ $errors->first('password_confirm', '<span class="help-inline">:message</span>') }}
 				</div>
 			</div>
 
 			<!-- Form actions -->
 			<div class="control-group">
 				<div class="controls">
-					<button type="submit" class="btn">Signup</button>
+					<a class="btn" href="{{ URL::to('/') }}">Cancel</a>
+
+					<button type="submit" class="btn btn-info">Sign up</button>
 				</div>
 			</div>
 		</form>
 	</div>
-	<div class="span5">
+	<div class="span4">
 		<!-- Facebook login button -->
 		<div class="control-group">
 			<div class="controls">

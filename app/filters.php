@@ -41,7 +41,7 @@ Route::filter('auth', function()
 		Session::put('loginRedirect', Request::url());
 
 		// Redirect to the login page
-		return Redirect::to('account/login');
+		return Redirect::route('signin');
 	}
 });
 
@@ -64,7 +64,7 @@ Route::filter('admin-auth', function()
 		Session::put('loginRedirect', Request::url());
 
 		// Redirect to the login page
-		return Redirect::to('account/login');
+		return Redirect::route('signin');
 	}
 
 	// Check if the user has access to the admin page

@@ -27,8 +27,7 @@
 
 <form class="form-horizontal" method="post" action="" autocomplete="off">
 	<!-- CSRF Token -->
-	<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-	<!-- ./ csrf token -->
+	<input type="hidden" name="_token" value="{{ csrf_token() }}" />
 
 	<!-- Tabs Content -->
 	<div class="tab-content">

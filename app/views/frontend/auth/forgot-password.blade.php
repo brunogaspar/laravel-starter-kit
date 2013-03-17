@@ -1,9 +1,9 @@
 @extends('frontend.layouts.default')
 
-{{-- Page Title --}}
+{{-- Page title --}}
 @section('title')
+Forgot Password ::
 @parent
-:: Forgot Password
 @stop
 
 {{-- Page content --}}
@@ -13,10 +13,10 @@
 </div>
 <form method="post" action="" class="form-horizontal">
 	<!-- CSRF Token -->
-	<input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}" />
+	<input type="hidden" name="_token" value="{{ csrf_token() }}" />
 
 	<!-- Email -->
-	<div class="control-group {{ $errors->has('email') ? 'error' : '' }}">
+	<div class="control-group{{ $errors->first('email', ' error') }}">
 		<label class="control-label" for="email">Email</label>
 		<div class="controls">
 			<input type="text" name="email" id="email" value="{{ Input::old('email') }}" />
@@ -27,6 +27,8 @@
 	<!-- Form actions -->
 	<div class="control-group">
 		<div class="controls">
+			<a class="btn" href="{{ URL::to('/') }}">Cancel</a>
+
 			<button type="submit" class="btn">Submit</button>
 		</div>
 	</div>

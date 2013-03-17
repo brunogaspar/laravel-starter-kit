@@ -1,10 +1,13 @@
-Hello {{ $user->first_name }},
+@extends('emails.layouts.default')
 
-<br /><br />
+@section('content')
+<p>Hello {{ $user->first_name }},</p>
 
-, please click <a href="{{ URL::to('account/forgot-password/' . $user->id . '/' . $user->getResetPasswordCode()) }}">here</a> to reset your password.
+<p>Please click on the following link to updated your password:</p>
 
-<br /><br />
+<p><a href="{{ $forgotPasswordUrl }}">{{ $forgotPasswordUrl }}</a></p>
 
-Regards,<br />
-Foo Bar Company
+<p>Best regards,</p>
+
+<p>SiteNameHere Team</p>
+@stop

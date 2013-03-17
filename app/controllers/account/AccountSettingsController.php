@@ -13,7 +13,7 @@ class AccountSettingsController extends AuthorizedController {
 		$user = Sentry::getUser();
 
 		// Show the page
-		return View::make('site/account/settings', compact('user'));
+		return View::make('frontend/account/settings', compact('user'));
 	}
 
 	/**

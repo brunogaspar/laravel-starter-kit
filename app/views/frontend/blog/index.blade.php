@@ -11,7 +11,6 @@
 				<h4><strong><a href="{{ $post->url() }}">{{ $post->title }}</a></strong></h4>
 			</div>
 		</div>
-		<!-- ./ post title -->
 
 		<!-- Post Content -->
 		<div class="row">
@@ -22,10 +21,9 @@
 				<p>
 					{{ Str::limit($post->content, 200) }}
 				</p>
-				<p><a class="btn btn-mini" href="{{ $post->url() }}">Read more</a></p>
+				<p><a class="btn btn-mini" href="{{ $post->url() }}">Read more...</a></p>
 			</div>
 		</div>
-		<!-- ./ post content -->
 
 		<!-- Post Footer -->
 		<div class="row">
@@ -33,12 +31,11 @@
 				<p></p>
 				<p>
 					<i class="icon-user"></i> by <span class="muted">{{ $post->author->first_name }}</span>
-					| <i class="icon-calendar"></i> <!--Sept 16th, 2012-->{{ $post->date() }}
+					| <i class="icon-calendar"></i> {{ $post->date() }}
 					| <i class="icon-comment"></i> <a href="{{ $post->url() }}#comments">{{ $post->comments()->count() }} Comments</a>
 				</p>
 			</div>
 		</div>
-		<!-- ./ post footer -->
 	</div>
 </div>
 
@@ -46,5 +43,4 @@
 @endforeach
 
 {{ $posts->links() }}
-
 @stop

@@ -3,6 +3,13 @@
 class BaseController extends Controller {
 
 	/**
+	 * Message bag.
+	 *
+	 * @var Illuminate\Support\MessageBag
+	 */
+	protected $messageBag = null;
+
+	/**
 	 * Initializer.
 	 *
 	 * @return void
@@ -11,6 +18,9 @@ class BaseController extends Controller {
 	{
 		// CSRF Protection
 		$this->beforeFilter('csrf', array('on' => 'post'));
+
+		//
+		$this->messageBag = new Illuminate\Support\MessageBag;
 	}
 
 	/**
