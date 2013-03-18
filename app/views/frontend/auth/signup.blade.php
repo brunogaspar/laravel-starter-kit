@@ -13,7 +13,7 @@ Account Sign up ::
 </div>
 <div class="row">
 	<div class="span8">
-		<form method="post" action="{{ URL::route('signup') }}" class="form-horizontal" autocomplete="off">
+		<form method="post" action="{{ route('signup') }}" class="form-horizontal" autocomplete="off">
 			<!-- CSRF Token -->
 			<input type="hidden" name="_token" value="{{ csrf_token() }}" />
 
@@ -74,7 +74,7 @@ Account Sign up ::
 			<!-- Form actions -->
 			<div class="control-group">
 				<div class="controls">
-					<a class="btn" href="{{ URL::to('/') }}">Cancel</a>
+					<a class="btn" href="{{ route('home') }}">Cancel</a>
 
 					<button type="submit" class="btn btn-info">Sign up</button>
 				</div>

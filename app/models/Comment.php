@@ -7,7 +7,7 @@ class Comment extends Eloquent {
 	 *
 	 * @return string
 	 */
-	public function date()
+	public function created_at()
 	{
 		return ExpressiveDate::make($this->created_at)->getRelativeDate();
 	}
@@ -41,4 +41,5 @@ class Comment extends Eloquent {
 	{
 		return $this->belongsTo('Post');
 	}
+
 }

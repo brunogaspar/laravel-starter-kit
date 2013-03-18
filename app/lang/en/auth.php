@@ -28,6 +28,11 @@ return array(
 			'error'   => 'There was a problem while trying to reset your password, please try again.',
 			'success' => 'Your password has been successfully reseted.',
 		),
+
+		'activate' => array(
+			'error'   => 'There was a problem while trying to activate your account, please try again.',
+			'success' => 'Your account has been successfully activated.',
+		),
 	),
 
 );

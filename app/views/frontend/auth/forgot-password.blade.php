@@ -27,7 +27,7 @@ Forgot Password ::
 	<!-- Form actions -->
 	<div class="control-group">
 		<div class="controls">
-			<a class="btn" href="{{ URL::to('/') }}">Cancel</a>
+			<a class="btn" href="{{ route('home') }}">Cancel</a>
 
 			<button type="submit" class="btn">Submit</button>
 		</div>

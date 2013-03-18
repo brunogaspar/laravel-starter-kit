@@ -86,10 +86,11 @@ class BlogController extends BaseController {
 		if($post->comments()->save($comment))
 		{
 			// Redirect to this blog post page
-			return Redirect::to($slug.'#comments')->with('success', 'Your comment was added with success.');
+			return Redirect::to($slug.'#comments')->with('success', 'Your comment was successfully added.');
 		}
 
 		// Redirect to this blog post page
 		return Redirect::to($slug.'#comments')->with('error', 'There was a problem adding your comment, please try again.');
 	}
+
 }

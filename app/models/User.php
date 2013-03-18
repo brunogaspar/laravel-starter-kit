@@ -5,8 +5,8 @@ use Cartalyst\Sentry\Users\Eloquent\User as SentryUserModel;
 class User extends SentryUserModel {
 
 	/**
-	 * Returns the user full name, it simply
-	 * concatenates the first and last name.
+	 * Returns the user full name, it simply concatenates
+	 * the first and last name.
 	 *
 	 * @return string
 	 */

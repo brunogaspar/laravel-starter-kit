@@ -162,7 +162,6 @@ class AuthController extends BaseController {
 	 * @param  string  $actvationCode
 	 * @return
 	 */
-	/*
 	public function getActivate($activationCode = null)
 	{
 		try
@@ -173,25 +172,21 @@ class AuthController extends BaseController {
 			// Try to activate this user account
 			if ($user->attemptActivation($activationCode))
 			{
-				echo 'activated with success';
-
-				return null;
 				// Redirect to the login page
-				#return Redirect::to('account/login')->with('success', 'Account activated successfully.');
+				return Redirect::route('signin')->with('success', Lang::get('auth.messages.activate.success'));
 			}
 
 			// The activation failed.
-			$error = 'Activation failed.';
+			$error = Lang::get('auth.messages.activate.error');
 		}
 		catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
 		{
-			$error = 'User does not exist.';
+			$error = Lang::get('auth.messages.activate.error');
 		}
 
-		// Show the page
-		return View::make('frontend/auth/activate');
+		// Ooops.. something went wrong
+		return Redirect::route('signin')->with('error', $error);
 	}
-	*/
 
 	/**
 	 * Forgot password page.
@@ -203,7 +198,7 @@ class AuthController extends BaseController {
 		// Are we logged in?
 		if (Sentry::check())
 		{
-			return Redirect::to('account');
+			return Redirect::route('account');
 		}
 
 		// Show the page
@@ -344,7 +339,7 @@ class AuthController extends BaseController {
 		Sentry::logout();
 
 		// Redirect to the users page
-		return Redirect::to('/')->with('success', 'You have successfully logged out!');
+		return Redirect::route('home')->with('success', 'You have successfully logged out!');
 	}
 
 }

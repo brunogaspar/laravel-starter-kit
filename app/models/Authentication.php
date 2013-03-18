@@ -2,10 +2,14 @@
 
 class Authentication extends Eloquent {
 
-       protected $table = 'authentications';
+	/**
+	 *
+	 *
+	 * @return
+	 */
+	public function user()
+	{
+		return $this->belongsTo('User');
+	}
 
-       public function user()
-       {
-          return $this->belongsTo('User');
-       }
 }

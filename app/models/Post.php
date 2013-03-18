@@ -1,12 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\URL; # not sure why i need this here :c
-
 class Post extends Eloquent {
 
 	/**
-	 * Deletes a blog post and all
-	 * the associated comments.
+	 * Deletes a blog post and all the associated comments.
 	 *
 	 * @return bool
 	 */
@@ -20,8 +17,8 @@ class Post extends Eloquent {
 	}
 
 	/**
-	 * Returns a formatted post content entry,
-	 * this ensures that line breaks are returned.
+	 * Returns a formatted post content entry, this ensures that
+	 * line breaks are returned.
 	 *
 	 * @return string
 	 */
@@ -51,45 +48,49 @@ class Post extends Eloquent {
 	}
 
 	/**
-	 * Get the date the post was created.
-	 *
-	 * @return string
-	 */
-	public function date()
-	{
-		return ExpressiveDate::make($this->created_at)->getRelativeDate();
-	}
-
-	/**
 	 * Get the URL to the post.
 	 *
 	 * @return string
 	 */
 	public function url()
 	{
-		return Url::to($this->slug);
+		return URL::route('view-post', $this->slug);
 	}
 
 	/**
-	 * Returns the date of the blog post creation,
-	 * on a good and more readable format :)
+	 * Returns the blog post creation date.
 	 *
+	 * @param  string  $dateFormat
 	 * @return string
 	 */
-	public function created_at()
+	public function created_at($dateFormat = null)
 	{
-		return ExpressiveDate::make($this->created_at)->getRelativeDate();
+		$date = ExpressiveDate::make($this->created_at);
+
+		if (is_null($dateFormat))
+		{
+			return $date->getRelativeDate();
+		}
+
+		return $date->format($dateFormat);
 	}
 
 	/**
-	 * Returns the date of the blog post last update,
-	 * on a good and more readable format :)
+	 * Returns the blog post last update date.
 	 *
+	 * @param  string  $dateFormat
 	 * @return string
 	 */
-	public function updated_at()
+	public function updated_at($dateFormat = null)
 	{
-		return ExpressiveDate::make($this->updated_at)->getRelativeDate();
+		$date = ExpressiveDate::make($this->updated_at);
+
+		if (is_null($dateFormat))
+		{
+			return $date->getRelativeDate();
+		}
+
+		return $date->format($dateFormat);
 	}
 
 }

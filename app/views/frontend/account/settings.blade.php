@@ -72,7 +72,9 @@ body {
 	<!-- Form actions -->
 	<div class="control-group">
 		<div class="controls">
-			<button type="submit" class="btn">Update</button>
+			<a class="btn" href="{{ route('home') }}">Cancel</a>
+
+			<button type="submit" class="btn btn-info">Update</button>
 		</div>
 	</div>
 </form>

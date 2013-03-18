@@ -59,7 +59,7 @@
 
 						<div class="nav-collapse collapse">
 							<ul class="nav">
-								<li {{ (Request::is('/') ? 'class="active"' : '') }}><a href="{{ URL::to('/') }}"><i class="icon-home icon-white"></i> Home</a></li>
+								<li {{ (Request::is('/') ? 'class="active"' : '') }}><a href="{{ route('home') }}"><i class="icon-home icon-white"></i> Home</a></li>
 								<li {{ (Request::is('about-us') ? 'class="active"' : '') }}><a href="{{ URL::to('about-us') }}"><i class="icon-file icon-white"></i> About us</a></li>
 								<li {{ (Request::is('contact-us') ? 'class="active"' : '') }}><a href="{{ URL::to('contact-us') }}"><i class="icon-file icon-white"></i> Contact us</a></li>
 							</ul>
@@ -67,28 +67,24 @@
 							<ul class="nav pull-right">
 								@if (Sentry::check())
 								@if(Sentry::getUser()->hasAccess('admin'))
-								<li><a href="{{ URL::route('admin') }}">Admin Dashboard</a></li>
+								<li><a href="{{ route('admin') }}">Admin Dashboard</a></li>
 								<li class="divider-vertical"></li>
 								@endif
 
-								@if ( Session::has('user_image') )
-								<li class="navbar-text"><img src="{{Session::get('user_image')}}" height="23px" />&nbsp;&nbsp;&nbsp;</li>
-								@endif
-
 								<li class="dropdown{{ (Request::is('account*') ? ' active' : '') }}">
-									<a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="{{ URL::route('account') }}">
+									<a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="{{ route('account') }}">
 										Welcome, {{ Sentry::getUser()->first_name }}
 										<b class="caret"></b>
 									</a>
 									<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-										<li{{ (Request::is('account/settings') ? ' class="active"' : '') }}><a href="{{ URL::route('settings') }}"><i class="icon-cog"></i> Settings</a></li>
+										<li{{ (Request::is('account/settings') ? ' class="active"' : '') }}><a href="{{ route('settings') }}"><i class="icon-cog"></i> Settings</a></li>
 										<li class="divider"></li>
-										<li><a href="{{ URL::route('logout') }}"><i class="icon-off"></i> Logout</a></li>
+										<li><a href="{{ route('logout') }}"><i class="icon-off"></i> Logout</a></li>
 									</ul>
 								</li>
 								@else
-								<li {{ (Request::is('signin') ? 'class="active"' : '') }}><a href="{{ URL::route('signin') }}">Sign in</a></li>
-								<li {{ (Request::is('signup') ? 'class="active"' : '') }}><a href="{{ URL::route('signup') }}">Sign up</a></li>
+								<li {{ (Request::is('signin') ? 'class="active"' : '') }}><a href="{{ route('signin') }}">Sign in</a></li>
+								<li {{ (Request::is('signup') ? 'class="active"' : '') }}><a href="{{ route('signup') }}">Sign up</a></li>
 								@endif
 							</ul>
 						</div>

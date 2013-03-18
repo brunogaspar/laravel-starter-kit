@@ -5,19 +5,7 @@ use Cartalyst\Sentry\Groups\Eloquent\Group as SentryGroupModel;
 class Group extends SentryGroupModel {
 
 	/**
-	 * Returns the user full name, it simply
-	 * concatenates the first and last name.
-	 *
-	 * @return string
-	 */
-	public function fullName()
-	{
-		return $this->first_name . ' ' . $this->last_name;
-	}
-
-	/**
-	 * Returns the date of the user creation,
-	 * on a good and more readable format :)
+	 * Returns the group creation date.
 	 *
 	 * @return string
 	 */
@@ -27,8 +15,7 @@ class Group extends SentryGroupModel {
 	}
 
 	/**
-	 * Returns the date of the user last update,
-	 * on a good and more readable format :)
+	 * Returns the group last update date.
 	 *
 	 * @return string
 	 */
