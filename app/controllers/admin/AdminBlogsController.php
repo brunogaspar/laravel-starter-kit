@@ -13,7 +13,7 @@ class AdminBlogsController extends AdminController {
 		$posts = Post::orderBy('created_at', 'DESC')->paginate(10);
 
 		// Show the page
-		return View::make('admin/blogs/index', compact('posts'));
+		return View::make('backend/blogs/index', compact('posts'));
 	}
 
 	/**
@@ -24,7 +24,7 @@ class AdminBlogsController extends AdminController {
 	public function getCreate()
 	{
 		// Show the page
-		return View::make('admin/blogs/create');
+		return View::make('backend/blogs/create');
 	}
 
 	/**
@@ -37,7 +37,7 @@ class AdminBlogsController extends AdminController {
 		// Declare the rules for the form validation
 		$rules = array(
 			'title'   => 'required|min:3',
-			'content' => 'required|min:3'
+			'content' => 'required|min:3',
 		);
 
 		// Validate the inputs
@@ -62,15 +62,15 @@ class AdminBlogsController extends AdminController {
 			if($post->save())
 			{
 				// Redirect to the new blog post page
-				return Redirect::to('admin/blogs/' . $post->id . '/edit')->with('success', Lang::get('admin/blogs/messages.create.success'));
+				return Redirect::to('backend/blogs/'.$post->id.'/edit')->with('success', Lang::get('backend/blogs/messages.create.success'));
 			}
 
 			// Redirect to the blog post create page
-			return Redirect::to('admin/blogs/create')->with('error', Lang::get('admin/blogs/messages.create.error'));
+			return Redirect::to('backend/blogs/create')->with('error', Lang::get('backend/blogs/messages.create.error'));
 		}
 
 		// Form validation failed
-		return Redirect::to('admin/blogs/create')->withInput()->withErrors($validator);
+		return Redirect::to('backend/blogs/create')->withInput()->withErrors($validator);
 	}
 
 	/**
@@ -85,11 +85,11 @@ class AdminBlogsController extends AdminController {
 		if (is_null($post = Post::find($postId)))
 		{
 			// Redirect to the blogs management page
-			return Redirect::to('admin/blogs')->with('error', Lang::get('admin/blogs/messages.does_not_exist'));
+			return Redirect::to('backend/blogs')->with('error', Lang::get('backend/blogs/messages.does_not_exist'));
 		}
 
 		// Show the page
-		return View::make('admin/blogs/edit', compact('post'));
+		return View::make('backend/blogs/edit', compact('post'));
 	}
 
 	/**
@@ -104,13 +104,13 @@ class AdminBlogsController extends AdminController {
 		if (is_null($post = Post::find($postId)))
 		{
 			// Redirect to the blogs management page
-			return Redirect::to('admin/blogs')->with('error', Lang::get('admin/blogs/messages.does_not_exist'));
+			return Redirect::to('backend/blogs')->with('error', Lang::get('backend/blogs/messages.does_not_exist'));
 		}
 
 		// Declare the rules for the form validation
 		$rules = array(
 			'title'   => 'required|min:3',
-			'content' => 'required|min:3'
+			'content' => 'required|min:3',
 		);
 
 		// Validate the inputs
@@ -131,15 +131,15 @@ class AdminBlogsController extends AdminController {
 			if($post->save())
 			{
 				// Redirect to the new blog post page
-				return Redirect::to('admin/blogs/' . $postId . '/edit')->with('success', Lang::get('admin/blogs/messages.update.success'));
+				return Redirect::to('backend/blogs/' . $postId . '/edit')->with('success', Lang::get('backend/blogs/messages.update.success'));
 			}
 
 			// Redirect to the blogs post management page
-			return Redirect::to('admin/blogs/' . $postId . '/edit')->with('error', Lang::get('admin/blogs/messages.update.error'));
+			return Redirect::to('backend/blogs/' . $postId . '/edit')->with('error', Lang::get('backend/blogs/messages.update.error'));
 		}
 
 		// Form validation failed
-		return Redirect::to('admin/blogs/' . $postId . '/edit')->withInput()->withErrors($validator);
+		return Redirect::to('backend/blogs/' . $postId . '/edit')->withInput()->withErrors($validator);
 	}
 
 	/**
@@ -154,18 +154,18 @@ class AdminBlogsController extends AdminController {
 		if (is_null($post = Post::find($postId)))
 		{
 			// Redirect to the blogs management page
-			return Redirect::to('admin/blogs')->with('error', Lang::get('admin/blogs/messages.not_found'));
+			return Redirect::to('backend/blogs')->with('error', Lang::get('backend/blogs/messages.not_found'));
 		}
 
 		// Was the blog post deleted?
 		if($post->delete())
 		{
 			// Redirect to the blog posts management page
-			return Redirect::to('admin/blogs')->with('success', Lang::get('admin/blogs/messages.delete.success'));
+			return Redirect::to('backend/blogs')->with('success', Lang::get('backend/blogs/messages.delete.success'));
 		}
 
 		// There was a problem deleting the blog post
-		return Redirect::to('admin/blogs')->with('error', Lang::get('admin/blogs/messages.delete.error'));
+		return Redirect::to('backend/blogs')->with('error', Lang::get('backend/blogs/messages.delete.error'));
 	}
 
 }

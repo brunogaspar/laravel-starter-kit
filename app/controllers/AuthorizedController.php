@@ -18,6 +18,9 @@ class AuthorizedController extends BaseController {
 	{
 		// Apply the auth filter
 		$this->beforeFilter('auth', array('except' => $this->whitelist));
+
+		// Call parent
+		parent::__construct();
 	}
 
 }

@@ -3,14 +3,14 @@
 class AccountDashboardController extends AuthorizedController {
 
 	/**
-	 * Shows the account main page.
+	 * Redirect to the profile page.
 	 *
-	 * @return View
+	 * @return Redirect
 	 */
 	public function getIndex()
 	{
-		// Show the page
-		return View::make('frontend/account/dashboard');
+		// Redirect to the profile page
+		return Redirect::route('profile');
 	}
 
 }

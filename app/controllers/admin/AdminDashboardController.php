@@ -10,7 +10,7 @@ class AdminDashboardController extends AdminController {
 	public function getIndex()
 	{
 		// Show the page
-		return View::make('admin/dashboard');
+		return View::make('backend/dashboard');
 	}
 
 }

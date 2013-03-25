@@ -1,12 +1,12 @@
-@extends('admin/layouts.default')
+@extends('backend.layouts.default')
 
-{{-- Web site Title --}}
+{{-- Page title --}}
 @section('title')
+Blog Post Update ::
 @parent
-:: Blog Post Update
 @stop
 
-{{-- Content --}}
+{{-- Page content --}}
 @section('content')
 <div class="page-header">
 	<h3>

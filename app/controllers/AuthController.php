@@ -16,7 +16,7 @@ class AuthController extends BaseController {
 		}
 
 		// Show the page
-		return View::make('frontend/auth/signin');
+		return View::make('frontend.auth.signin');
 	}
 
 	/**
@@ -91,7 +91,7 @@ class AuthController extends BaseController {
 		}
 
 		// Show the page
-		return View::make('frontend/auth/signup');
+		return View::make('frontend.auth.signup');
 	}
 
 	/**
@@ -202,7 +202,7 @@ class AuthController extends BaseController {
 		}
 
 		// Show the page
-		return View::make('frontend/auth/forgot-password');
+		return View::make('frontend.auth.forgot-password');
 	}
 
 	/**
@@ -234,8 +234,8 @@ class AuthController extends BaseController {
 
 			// Data to be used on the email view
 			$data = array(
-				'user' => $user,
-				'forgotPasswordUrl'  => URL::route('forgot-password-confirm', $user->getResetPasswordCode()),
+				'user'              => $user,
+				'forgotPasswordUrl' => URL::route('forgot-password-confirm', $user->getResetPasswordCode()),
 			);
 
 			// Send the activation code through email
@@ -244,17 +244,16 @@ class AuthController extends BaseController {
 				$m->to($user->email, $user->first_name . ' ' . $user->last_name);
 				$m->subject('Account Password Recovery');
 			});
-
-			// Redirect to the login page
-			return Redirect::route('forgot-password')->with('success', Lang::get('auth.messages.forgot-password.success'));
 		}
 		catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
 		{
-			$this->messageBag->add('email', Lang::get('auth.account_not_found'));
+			// Event though the email was not found, we will pretend
+			// we have sent the password reset code through email,
+			// this is a security measure against hackers.
 		}
 
-		// Ooops.. something went wrong
-		return Redirect::route('forgot-password')->withInput()->withErrors($this->messageBag);
+		//  Redirect to the forgot password
+		return Redirect::route('forgot-password')->with('success', Lang::get('auth.messages.forgot-password.success'));
 	}
 
 	/**
@@ -277,7 +276,7 @@ class AuthController extends BaseController {
 		}
 
 		// Show the page
-		return View::make('frontend/auth/forgot-password-confirm');
+		return View::make('frontend.auth.forgot-password-confirm');
 	}
 
 	/**

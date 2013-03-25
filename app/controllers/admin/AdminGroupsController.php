@@ -23,7 +23,7 @@ class AdminGroupsController extends AdminController {
 		$groups = Group::paginate(10);
 
 		// Show the page
-		return View::make('admin/groups/index', compact('groups'));
+		return View::make('backend/groups/index', compact('groups'));
 	}
 
 	/**
@@ -40,7 +40,7 @@ class AdminGroupsController extends AdminController {
 		$selectedPermissions = Input::old('permissions', array());
 
 		// Show the page
-		return View::make('admin/groups/create', compact('permissions', 'selectedPermissions'));
+		return View::make('backend/groups/create', compact('permissions', 'selectedPermissions'));
 	}
 
 	/**
@@ -70,11 +70,11 @@ class AdminGroupsController extends AdminController {
 				if ($group = Sentry::getGroupProvider()->create($inputs))
 				{
 					// Redirect to the new group page
-					return Redirect::to('admin/groups/' . $group->id . '/edit')->with('success', Lang::get('admin/groups/messages.create.success'));
+					return Redirect::to('backend/groups/' . $group->id . '/edit')->with('success', Lang::get('backend/groups/messages.create.success'));
 				}
 
 				// Redirect to the new group page
-				return Redirect::to('admin/groups/create')->with('error', Lang::get('admin/groups/messages.create.error'));
+				return Redirect::to('backend/groups/create')->with('error', Lang::get('backend/groups/messages.create.error'));
 			}
 			catch (Cartalyst\Sentry\Groups\NameRequiredException $e)
 			{
@@ -86,11 +86,11 @@ class AdminGroupsController extends AdminController {
 			}
 
 			// Redirect to the group create page
-			return Redirect::to('admin/groups/create')->withInput()->with('error', Lang::get('admin/groups/messages.' . $error));
+			return Redirect::to('backend/groups/create')->withInput()->with('error', Lang::get('backend/groups/messages.' . $error));
 		}
 
 		// Form validation failed
-		return Redirect::to('admin/groups/create')->withInput()->withErrors($validator);
+		return Redirect::to('backend/groups/create')->withInput()->withErrors($validator);
 	}
 
 	/**
@@ -115,11 +115,11 @@ class AdminGroupsController extends AdminController {
 		catch (Cartalyst\Sentry\Groups\GroupNotFoundException $e)
 		{
 			// Redirect to the groups management page
-			return Redirect::to('admin/groups')->with('error', Lang::get('admin/groups/messages.does_not_exist'));
+			return Redirect::to('backend/groups')->with('error', Lang::get('backend/groups/messages.does_not_exist'));
 		}
 
 		// Show the page
-		return View::make('admin/groups/edit', compact('group', 'permissions', 'groupPermissions'));
+		return View::make('backend/groups/edit', compact('group', 'permissions', 'groupPermissions'));
 	}
 
 	/**
@@ -138,7 +138,7 @@ class AdminGroupsController extends AdminController {
 		catch (Cartalyst\Sentry\Groups\GroupNotFoundException $e)
 		{
 			// Redirect to the groups management page
-			return Rediret::to('admin/groups')->with('error', Lang::get('admin/groups/messages.does_not_exist'));
+			return Rediret::to('backend/groups')->with('error', Lang::get('backend/groups/messages.does_not_exist'));
 		}
 
 		// Declare the rules for the form validation
@@ -162,25 +162,25 @@ class AdminGroupsController extends AdminController {
 				if ($group->save())
 				{
 					// Redirect to the group page
-					return Redirect::to('admin/groups/' . $groupId . '/edit')->with('success', Lang::get('admin/groups/messages.update.success'));
+					return Redirect::to('backend/groups/' . $groupId . '/edit')->with('success', Lang::get('backend/groups/messages.update.success'));
 				}
 				else
 				{
 					// Redirect to the group page
-					return Redirect::to('admin/groups/' . $groupId . '/edit')->with('error', Lang::get('admin/groups/messages.update.error'));
+					return Redirect::to('backend/groups/' . $groupId . '/edit')->with('error', Lang::get('backend/groups/messages.update.error'));
 				}
 			}
 			catch (Cartalyst\Sentry\Groups\NameRequiredException $e)
 			{
-				$error = Lang::get('admin/group/messages.name_required');
+				$error = Lang::get('backend/group/messages.name_required');
 			}
 
 			// Redirect to the group page
-			return Redirect::to('admin/groups/' . $groupId . '/edit')->withInput()->with('error', $error);
+			return Redirect::to('backend/groups/' . $groupId . '/edit')->withInput()->with('error', $error);
 		}
 
 		// Form validation failed
-		return Redirect::to('admin/groups/' . $groupId . '/edit')->withInput()->withErrors($validator);
+		return Redirect::to('backend/groups/' . $groupId . '/edit')->withInput()->withErrors($validator);
 	}
 
 	/**
@@ -200,16 +200,16 @@ class AdminGroupsController extends AdminController {
 			if($group->delete())
 			{
 				// Redirect to the group management page
-				return Redirect::to('admin/groups')->with('success', Lang::get('admin/group/messages.delete.success'));
+				return Redirect::to('backend/groups')->with('success', Lang::get('backend/group/messages.delete.success'));
 			}
 
 			// There was a problem deleting the group
-			return Redirect::to('admin/groups')->with('error', Lang::get('admin/groups/messages.delete.error'));
+			return Redirect::to('backend/groups')->with('error', Lang::get('backend/groups/messages.delete.error'));
 		}
 		catch (Cartalyst\Sentry\Groups\GroupNotFoundException $e)
 		{
 			// Redirect to the group management page
-			return Redirect::to('admin/groups')->with('error', Lang::get('admin/groups/messages.not_found'));
+			return Redirect::to('backend/groups')->with('error', Lang::get('backend/groups/messages.not_found'));
 		}
 	}
 

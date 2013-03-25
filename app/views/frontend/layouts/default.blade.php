@@ -19,8 +19,7 @@
 
 		<!-- CSS
 		================================================== -->
-		<link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
-		<link href="{{ asset('assets/css/bootstrap-responsive.css') }}" rel="stylesheet">
+		<link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
 
 		<style>
 		@section('styles')
@@ -77,7 +76,7 @@
 										<b class="caret"></b>
 									</a>
 									<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-										<li{{ (Request::is('account/settings') ? ' class="active"' : '') }}><a href="{{ route('settings') }}"><i class="icon-cog"></i> Settings</a></li>
+										<li{{ (Request::is('account/profile') ? ' class="active"' : '') }}><a href="{{ route('profile') }}"><i class="icon-cog"></i> Settings</a></li>
 										<li class="divider"></li>
 										<li><a href="{{ route('logout') }}"><i class="icon-off"></i> Logout</a></li>
 									</ul>

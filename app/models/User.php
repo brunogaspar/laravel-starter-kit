@@ -6,7 +6,7 @@ class User extends SentryUserModel {
 
 	/**
 	 * Returns the user full name, it simply concatenates
-	 * the first and last name.
+	 * the user first and last name.
 	 *
 	 * @return string
 	 */
@@ -16,8 +16,17 @@ class User extends SentryUserModel {
 	}
 
 	/**
-	 * Returns the date of the user creation,
-	 * on a good and more readable format :)
+	 * Returns the user gravatar image url.
+	 *
+	 * @return string
+	 */
+	public function gravatar()
+	{
+		return '//gravatar.org/avatar/' . md5(strtolower(trim($this->gravatar)));
+	}
+
+	/**
+	 * Returns the user creation date.
 	 *
 	 * @return string
 	 */
@@ -27,8 +36,7 @@ class User extends SentryUserModel {
 	}
 
 	/**
-	 * Returns the date of the user last update,
-	 * on a good and more readable format :)
+	 * Returns the date when the user was last updated.
 	 *
 	 * @return string
 	 */

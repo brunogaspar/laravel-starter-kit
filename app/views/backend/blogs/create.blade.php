@@ -1,12 +1,12 @@
-@extends('admin/layouts.default')
+@extends('backend.layouts.default')
 
-{{-- Web site Title --}}
+{{-- Page title --}}
 @section('title')
+Create a New Blog Post ::
 @parent
-:: Create a New Blog Post
 @stop
 
-{{-- Content --}}
+{{-- Page content --}}
 @section('content')
 <div class="page-header">
 	<h3>
@@ -23,7 +23,6 @@
 	<li class="active"><a href="#tab-general" data-toggle="tab">General</a></li>
 	<li><a href="#tab-meta-data" data-toggle="tab">Meta Data</a></li>
 </ul>
-<!-- ./ tabs -->
 
 <form class="form-horizontal" method="post" action="" autocomplete="off">
 	<!-- CSRF Token -->
@@ -41,7 +40,6 @@
 					{{ $errors->first('title', '<span class="help-inline">:message</span>') }}
 				</div>
 			</div>
-			<!-- ./ post title -->
 
 			<!-- Content -->
 			<div class="control-group {{ $errors->has('content') ? 'error' : '' }}">
@@ -51,9 +49,7 @@
 					{{ $errors->first('content', '<span class="help-inline">:message</span>') }}
 				</div>
 			</div>
-			<!-- ./ content -->
 		</div>
-		<!-- ./ tab general -->
 
 		<!-- Meta Data tab -->
 		<div class="tab-pane" id="tab-meta-data">
@@ -65,7 +61,6 @@
 					{{ $errors->first('meta-title', '<span class="help-inline">:message</span>') }}
 				</div>
 			</div>
-			<!-- ./ meta title -->
 
 			<!-- Meta Description -->
 			<div class="control-group {{ $errors->has('meta-description') ? 'error' : '' }}">
@@ -75,7 +70,6 @@
 					{{ $errors->first('meta-description', '<span class="help-inline">:message</span>') }}
 				</div>
 			</div>
-			<!-- ./ meta description -->
 
 			<!-- Meta Keywords -->
 			<div class="control-group {{ $errors->has('meta-keywords') ? 'error' : '' }}">
@@ -85,13 +79,10 @@
 					{{ $errors->first('meta-keywords', '<span class="help-inline">:message</span>') }}
 				</div>
 			</div>
-			<!-- ./ meta keywords -->
 		</div>
-		<!-- ./ meta data tab -->
 	</div>
-	<!-- ./ tabs content -->
 
-	<!-- Form Actions -->
+	<!-- Form actions -->
 	<div class="control-group">
 		<div class="controls">
 			<a class="btn btn-link" href="{{ URL::to('admin/blogs') }}">Cancel</a>
@@ -99,6 +90,5 @@
 			<button type="submit" class="btn btn-success">Publish</button>
 		</div>
 	</div>
-	<!-- ./ form actions -->
 </form>
 @stop

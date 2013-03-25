@@ -43,7 +43,7 @@
 @foreach ($comments as $comment)
 <div class="row">
 	<div class="span1">
-		<img class="thumbnail" src="//gravatar.org/avatar/{{ md5(strtolower(trim($comment->author->email))) }}" alt="">
+		<img class="thumbnail" src="{{ $comment->author->gravatar() }}" alt="">
 	</div>
 	<div class="span11">
 		<div class="row">
@@ -77,7 +77,6 @@ Click <a href="{{ route('signin') }}">here</a> to login into your account.
 	<!-- Comment -->
 	<div class="control-group{{ $errors->first('comment', ' error') }}">
 		<textarea class="input-block-level" rows="4" name="comment" id="comment">{{ Input::old('comment') }}</textarea>
-
 		{{ $errors->first('comment', '<span class="help-inline">:message</span>') }}
 	</div>
 

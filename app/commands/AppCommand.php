@@ -82,14 +82,17 @@ class AppCommand extends Command {
 		// Generate the Application Encryption key
 		$this->call('key:generate');
 
-		// Run the Migrations
-		$this->call('migrate');
+		// Create the migrations table
+		$this->call('migrate:install');
 
 		// Run the Sentry Migrations
 		$this->call('migrate', array('--package' => 'cartalyst/sentry'));
 
 		// Create the default user and default groups.
 		$this->sentryRunner();
+
+		// Run the Migrations
+		$this->call('migrate');
 
 		// Seed the tables with dummy data
 		$this->call('db:seed');
