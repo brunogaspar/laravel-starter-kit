@@ -1,8 +1,9 @@
 ## Laravel 4 - Starter Kit
 
-This is a Laravel 4 Starter Kit, it will help you getting started with Laravel 4.
+This is a Laravel 4 Starter Kit and it will help you getting started with Laravel 4.
 
-It includes examples on how to use the framework itselff and how to use some packages, like the awesome [Sentry 2](https://github.com/cartalyst/sentry) package.
+It includes examples on how to use the framework itself and how to use some
+packages, like the awesome [Sentry 2](https://github.com/cartalyst/sentry) package.
 
 -----
 
@@ -22,7 +23,8 @@ It includes examples on how to use the framework itselff and how to use some pac
 * Front-end
 	* User login, registration, activation and forgot password
 	* User account area
-	* Simple Blog functionality
+	* Blog functionality
+	* Contact us page
 * Packages included:
 	* [Cartalyst Sentry 2](https://github.com/cartalyst/sentry)
 	* [Jason Lewis Expressive Date](https://github.com/jasonlewis/expressive-date)
