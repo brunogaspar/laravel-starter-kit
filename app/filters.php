@@ -24,11 +24,12 @@ App::after(function($request, $response)
 
 /*
 |--------------------------------------------------------------------------
-| Authentication filter.
+| Authentication Filters
 |--------------------------------------------------------------------------
 |
-| This filter is usefull to verify if the user of the current session is
-| logged into the application.
+| The following filters are used to verify that the user of the current
+| session is logged into this application. Also, a "guest" filter is
+| responsible for performing the opposite. Both provide redirects.
 |
 */
 
