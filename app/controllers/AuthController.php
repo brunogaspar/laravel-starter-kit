@@ -9,7 +9,7 @@ class AuthController extends BaseController {
 	 */
 	public function getSignin()
 	{
-		// Are we logged in?
+		// Is the user logged in?
 		if (Sentry::check())
 		{
 			return Redirect::route('account');
@@ -84,7 +84,7 @@ class AuthController extends BaseController {
 	 */
 	public function getSignup()
 	{
-		// Are we logged in?
+		// Is the user logged in?
 		if (Sentry::check())
 		{
 			return Redirect::route('account');
@@ -164,6 +164,12 @@ class AuthController extends BaseController {
 	 */
 	public function getActivate($activationCode = null)
 	{
+		// Is the user logged in?
+		if (Sentry::check())
+		{
+			return Redirect::route('account');
+		}
+
 		try
 		{
 			// Get the user we are trying to activate
@@ -195,12 +201,6 @@ class AuthController extends BaseController {
 	 */
 	public function getForgotPassword()
 	{
-		// Are we logged in?
-		if (Sentry::check())
-		{
-			return Redirect::route('account');
-		}
-
 		// Show the page
 		return View::make('frontend.auth.forgot-password');
 	}
@@ -247,7 +247,7 @@ class AuthController extends BaseController {
 		}
 		catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
 		{
-			// Event though the email was not found, we will pretend
+			// Even though the email was not found, we will pretend
 			// we have sent the password reset code through email,
 			// this is a security measure against hackers.
 		}

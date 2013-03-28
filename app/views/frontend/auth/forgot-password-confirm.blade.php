@@ -20,7 +20,7 @@ Forgot Password ::
 		<label class="control-label" for="password">New Password</label>
 		<div class="controls">
 			<input type="password" name="password" id="password" value="{{ Input::old('password') }}" />
-			{{ $errors->first('password', '<span class="help-inline">:message</span>') }}
+			{{ $errors->first('password', '<span class="help-block">:message</span>') }}
 		</div>
 	</div>
 
@@ -29,7 +29,7 @@ Forgot Password ::
 		<label class="control-label" for="password_confirm">Password Confirmation</label>
 		<div class="controls">
 			<input type="password" name="password_confirm" id="password_confirm" value="{{ Input::old('password_confirm') }}" />
-			{{ $errors->first('password_confirm', '<span class="help-inline">:message</span>') }}
+			{{ $errors->first('password_confirm', '<span class="help-block">:message</span>') }}
 		</div>
 	</div>
 

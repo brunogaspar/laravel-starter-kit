@@ -53,7 +53,7 @@ class AccountProfileController extends AuthorizedController {
 		$user->save();
 
 		// Redirect to the settings page
-		return Redirect::route('profile')->with('success', 'Account successfully updated.');
+		return Redirect::route('profile')->with('success', 'Account successfully updated');
 	}
 
 }

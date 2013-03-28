@@ -22,7 +22,7 @@ Account Sign in ::
 				<label class="control-label" for="email">Email</label>
 				<div class="controls">
 					<input type="text" name="email" id="email" value="{{ Input::old('email') }}" />
-					{{ $errors->first('email', '<span class="help-inline">:message</span>') }}
+					{{ $errors->first('email', '<span class="help-block">:message</span>') }}
 				</div>
 			</div>
 
@@ -31,7 +31,7 @@ Account Sign in ::
 				<label class="control-label" for="password">Password</label>
 				<div class="controls">
 					<input type="password" name="password" id="password" value="" />
-					{{ $errors->first('password', '<span class="help-inline">:message</span>') }}
+					{{ $errors->first('password', '<span class="help-block">:message</span>') }}
 				</div>
 			</div>
 
@@ -44,16 +44,16 @@ Account Sign in ::
 				</div>
 			</div>
 
+			<hr>
+
 			<!-- Form actions -->
 			<div class="control-group">
 				<div class="controls">
 					<a class="btn" href="{{ route('home') }}">Cancel</a>
 
-					<button type="submit" class="btn btn-info">Sign in</button>
+					<button type="submit" class="btn">Sign in</button>
 
-					<hr />
-
-					<a href="{{ route('forgot-password') }}">Forgot your password?</a>
+					<a href="{{ route('forgot-password') }}" class="btn btn-link">I forgot my password</a>
 				</div>
 			</div>
 		</form>

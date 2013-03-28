@@ -20,7 +20,7 @@ Change your Password
 		<label class="control-label" for="old_password">Old Password</label>
 		<div class="controls">
 			<input type="password" name="old_password" id="old_password" value="" />
-			{{ $errors->first('old_password', '<span class="help-inline">:message</span>') }}
+			{{ $errors->first('old_password', '<span class="help-block">:message</span>') }}
 		</div>
 	</div>
 
@@ -29,7 +29,7 @@ Change your Password
 		<label class="control-label" for="password">New Password</label>
 		<div class="controls">
 			<input type="password" name="password" id="password" value="" />
-			{{ $errors->first('password', '<span class="help-inline">:message</span>') }}
+			{{ $errors->first('password', '<span class="help-block">:message</span>') }}
 		</div>
 	</div>
 
@@ -38,16 +38,18 @@ Change your Password
 		<label class="control-label" for="password_confirm">Confirm New Password</label>
 		<div class="controls">
 			<input type="password" name="password_confirm" id="password_confirm" value="" />
-			{{ $errors->first('password_confirm', '<span class="help-inline">:message</span>') }}
+			{{ $errors->first('password_confirm', '<span class="help-block">:message</span>') }}
 		</div>
 	</div>
+
+	<hr>
 
 	<!-- Form actions -->
 	<div class="control-group">
 		<div class="controls">
-			<a class="btn" href="{{ route('home') }}">Cancel</a>
+			<button type="submit" class="btn">Update Password</button>
 
-			<button type="submit" class="btn btn-info">Update</button>
+			<a href="{{ route('forgot-password') }}" class="btn btn-link">I forgot my password</a>
 		</div>
 	</div>
 </form>
@@ -80,7 +82,7 @@ Change your Password
 					<label class="control-label" for="old_password">Old Password</label>
 					<div class="controls">
 						<input type="password" name="old_password" id="old_password" value="" />
-						{{ $errors->first('old_password', '<span class="help-inline">:message</span>') }}
+						{{ $errors->first('old_password', '<span class="help-block">:message</span>') }}
 					</div>
 				</div>
 
@@ -89,7 +91,7 @@ Change your Password
 					<label class="control-label" for="email">New Email</label>
 					<div class="controls">
 						<input type="text" name="email" id="email" value="" />
-						{{ $errors->first('email', '<span class="help-inline">:message</span>') }}
+						{{ $errors->first('email', '<span class="help-block">:message</span>') }}
 					</div>
 				</div>
 
@@ -98,7 +100,7 @@ Change your Password
 					<label class="control-label" for="email_confirm">Confirm New Email</label>
 					<div class="controls">
 						<input type="text" name="email_confirm" id="email_confirm" value="" />
-						{{ $errors->first('email_confirm', '<span class="help-inline">:message</span>') }}
+						{{ $errors->first('email_confirm', '<span class="help-block">:message</span>') }}
 					</div>
 				</div>
 

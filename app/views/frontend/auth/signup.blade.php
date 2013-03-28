@@ -22,7 +22,7 @@ Account Sign up ::
 			<label class="control-label" for="first_name">First Name</label>
 				<div class="controls">
 					<input type="text" name="first_name" id="first_name" value="{{ Input::old('first_name') }}" />
-					{{ $errors->first('first_name', '<span class="help-inline">:message</span>') }}
+					{{ $errors->first('first_name', '<span class="help-block">:message</span>') }}
 				</div>
 			</div>
 
@@ -31,7 +31,7 @@ Account Sign up ::
 				<label class="control-label" for="last_name">Last Name</label>
 				<div class="controls">
 					<input type="text" name="last_name" id="last_name" value="{{ Input::old('last_name') }}" />
-					{{ $errors->first('last_name', '<span class="help-inline">:message</span>') }}
+					{{ $errors->first('last_name', '<span class="help-block">:message</span>') }}
 				</div>
 			</div>
 
@@ -40,7 +40,7 @@ Account Sign up ::
 				<label class="control-label" for="email">Email</label>
 				<div class="controls">
 					<input type="text" name="email" id="email" value="{{ Input::old('email') }}" />
-					{{ $errors->first('email', '<span class="help-inline">:message</span>') }}
+					{{ $errors->first('email', '<span class="help-block">:message</span>') }}
 				</div>
 			</div>
 
@@ -49,7 +49,7 @@ Account Sign up ::
 				<label class="control-label" for="email_confirm">Confirm Email</label>
 				<div class="controls">
 					<input type="text" name="email_confirm" id="email_confirm" value="{{ Input::old('email_confirm') }}" />
-					{{ $errors->first('email_confirm', '<span class="help-inline">:message</span>') }}
+					{{ $errors->first('email_confirm', '<span class="help-block">:message</span>') }}
 				</div>
 			</div>
 
@@ -58,7 +58,7 @@ Account Sign up ::
 				<label class="control-label" for="password">Password</label>
 				<div class="controls">
 					<input type="password" name="password" id="password" value="" />
-					{{ $errors->first('password', '<span class="help-inline">:message</span>') }}
+					{{ $errors->first('password', '<span class="help-block">:message</span>') }}
 				</div>
 			</div>
 
@@ -67,16 +67,18 @@ Account Sign up ::
 				<label class="control-label" for="password_confirm">Confirm Password</label>
 				<div class="controls">
 					<input type="password" name="password_confirm" id="password_confirm" value="" />
-					{{ $errors->first('password_confirm', '<span class="help-inline">:message</span>') }}
+					{{ $errors->first('password_confirm', '<span class="help-block">:message</span>') }}
 				</div>
 			</div>
+
+			<hr>
 
 			<!-- Form actions -->
 			<div class="control-group">
 				<div class="controls">
 					<a class="btn" href="{{ route('home') }}">Cancel</a>
 
-					<button type="submit" class="btn btn-info">Sign up</button>
+					<button type="submit" class="btn">Sign up</button>
 				</div>
 			</div>
 		</form>

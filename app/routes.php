@@ -9,33 +9,37 @@
 |
 */
 
-# Blog Management
-Route::get('admin/blogs', 'AdminBlogsController@getIndex');
-Route::get('admin/blogs/create', 'AdminBlogsController@getCreate');
-Route::post('admin/blogs/create', 'AdminBlogsController@postCreate');
-Route::get('admin/blogs/{blogId}/edit', 'AdminBlogsController@getEdit');
-Route::post('admin/blogs/{blogId}/edit', 'AdminBlogsController@postEdit');
-Route::get('admin/blogs/{blogId}/delete', 'AdminBlogsController@getDelete');
+Route::group(array('prefix' => 'admin'), function()
+{
 
-# User Management
-Route::get('admin/users', 'AdminUsersController@getIndex');
-Route::get('admin/users/create', 'AdminUsersController@getCreate');
-Route::post('admin/users/create', 'AdminUsersController@postCreate');
-Route::get('admin/users/{userId}/edit', 'AdminUsersController@getEdit');
-Route::post('admin/users/{userId}/edit', 'AdminUsersController@postEdit');
-Route::get('admin/users/{userId}/delete', 'AdminUsersController@getDelete');
+	# Blog Management
+	Route::get('blogs', 'AdminBlogsController@getIndex');
+	Route::get('blogs/create', 'AdminBlogsController@getCreate');
+	Route::post('blogs/create', 'AdminBlogsController@postCreate');
+	Route::get('blogs/{blogId}/edit', 'AdminBlogsController@getEdit');
+	Route::post('blogs/{blogId}/edit', 'AdminBlogsController@postEdit');
+	Route::get('blogs/{blogId}/delete', 'AdminBlogsController@getDelete');
 
-# Group Management
-Route::get('admin/groups', 'AdminGroupsController@getIndex');
-Route::get('admin/groups/create', 'AdminGroupsController@getCreate');
-Route::post('admin/groups/create', 'AdminGroupsController@postCreate');
-Route::get('admin/groups/{groupId}/edit', 'AdminGroupsController@getEdit');
-Route::post('admin/groups/{groupId}/edit', 'AdminGroupsController@postEdit');
-Route::get('admin/groups/{groupId}/delete', 'AdminGroupsController@getDelete');
+	# User Management
+	Route::get('users', 'AdminUsersController@getIndex');
+	Route::get('users/create', 'AdminUsersController@getCreate');
+	Route::post('users/create', 'AdminUsersController@postCreate');
+	Route::get('users/{userId}/edit', 'AdminUsersController@getEdit');
+	Route::post('users/{userId}/edit', 'AdminUsersController@postEdit');
+	Route::get('users/{userId}/delete', 'AdminUsersController@getDelete');
 
-# Admin Dashboard
-Route::get('admin', 'AdminDashboardController@getIndex');
+	# Group Management
+	Route::get('groups', 'AdminGroupsController@getIndex');
+	Route::get('groups/create', 'AdminGroupsController@getCreate');
+	Route::post('groups/create', 'AdminGroupsController@postCreate');
+	Route::get('groups/{groupId}/edit', 'AdminGroupsController@getEdit');
+	Route::post('groups/{groupId}/edit', 'AdminGroupsController@postEdit');
+	Route::get('groups/{groupId}/delete', 'AdminGroupsController@getDelete');
 
+	# Admin Dashboard
+	Route::get('/', array('as' => 'admin', 'uses' => 'AdminDashboardController@getIndex'));
+
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -46,28 +50,32 @@ Route::get('admin', 'AdminDashboardController@getIndex');
 |
 */
 
-# Login
-Route::get('signin', 'AuthController@getSignin');
-Route::post('signin', 'AuthController@postSignin');
+Route::group(array('prefix' => 'account'), function()
+{
 
-# Register
-Route::get('account/register', 'AuthController@getRegister');
-Route::post('account/register', 'AuthController@postRegister');
+	# Login
+	Route::get('signin', array('as' => 'signin', 'uses' => 'AuthController@getSignin'));
+	Route::post('signin', 'AuthController@postSignin');
 
-# Account Activation
-Route::get('account/activate/{userID}/{activationCode}', 'AuthController@getActivate');
+	# Register
+	Route::get('signup', array('as' => 'signup', 'uses' => 'AuthController@getSignup'));
+	Route::post('signup', 'AuthController@postSignup');
 
-# Forgot Password
-Route::get('account/forgot-password', 'AuthController@getForgotPassword');
-Route::post('account/forgot-password', 'AuthController@postForgotPassword');
+	# Account Activation
+	Route::get('activate/{activationCode}', array('as' => 'activate', 'uses' => 'AuthController@getActivate'));
 
-# Forgot Password Confirmation
-Route::get('account/forgot-password/{userID}/{resetCode}', 'AuthController@getForgotPasswordConfirmation');
-Route::post('account/forgot-password/{userID}/{resetCode}', 'AuthController@postForgotPasswordConfirmation');
+	# Forgot Password
+	Route::get('forgot-password', array('as' => 'forgot-password', 'uses' => 'AuthController@getForgotPassword'));
+	Route::post('forgot-password', 'AuthController@postForgotPassword');
 
-# Logout
-Route::get('account/logout', 'AuthController@getLogout');
+	# Forgot Password Confirmation
+	Route::get('forgot-password/{passwordResetCode}', array('as' => 'forgot-password-confirm', 'uses' => 'AuthController@getForgotPasswordConfirm'));
+	Route::post('forgot-password/{passwordResetCode}', 'AuthController@postForgotPasswordConfirm');
 
+	# Logout
+	Route::get('logout', array('as' => 'logout', 'uses' => 'AuthController@getLogout'));
+
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -78,12 +86,20 @@ Route::get('account/logout', 'AuthController@getLogout');
 |
 */
 
-# Settings
-Route::get('account/settings', 'AccountSettingsController@getIndex');
-Route::post('account/settings', 'AccountSettingsController@postIndex');
+# Profile
+Route::get('account/profile', array('as' => 'profile', 'uses' => 'AccountProfileController@getIndex'));
+Route::post('account/profile', 'AccountProfileController@postIndex');
+
+# Change Password
+Route::get('account/change-password', array('as' => 'change-password', 'uses' => 'AccountChangePasswordController@getIndex'));
+Route::post('account/change-password', 'AccountChangePasswordController@postIndex');
+
+# Change Email
+Route::get('account/change-email', array('as' => 'change-email', 'uses' => 'AccountChangeEmailController@getIndex'));
+Route::post('account/change-email', 'AccountChangeEmailController@postIndex');
 
 # Dashboard
-Route::get('account', 'AccountDashboardController@getIndex');
+Route::get('account', array('as' => 'account', 'uses' => 'AccountDashboardController@getIndex'));
 
 
 /*
@@ -100,13 +116,17 @@ Route::get('account', 'AccountDashboardController@getIndex');
 Route::get('about-us', function()
 {
 	//
-	return View::make('site/about-us');
+	return View::make('frontend/about-us');
 });
 
-Route::get('{postSlug}', 'BlogController@getView');
-Route::post('{postSlug}', 'BlogController@postView');
+Route::get('contact-us', array('as' => 'contact-us', 'uses' => 'ContactUsController@getIndex'));
+Route::post('contact-us', 'ContactUsController@postIndex');
 
-Route::get('/', 'BlogController@getIndex');
+
+Route::get('blog/{postSlug}', array('as' => 'view-post', 'uses' => 'BlogController@getView'));
+Route::post('blog/{postSlug}', 'BlogController@postView');
+
+Route::get('/', array('as' => 'home', 'uses' => 'BlogController@getIndex'));
 
 # routes for handling social authentication via opauth
 Route::get('social/auth/{network?}', 'SocialController@auth');

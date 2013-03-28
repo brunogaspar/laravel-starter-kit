@@ -47,7 +47,7 @@ class AccountChangeEmailController extends AuthorizedController {
 		if ( ! $user->checkPassword(Input::get('current_password')))
 		{
 			// Set the error message
-			$this->messageBag->add('current_password', 'Your current password is incorrect.');
+			$this->messageBag->add('current_password', 'Your current password is incorrect');
 
 			// Redirect to the change email page
 			return Redirect::route('change-email')->withErrors($this->messageBag);
@@ -58,7 +58,7 @@ class AccountChangeEmailController extends AuthorizedController {
 		$user->save();
 
 		// Redirect to the settings page
-		return Redirect::route('change-email')->with('success', 'Account updated with success!');
+		return Redirect::route('change-email')->with('success', 'Email successfully updated');
 	}
 
 }
