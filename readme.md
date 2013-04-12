@@ -37,7 +37,7 @@ packages, like the awesome [Sentry 2](https://github.com/cartalyst/sentry) packa
 ### 1) Downloading
 #### 1.1) Clone the Repository
 
-	git clone http://github.com/brunogaspar/laravel4-starter-kit your-folder
+	git clone git@github.com:brunogaspar/laravel4-starter-kit your-folder
 
 #### 1.2) Download the Repository
 
