@@ -1,1 +1,0 @@
-- Add option to delete blog post comments on front end and maybe on the back end;
