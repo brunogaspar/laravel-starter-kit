@@ -37,7 +37,7 @@ class AccountChangePasswordController extends AuthorizedController {
 		if ($validator->fails())
 		{
 			// Ooops.. something went wrong
-			return Redirect::route('change-password')->withInput()->withErrors($validator);
+			return Redirect::back()->withInput()->withErrors($validator);
 		}
 
 		// Grab the user

@@ -38,7 +38,7 @@ class AccountProfileController extends AuthorizedController {
 		if ($validator->fails())
 		{
 			// Ooops.. something went wrong
-			return Redirect::route('profile')->withInput()->withErrors($validator);
+			return Redirect::back()->withInput()->withErrors($validator);
 		}
 
 		// Grab the user

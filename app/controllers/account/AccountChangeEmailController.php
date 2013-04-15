@@ -37,7 +37,7 @@ class AccountChangeEmailController extends AuthorizedController {
 		if ($validator->fails())
 		{
 			// Ooops.. something went wrong
-			return Redirect::route('change-email')->withInput()->withErrors($validator);
+			return Redirect::back()->withInput()->withErrors($validator);
 		}
 
 		// Grab the user
