@@ -1,9 +1,9 @@
-@extends('admin/layouts.default')
+@extends('backend/layouts.default')
 
 {{-- Web site Title --}}
 @section('title')
+Group Management ::
 @parent
-:: Group Management
 @stop
 
 {{-- Content --}}
@@ -21,10 +21,10 @@
 <table class="table table-bordered table-hover">
 	<thead>
 		<tr>
-			<th class="span6">{{ Lang::get('admin/groups/table.name') }}</th>
-			<th class="span2">{{ Lang::get('admin/groups/table.users') }}</th>
-			<th class="span2">{{ Lang::get('admin/groups/table.created_at') }}</th>
-			<th class="span2">{{ Lang::get('table.actions') }}</th>
+			<th class="span6">@lang('admin/groups/table.name')</th>
+			<th class="span2">@lang('admin/groups/table.users')</th>
+			<th class="span2">@lang('admin/groups/table.created_at')</th>
+			<th class="span2">@lang('table.actions')</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -34,8 +34,8 @@
 			<td>{{ $group->users()->count() }}</td>
 			<td>{{ $group->created_at() }}</td>
 			<td>
-				<a href="{{ URL::to('admin/groups/' . $group->id . '/edit') }}" class="btn btn-mini">{{ Lang::get('button.edit') }}</a>
-				<a href="{{ URL::to('admin/groups/' . $group->id . '/delete') }}" class="btn btn-mini btn-danger">{{ Lang::get('button.delete') }}</a>
+				<a href="{{ URL::to("admin/groups/{$group->id}/edit") }}" class="btn btn-mini">@lang('button.edit')</a>
+				<a href="{{ URL::to("admin/groups/{$group->id}/delete") }}" class="btn btn-mini btn-danger">@lang('button.delete')</a>
 			</td>
 		</tr>
 		@endforeach

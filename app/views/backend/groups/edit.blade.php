@@ -1,9 +1,9 @@
-@extends('admin/layouts.default')
+@extends('backend/layouts.default')
 
 {{-- Web site Title --}}
 @section('title')
+Group Update ::
 @parent
-:: Group Update
 @stop
 
 {{-- Content --}}
@@ -23,12 +23,10 @@
 	<li class="active"><a href="#tab-general" data-toggle="tab">General</a></li>
 	<li><a href="#tab-permissions" data-toggle="tab">Permissions</a></li>
 </ul>
-<!-- ./ tabs -->
 
 <form class="form-horizontal" method="post" action="" autocomplete="off">
 	<!-- CSRF Token -->
-	<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-	<!-- ./ csrf token -->
+	<input type="hidden" name="_token" value="{{ csrf_token() }}" />
 
 	<!-- Tabs Content -->
 	<div class="tab-content">
@@ -42,9 +40,7 @@
 					{{ $errors->first('name', '<span class="help-inline">:message</span>') }}
 				</div>
 			</div>
-			<!-- ./ name -->
 		</div>
-		<!-- ./ general tab -->
 
 		<!-- Permissions tab -->
 		<div class="tab-pane" id="tab-permissions">
@@ -60,18 +56,17 @@
 				</div>
 			</div>
 		</div>
-		<!-- ./ permissions tab -->
 	</div>
-	<!-- ./ tabs content -->
 
 	<!-- Form Actions -->
 	<div class="control-group">
 		<div class="controls">
 			<a class="btn btn-link" href="{{ URL::to('admin/groups') }}">Cancel</a>
+
 			<button type="reset" class="btn">Reset</button>
+
 			<button type="submit" class="btn btn-success">Update Group</button>
 		</div>
 	</div>
-	<!-- ./ form actions -->
 </form>
 @stop
