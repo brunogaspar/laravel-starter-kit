@@ -40,10 +40,10 @@ User Management ::
 			<td>@lang('general.' . ($user->isActivated() ? 'yes' : 'no'))</td>
 			<td>{{ $user->created_at() }}</td>
 			<td>
-				<a href="{{ URL::to('admin/users/' . $user->id . '/edit') }}" class="btn btn-mini">@lang('button.edit')</a>
+				<a href="{{ URL::to("admin/users/{$user->id}/edit") }}" class="btn btn-mini">@lang('button.edit')</a>
 
 				@if (Sentry::getId() !== $user->id)
-				<a href="{{ URL::to('admin/users/' . $user->id . '/delete') }}" class="btn btn-mini btn-danger">@lang('button.delete')</a>
+				<a href="{{ URL::to("admin/users/{$user->id}/delete") }}" class="btn btn-mini btn-danger">@lang('button.delete')</a>
 				@endif
 			</td>
 		</tr>

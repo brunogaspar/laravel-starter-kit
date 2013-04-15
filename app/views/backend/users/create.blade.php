@@ -76,7 +76,7 @@ Create a User ::
 
 			<!-- Password Confirm -->
 			<div class="control-group {{ $errors->has('password_confirm') ? 'error' : '' }}">
-				<label class="control-label" for="password_confirm">Password Confirm</label>
+				<label class="control-label" for="password_confirm">Confirm Password</label>
 				<div class="controls">
 					<input type="password" name="password_confirm" id="password_confirm" value="" />
 					{{ $errors->first('password_confirm', '<span class="help-inline">:message</span>') }}
@@ -86,11 +86,11 @@ Create a User ::
 
 			<!-- Activation Status -->
 			<div class="control-group {{ $errors->has('activated') ? 'error' : '' }}">
-				<label class="control-label" for="activated">Activate User?</label>
+				<label class="control-label" for="activated">User Activated</label>
 				<div class="controls">
 					<select name="activated" id="activated">
-						<option value="1"{{ (Input::old('activated', 0) === 1 ? ' selected="selected"' : '') }}>{{ Lang::get('general.yes') }}</option>
-						<option value="0"{{ (Input::old('activated', 0) === 0 ? ' selected="selected"' : '') }}>{{ Lang::get('general.no') }}</option>
+						<option value="1"{{ (Input::old('activated', 0) === 1 ? ' selected="selected"' : '') }}>@lang('general.yes')</option>
+						<option value="0"{{ (Input::old('activated', 0) === 0 ? ' selected="selected"' : '') }}>@lang('general.no')</option>
 					</select>
 					{{ $errors->first('activated', '<span class="help-inline">:message</span>') }}
 				</div>
