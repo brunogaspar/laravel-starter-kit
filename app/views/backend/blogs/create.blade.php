@@ -86,7 +86,9 @@ Create a New Blog Post ::
 	<div class="control-group">
 		<div class="controls">
 			<a class="btn btn-link" href="{{ URL::to('admin/blogs') }}">Cancel</a>
+
 			<button type="reset" class="btn">Reset</button>
+
 			<button type="submit" class="btn btn-success">Publish</button>
 		</div>
 	</div>

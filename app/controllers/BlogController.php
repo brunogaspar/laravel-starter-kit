@@ -31,10 +31,8 @@ class BlogController extends BaseController {
 		// Check if the blog post exists
 		if (is_null($post))
 		{
-			// If we ended up in here, it means that
-			// a page or a blog post didn't exist.
-			// So, this means that it is time for
-			// 404 error page.
+			// If we ended up in here, it means that a page or a blog post
+			// don't exist. So, this means that it is time for 404 error page.
 			return App::abort(404);
 		}
 
@@ -53,10 +51,10 @@ class BlogController extends BaseController {
 	 */
 	public function postView($slug)
 	{
-		// The user needs to be logged in, make that check please.
+		// The user needs to be logged in, make that check please
 		if ( ! Sentry::check())
 		{
-			return Redirect::to($slug.'#comments')->with('error', 'You need to be logged in to post comments!');
+			return Redirect::to("$slug#comments")->with('error', 'You need to be logged in to post comments!');
 		}
 
 		// Get this blog post data
@@ -70,11 +68,11 @@ class BlogController extends BaseController {
 		// Create a new validator instance from our dynamic rules
 		$validator = Validator::make(Input::all(), $rules);
 
-		// If validation fails, we'll exit the operation now.
+		// If validation fails, we'll exit the operation now
 		if ($validator->fails())
 		{
 			// Redirect to this blog post page
-			return Redirect::to($slug.'#comments')->withInput()->withErrors($validator);
+			return Redirect::to("$slug#comments")->withInput()->withErrors($validator);
 		}
 
 		// Save the comment
@@ -86,11 +84,11 @@ class BlogController extends BaseController {
 		if($post->comments()->save($comment))
 		{
 			// Redirect to this blog post page
-			return Redirect::to($slug.'#comments')->with('success', 'Your comment was successfully added.');
+			return Redirect::to("$slug#comments")->with('success', 'Your comment was successfully added.');
 		}
 
 		// Redirect to this blog post page
-		return Redirect::to($slug.'#comments')->with('error', 'There was a problem adding your comment, please try again.');
+		return Redirect::to("$slug#comments")->with('error', 'There was a problem adding your comment, please try again.');
 	}
 
 }

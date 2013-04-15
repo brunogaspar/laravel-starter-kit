@@ -96,7 +96,9 @@ Blog Post Update ::
 	<div class="control-group">
 		<div class="controls">
 			<a class="btn btn-link" href="{{ URL::to('admin/blog') }}">Cancel</a>
+
 			<button type="reset" class="btn">Reset</button>
+
 			<button type="submit" class="btn btn-success">Publish</button>
 		</div>
 	</div>
