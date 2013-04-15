@@ -15,7 +15,7 @@
 		<!-- Post Content -->
 		<div class="row">
 			<div class="span2">
-				<a href="{{ $post->url() }}" class="thumbnail"><img src="http://placehold.it/260x180" alt=""></a>
+				<a href="{{ $post->url() }}" class="thumbnail"><img src="{{ $post->thumbnail() }}" alt=""></a>
 			</div>
 			<div class="span6">
 				<p>

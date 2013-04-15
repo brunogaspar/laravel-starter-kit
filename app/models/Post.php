@@ -28,7 +28,7 @@ class Post extends Eloquent {
 	}
 
 	/**
-	 * Get the post's author.
+	 * Return the post's author.
 	 *
 	 * @return User
 	 */
@@ -38,7 +38,7 @@ class Post extends Eloquent {
 	}
 
 	/**
-	 * Get the post's comments.
+	 * Return how many comments this post has.
 	 *
 	 * @return array
 	 */
@@ -48,13 +48,26 @@ class Post extends Eloquent {
 	}
 
 	/**
-	 * Get the URL to the post.
+	 * Return the URL to the post.
 	 *
 	 * @return string
 	 */
 	public function url()
 	{
 		return URL::route('view-post', $this->slug);
+	}
+
+	/**
+	 * Return the post thumbnail image url.
+	 *
+	 * @return string
+	 */
+	public function thumbnail()
+	{
+		# you should save the image url on the database
+		# and return that url here.
+
+		return 'http://lorempixel.com/130/90/business/';
 	}
 
 	/**
