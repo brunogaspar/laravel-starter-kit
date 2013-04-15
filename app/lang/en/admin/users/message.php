@@ -9,18 +9,18 @@ return array(
 
 	'create' => array(
 		'error'   => 'User was not created, please try again.',
-		'success' => 'User created successfully.'
+		'success' => 'User created successfully.',
 	),
 
 	'update' => array(
 		'error'   => 'User was not updated, please try again',
-		'success' => 'User updated successfully.'
+		'success' => 'User updated successfully.',
 	),
 
 	'delete' => array(
 		'impossible' => 'You cannot delete yourself.',
 		'error'      => 'There was an issue deleting the user. Please try again.',
-		'success'    => 'The user was deleted successfully.'
-	)
+		'success'    => 'The user was deleted successfully.',
+	),
 
 );

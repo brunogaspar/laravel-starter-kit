@@ -75,11 +75,11 @@ User Update ::
 			<!-- ./ password -->
 
 			<!-- Password Confirm -->
-			<div class="control-group {{ $errors->has('password_confirmation') ? 'error' : '' }}">
-				<label class="control-label" for="password_confirmation">Password Confirm</label>
+			<div class="control-group {{ $errors->has('password_confirm') ? 'error' : '' }}">
+				<label class="control-label" for="password_confirm">Password Confirm</label>
 				<div class="controls">
-					<input type="password" name="password_confirmation" id="password_confirmation" value="" />
-					{{ $errors->first('password_confirmation', '<span class="help-inline">:message</span>') }}
+					<input type="password" name="password_confirm" id="password_confirm" value="" />
+					{{ $errors->first('password_confirm', '<span class="help-inline">:message</span>') }}
 				</div>
 			</div>
 			<!-- ./ password confirm -->

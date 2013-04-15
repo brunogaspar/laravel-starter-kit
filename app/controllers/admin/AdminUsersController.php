@@ -9,7 +9,7 @@ class AdminUsersController extends AdminController {
 	 */
 	protected $permissions = array(
 		'superuser' => 'Super user',
-		'admin'     => 'Admin Access'
+		'admin'     => 'Admin Access',
 	);
 
 	/**
@@ -23,7 +23,7 @@ class AdminUsersController extends AdminController {
 		$users = User::paginate(10);
 
 		// Show the page
-		return View::make('backend/users/index', compact('users'));
+		return View::make('backend.users.index', compact('users'));
 	}
 
 	/**
@@ -46,7 +46,7 @@ class AdminUsersController extends AdminController {
 		$selectedPermissions = Input::old('permissions', array());
 
 		// Show the page
-		return View::make('backend/users/create', compact('groups', 'permissions', 'selectedGroups', 'selectedPermissions'));
+		return View::make('backend.users.create', compact('groups', 'permissions', 'selectedGroups', 'selectedPermissions'));
 	}
 
 	/**
@@ -58,61 +58,61 @@ class AdminUsersController extends AdminController {
 	{
 		// Declare the rules for the form validation
 		$rules = array(
-			'first_name'            => 'required|min:3',
-			'last_name'             => 'required|min:3',
-			'email'                 => 'required|email|unique:users,email',
-			'password'              => 'required|between:3,32|confirmed',
-			'password_confirmation' => 'required|between:3,32'
+			'first_name'       => 'required|min:3',
+			'last_name'        => 'required|min:3',
+			'email'            => 'required|email|unique:users,email',
+			'password'         => 'required|between:3,32',
+			'password_confirm' => 'required|between:3,32|same:password',
 		);
 
-		// Validate the inputs
+		// Create a new validator instance from our validation rules
 		$validator = Validator::make(Input::all(), $rules);
 
-		// Check if the form was validated with success
-		if ($validator->passes())
+		// If validation fails, we'll exit the operation now.
+		if ($validator->fails())
 		{
-			try
+			// Ooops.. something went wrong
+			return Redirect::back()->withInput()->withErrors($validator);
+		}
+
+		try
+		{
+			// Get the inputs, with some exceptions
+			$inputs = Input::except('csrf_token', 'password_confirm', 'groups');
+
+			// Was the user created?
+			if ($user = Sentry::getUserProvider()->create($inputs))
 			{
-				// Get the inputs, with some exceptions
-				$inputs = Input::except('csrf_token', 'password_confirmation', 'groups');
-
-				// Was the user created?
-				if ($user = Sentry::getUserProvider()->create($inputs))
+				// Assign the selected groups to this user
+				foreach (Input::get('groups', array()) as $groupId)
 				{
-					// Assign the selected groups to this user
-					foreach (Input::get('groups', array()) as $groupId)
-					{
-						$group = Sentry::getGroupProvider()->findById($groupId);
+					$group = Sentry::getGroupProvider()->findById($groupId);
 
-						$user->addGroup($group);
-					}
-
-					// Redirect to the new user page
-					return Redirect::to('backend/users/' . $user->id . '/edit')->with('success', Lang::get('backend/users/messages.create.success'));
+					$user->addGroup($group);
 				}
 
 				// Redirect to the new user page
-				return Redirect::to('backend/users/create')->with('error', Lang::get('backend/users/messages.create.error'));
-			}
-			catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
-			{
-				$error = 'login_required';
-			}
-			catch (Cartalyst\Sentry\Users\PasswordRequiredException $e)
-			{
-				$error = 'password_required';
-			}
-			catch (Cartalyst\Sentry\Users\UserExistsException $e)
-			{
-				$error = 'already_exists';
+				return Redirect::to("admin/users/{$user->id}/edit")->with('success', Lang::get('admin/users/message.create.success'));
 			}
 
-			// Redirect to the user create page
-			return Redirect::to('backend/users/create')->withInput()->with('error', Lang::get('backend/users/messages.' . $error));
+			// Redirect to the new user page
+			return Redirect::to('admin/users/create')->with('error', Lang::get('admin/users/message.create.error'));
+		}
+		catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
+		{
+			$error = 'login_required';
+		}
+		catch (Cartalyst\Sentry\Users\PasswordRequiredException $e)
+		{
+			$error = 'password_required';
+		}
+		catch (Cartalyst\Sentry\Users\UserExistsException $e)
+		{
+			$error = 'already_exists';
 		}
 
-		// Form validation failed
-		return Redirect::to('backend/users/create')->withInput()->withErrors($validator);
+		// Redirect to the user create page
+		return Redirect::to('admin/users/create')->withInput()->with('error', Lang::get('admin/users/message.'.$error));
 	}
 
 	/**
@@ -143,11 +143,11 @@ class AdminUsersController extends AdminController {
 		catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
 		{
 			// Redirect to the user management page
-			return Redirect::to('backend/users')->with('error', Lang::get('backend/users/messages.does_not_exist'));
+			return Redirect::to('admin/users')->with('error', Lang::get('admin/users/message.does_not_exist'));
 		}
 
 		// Show the page
-		return View::make('backend/users/edit', compact('user', 'groups', 'userGroups', 'permissions', 'userPermissions'));
+		return View::make('backend.users.edit', compact('user', 'groups', 'userGroups', 'permissions', 'userPermissions'));
 	}
 
 	/**
@@ -166,94 +166,94 @@ class AdminUsersController extends AdminController {
 		catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
 		{
 			// Redirect to the user management page
-			return Rediret::to('backend/users')->with('error', Lang::get('backend/users/messages.does_not_exist'));
+			return Redirect::to('admin/users')->with('error', Lang::get('admin/users/message.does_not_exist'));
 		}
 
 		// Declare the rules for the form validation
 		$rules = array(
 			'first_name' => 'required|min:3',
 			'last_name'  => 'required|min:3',
-			'email'      => 'required|email|unique:users,email,' . $user->email . ',email'
+			'email'      => "required|email|unique:users,email,{$user->email},email",
 		);
 
 		// Do we want to update the user password?
 		if (Input::get('password'))
 		{
-			$rules['password']              = 'required|between:3,32|confirmed';
-			$rules['password_confirmation'] = 'required|between:3,32';
+			$rules['password']         = 'required|between:3,32';
+			$rules['password_confirm'] = 'required|between:3,32|same:password';
 		}
 
-		// Validate the inputs
+		// Create a new validator instance from our validation rules
 		$validator = Validator::make(Input::all(), $rules);
 
-		// Check if the form validates with success
-		if ($validator->passes())
+		// If validation fails, we'll exit the operation now.
+		if ($validator->fails())
 		{
-			try
-			{
-				// Update the user
-				$user->first_name  = Input::get('first_name');
-				$user->last_name   = Input::get('last_name');
-				$user->email       = Input::get('email');
-				$user->activated   = Input::get('activated', $user->activated);
-				$user->permissions = Input::get('permissions');
-
-				// Do we want to update the user password?
-				if ($password = Input::get('password'))
-				{
-					$user->password = $password;
-				}
-
-				// Get the current user groups
-				$userGroups = $user->groups()->lists('group_id');
-
-				// Get the selected groups
-				$selectedGroups = Input::get('groups', array());
-
-				// Groups comparison between the groups the user currently
-				// have and the groups the user wish to have.
-				$groupsToAdd    = array_diff($selectedGroups, $userGroups);
-				$groupsToRemove = array_diff($userGroups, $selectedGroups);
-
-				// Assign the user to groups
-				foreach ($groupsToAdd as $groupId)
-				{
-					$group = Sentry::getGroupProvider()->findById($groupId);
-
-					$user->addGroup($group);
-				}
-
-				// Remove the user from groups
-				foreach ($groupsToRemove as $groupId)
-				{
-					$group = Sentry::getGroupProvider()->findById($groupId);
-
-					$user->removeGroup($group);
-				}
-
-				// Was the user updated?
-				if ($user->save())
-				{
-					// Redirect to the user page
-					return Redirect::to('backend/users/' . $userId . '/edit')->with('success', Lang::get('backend/users/messages.update.success'));
-				}
-				else
-				{
-					// Redirect to the user page
-					return Redirect::to('backend/users/' . $userId . '/edit')->with('error', Lang::get('backend/users/messages.update.error'));
-				}
-			}
-			catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
-			{
-				$error = Lang::get('backend/users/messages.login_required');
-			}
-
-			// Redirect to the user page
-			return Redirect::to('backend/users/' . $userId . '/edit')->withInput()->with('error', $error);
+			// Ooops.. something went wrong
+			return Redirect::back()->withInput()->withErrors($validator);
 		}
 
-		// Form validation failed
-		return Redirect::to('backend/users/' . $userId . '/edit')->withInput()->withErrors($validator);
+		try
+		{
+			// Update the user
+			$user->first_name  = Input::get('first_name');
+			$user->last_name   = Input::get('last_name');
+			$user->email       = Input::get('email');
+			$user->activated   = Input::get('activated', $user->activated);
+			$user->permissions = Input::get('permissions');
+
+			// Do we want to update the user password?
+			if ($password = Input::get('password'))
+			{
+				$user->password = $password;
+			}
+
+			// Get the current user groups
+			$userGroups = $user->groups()->lists('group_id');
+
+			// Get the selected groups
+			$selectedGroups = Input::get('groups', array());
+
+			// Groups comparison between the groups the user currently
+			// have and the groups the user wish to have.
+			$groupsToAdd    = array_diff($selectedGroups, $userGroups);
+			$groupsToRemove = array_diff($userGroups, $selectedGroups);
+
+			// Assign the user to groups
+			foreach ($groupsToAdd as $groupId)
+			{
+				$group = Sentry::getGroupProvider()->findById($groupId);
+
+				$user->addGroup($group);
+			}
+
+			// Remove the user from groups
+			foreach ($groupsToRemove as $groupId)
+			{
+				$group = Sentry::getGroupProvider()->findById($groupId);
+
+				$user->removeGroup($group);
+			}
+
+			// Was the user updated?
+			if ($user->save())
+			{
+				// Redirect to the user page
+				return Redirect::to("admin/users/$userId/edit")->with('success', Lang::get('admin/users/message.update.success'));
+			}
+			else
+			{
+				// Redirect to the user page
+				return Redirect::to("admin/users/$userId/edit")->with('error', Lang::get('admin/users/message.update.error'));
+			}
+		}
+		catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
+		{
+			$error = Lang::get('admin/users/message.login_required');
+		}
+
+		// Redirect to the user page
+		return Redirect::to("admin/users/$userId/edit")->withInput()->with('error', $error);
 	}
 
 	/**
@@ -274,23 +274,26 @@ class AdminUsersController extends AdminController {
 			if ($user->id === Sentry::getId())
 			{
 				// Redirect to the user management page
-				return Redirect::to('backend/users')->with('error', Lang::get('backend/users/messages.delete.impossible'));
+				return Redirect::to('admin/users')->with('error', Lang::get('admin/users/message.delete.impossible'));
 			}
 
-			// Was the user deleted?
-			if($user->delete())
+			// Do we have permission to delete this user?
+			if ($user->isSuperUser() and ! Sentry::getUser()->isSuperUser())
 			{
 				// Redirect to the user management page
-				return Redirect::to('backend/users')->with('success', Lang::get('backend/users/messages.delete.success'));
+				return Redirect::to('admin/users')->with('error', 'Insufficient permissions!');
 			}
 
-			// There was a problem deleting the user
-			return Redirect::to('backend/users')->with('error', Lang::get('backend/users/messages.delete.error'));
+			// Delete the user
+			$user->delete();
+
+			// Redirect to the user management page
+			return Redirect::to('admin/users')->with('success', Lang::get('admin/users/message.delete.success'));
 		}
 		catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
 		{
 			// Redirect to the user management page
-			return Redirect::to('backend/users')->with('error', Lang::get('backend/users/messages.not_found'));
+			return Redirect::to('admin/users')->with('error', Lang::get('admin/users/message.not_found'));
 		}
 	}
 
