@@ -52,16 +52,19 @@ App::error(function(Exception $exception, $code)
 {
 	Log::error($exception);
 
-	switch ($code)
+	if ( ! Config::get('app.debug'))
 	{
-		case 403:
-			return Response::make(View::make('error/403'), 403);
+		switch ($code)
+		{
+			case 403:
+				return Response::make(View::make('error/403'), 403);
 
-		case 500:
-			return Response::make(View::make('error/500'), 500);
+			case 500:
+				return Response::make(View::make('error/500'), 500);
 
-		default:
-			return Response::make(View::make('error/404'), 404);
+			default:
+				return Response::make(View::make('error/404'), 404);
+		}
 	}
 });
 
