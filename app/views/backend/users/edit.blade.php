@@ -23,12 +23,10 @@ User Update ::
 	<li class="active"><a href="#tab-general" data-toggle="tab">General</a></li>
 	<li><a href="#tab-permissions" data-toggle="tab">Permissions</a></li>
 </ul>
-<!-- ./ tabs -->
 
 <form class="form-horizontal" method="post" action="" autocomplete="off">
 	<!-- CSRF Token -->
-	<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-	<!-- ./ csrf token -->
+	<input type="hidden" name="_token" value="{{ csrf_token() }}" />
 
 	<!-- Tabs Content -->
 	<div class="tab-content">
@@ -42,7 +40,6 @@ User Update ::
 					{{ $errors->first('first_name', '<span class="help-inline">:message</span>') }}
 				</div>
 			</div>
-			<!-- ./ first name -->
 
 			<!-- Last Name -->
 			<div class="control-group {{ $errors->has('last_name') ? 'error' : '' }}">
@@ -52,7 +49,6 @@ User Update ::
 					{{ $errors->first('last_name', '<span class="help-inline">:message</span>') }}
 				</div>
 			</div>
-			<!-- ./ last name -->
 
 			<!-- Email -->
 			<div class="control-group {{ $errors->has('email') ? 'error' : '' }}">
@@ -62,7 +58,6 @@ User Update ::
 					{{ $errors->first('email', '<span class="help-inline">:message</span>') }}
 				</div>
 			</div>
-			<!-- ./ email -->
 
 			<!-- Password -->
 			<div class="control-group {{ $errors->has('password') ? 'error' : '' }}">
@@ -72,7 +67,6 @@ User Update ::
 					{{ $errors->first('password', '<span class="help-inline">:message</span>') }}
 				</div>
 			</div>
-			<!-- ./ password -->
 
 			<!-- Password Confirm -->
 			<div class="control-group {{ $errors->has('password_confirm') ? 'error' : '' }}">
@@ -82,7 +76,6 @@ User Update ::
 					{{ $errors->first('password_confirm', '<span class="help-inline">:message</span>') }}
 				</div>
 			</div>
-			<!-- ./ password confirm -->
 
 			<!-- Activation Status -->
 			<div class="control-group {{ $errors->has('activated') ? 'error' : '' }}">
@@ -95,7 +88,6 @@ User Update ::
 					{{ $errors->first('activated', '<span class="help-inline">:message</span>') }}
 				</div>
 			</div>
-			<!-- ./ activation status -->
 
 			<!-- Groups -->
 			<div class="control-group {{ $errors->has('groups') ? 'error' : '' }}">
@@ -112,9 +104,7 @@ User Update ::
 					</span>
 				</div>
 			</div>
-			<!-- ./ groups -->
 		</div>
-		<!-- ./ general tab -->
 
 		<!-- Permissions tab -->
 		<div class="tab-pane" id="tab-permissions">
@@ -130,18 +120,17 @@ User Update ::
 				</div>
 			</div>
 		</div>
-		<!-- ./ permissions tab -->
 	</div>
-	<!-- ./ tabs content -->
 
 	<!-- Form Actions -->
 	<div class="control-group">
 		<div class="controls">
 			<a class="btn btn-link" href="{{ URL::to('admin/users') }}">Cancel</a>
+
 			<button type="reset" class="btn">Reset</button>
+
 			<button type="submit" class="btn btn-success">Update User</button>
 		</div>
 	</div>
-	<!-- ./ form actions -->
 </form>
 @stop

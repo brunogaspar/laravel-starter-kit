@@ -28,7 +28,6 @@ Create a User ::
 <form class="form-horizontal" method="post" action="" autocomplete="off">
 	<!-- CSRF Token -->
 	<input type="hidden" name="_token" value="{{ csrf_token() }}" />
-	<!-- ./ csrf token -->
 
 	<!-- Tabs Content -->
 	<div class="tab-content">
@@ -42,7 +41,6 @@ Create a User ::
 					{{ $errors->first('first_name', '<span class="help-inline">:message</span>') }}
 				</div>
 			</div>
-			<!-- ./ first name -->
 
 			<!-- Last Name -->
 			<div class="control-group {{ $errors->has('last_name') ? 'error' : '' }}">
@@ -52,7 +50,6 @@ Create a User ::
 					{{ $errors->first('last_name', '<span class="help-inline">:message</span>') }}
 				</div>
 			</div>
-			<!-- ./ last name -->
 
 			<!-- Email -->
 			<div class="control-group {{ $errors->has('email') ? 'error' : '' }}">
@@ -62,7 +59,6 @@ Create a User ::
 					{{ $errors->first('email', '<span class="help-inline">:message</span>') }}
 				</div>
 			</div>
-			<!-- ./ email -->
 
 			<!-- Password -->
 			<div class="control-group {{ $errors->has('password') ? 'error' : '' }}">
@@ -72,7 +68,6 @@ Create a User ::
 					{{ $errors->first('password', '<span class="help-inline">:message</span>') }}
 				</div>
 			</div>
-			<!-- ./ password -->
 
 			<!-- Password Confirm -->
 			<div class="control-group {{ $errors->has('password_confirm') ? 'error' : '' }}">
@@ -82,7 +77,6 @@ Create a User ::
 					{{ $errors->first('password_confirm', '<span class="help-inline">:message</span>') }}
 				</div>
 			</div>
-			<!-- ./ password confirm -->
 
 			<!-- Activation Status -->
 			<div class="control-group {{ $errors->has('activated') ? 'error' : '' }}">
@@ -95,7 +89,6 @@ Create a User ::
 					{{ $errors->first('activated', '<span class="help-inline">:message</span>') }}
 				</div>
 			</div>
-			<!-- ./ activation status -->
 
 			<!-- Groups -->
 			<div class="control-group {{ $errors->has('groups') ? 'error' : '' }}">
@@ -112,9 +105,7 @@ Create a User ::
 					</span>
 				</div>
 			</div>
-			<!-- ./ groups -->
 		</div>
-		<!-- ./ general tab -->
 
 		<!-- Permissions tab -->
 		<div class="tab-pane" id="tab-permissions">
@@ -130,18 +121,17 @@ Create a User ::
 				</div>
 			</div>
 		</div>
-		<!-- ./ permissions tab -->
 	</div>
-	<!-- ./ tabs content -->
 
 	<!-- Form Actions -->
 	<div class="control-group">
 		<div class="controls">
 			<a class="btn btn-link" href="{{ URL::to('admin/users') }}">Cancel</a>
+
 			<button type="reset" class="btn">Reset</button>
+
 			<button type="submit" class="btn btn-success">Create User</button>
 		</div>
 	</div>
-	<!-- ./ form actions -->
 </form>
 @stop
