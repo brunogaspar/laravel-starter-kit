@@ -18,15 +18,6 @@ Change your Email
 	<!-- Form type -->
 	<input type="hidden" name="formType" value="change-email" />
 
-	<!-- Current Password -->
-	<div class="control-group{{ $errors->first('current_password', ' error') }}">
-		<label class="control-label" for="current_password">Current Password</label>
-		<div class="controls">
-			<input type="password" name="current_password" id="current_password" value="" />
-			{{ $errors->first('current_password', '<span class="help-block">:message</span>') }}
-		</div>
-	</div>
-
 	<!-- New Email -->
 	<div class="control-group{{ $errors->first('email', ' error') }}">
 		<label class="control-label" for="email">New Email</label>
@@ -42,6 +33,15 @@ Change your Email
 		<div class="controls">
 			<input type="text" name="email_confirm" id="email_confirm" value="" />
 			{{ $errors->first('email_confirm', '<span class="help-block">:message</span>') }}
+		</div>
+	</div>
+
+	<!-- Current Password -->
+	<div class="control-group{{ $errors->first('current_password', ' error') }}">
+		<label class="control-label" for="current_password">Current Password</label>
+		<div class="controls">
+			<input type="password" name="current_password" id="current_password" value="" />
+			{{ $errors->first('current_password', '<span class="help-block">:message</span>') }}
 		</div>
 	</div>
 

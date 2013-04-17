@@ -39,7 +39,7 @@ class AuthController extends BaseController {
 		if ($validator->fails())
 		{
 			// Ooops.. something went wrong
-			return Redirect::route('signin')->withInput()->withErrors($validator);
+			return Redirect::back()->withInput()->withErrors($validator);
 		}
 
 		try
@@ -74,7 +74,7 @@ class AuthController extends BaseController {
 		}
 
 		// Ooops.. something went wrong
-		return Redirect::route('signin')->withInput()->withErrors($this->messageBag);
+		return Redirect::back()->withInput()->withErrors($this->messageBag);
 	}
 
 	/**
@@ -118,7 +118,7 @@ class AuthController extends BaseController {
 		if ($validator->fails())
 		{
 			// Ooops.. something went wrong
-			return Redirect::route('signup')->withInput()->withErrors($validator);
+			return Redirect::back()->withInput()->withErrors($validator);
 		}
 
 		try
@@ -145,7 +145,7 @@ class AuthController extends BaseController {
 			});
 
 			// Redirect to the register page
-			return Redirect::route('signup')->with('success', Lang::get('auth.messages.signup.success'));
+			return Redirect::back()->with('success', Lang::get('auth.messages.signup.success'));
 		}
 		catch (Cartalyst\Sentry\Users\UserExistsException $e)
 		{
@@ -153,7 +153,7 @@ class AuthController extends BaseController {
 		}
 
 		// Ooops.. something went wrong
-		return Redirect::route('signup')->withInput()->withErrors($this->messageBag);
+		return Redirect::back()->withInput()->withErrors($this->messageBag);
 	}
 
 	/**

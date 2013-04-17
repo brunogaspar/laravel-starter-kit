@@ -3,5 +3,6 @@
 return array(
 
 	'edit'   => 'Edit',
-	'delete' => 'Delete'
+	'delete' => 'Delete',
+
 );
