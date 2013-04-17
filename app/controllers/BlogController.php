@@ -54,7 +54,7 @@ class BlogController extends BaseController {
 		// The user needs to be logged in, make that check please
 		if ( ! Sentry::check())
 		{
-			return Redirect::to("$slug#comments")->with('error', 'You need to be logged in to post comments!');
+			return Redirect::to("blog/$slug#comments")->with('error', 'You need to be logged in to post comments!');
 		}
 
 		// Get this blog post data
@@ -72,7 +72,7 @@ class BlogController extends BaseController {
 		if ($validator->fails())
 		{
 			// Redirect to this blog post page
-			return Redirect::to("$slug#comments")->withInput()->withErrors($validator);
+			return Redirect::to("blog/$slug#comments")->withInput()->withErrors($validator);
 		}
 
 		// Save the comment
@@ -84,11 +84,11 @@ class BlogController extends BaseController {
 		if($post->comments()->save($comment))
 		{
 			// Redirect to this blog post page
-			return Redirect::to("$slug#comments")->with('success', 'Your comment was successfully added.');
+			return Redirect::to("blog/$slug#comments")->with('success', 'Your comment was successfully added.');
 		}
 
 		// Redirect to this blog post page
-		return Redirect::to("$slug#comments")->with('error', 'There was a problem adding your comment, please try again.');
+		return Redirect::to("blog/$slug#comments")->with('error', 'There was a problem adding your comment, please try again.');
 	}
 
 }
