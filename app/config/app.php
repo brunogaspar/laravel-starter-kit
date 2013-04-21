@@ -114,7 +114,6 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 
 		'Cartalyst\Sentry\SentryServiceProvider',
-		'ExpressiveDateServiceProvider',
 
 	),
 

@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Cartalyst\Sentry\Users\Eloquent\User as SentryUserModel;
 
 class User extends SentryUserModel {
@@ -28,21 +29,37 @@ class User extends SentryUserModel {
 	/**
 	 * Returns the user creation date.
 	 *
+	 * @param  string  $dateFormat
 	 * @return string
 	 */
-	public function created_at()
+	public function created_at($dateFormat = null)
 	{
-		return ExpressiveDate::make($this->created_at)->getRelativeDate();
+		$date = new Carbon($this->created_at);
+
+		if (is_null($dateFormat))
+		{
+			return $date->diffForHumans();
+		}
+
+		return $date->format($dateFormat);
 	}
 
 	/**
 	 * Returns the date when the user was last updated.
 	 *
+	 * @param  string  $dateFormat
 	 * @return string
 	 */
-	public function updated_at()
+	public function updated_at($dateFormat = null)
 	{
-		return ExpressiveDate::make($this->updated_at)->getRelativeDate();
+		$date = new Carbon($this->updated_at);
+
+		if (is_null($dateFormat))
+		{
+			return $date->diffForHumans();
+		}
+
+		return $date->format($dateFormat);
 	}
 
 }

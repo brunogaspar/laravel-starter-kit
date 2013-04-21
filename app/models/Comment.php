@@ -1,15 +1,25 @@
 <?php
 
+use Carbon\Carbon;
+
 class Comment extends Eloquent {
 
 	/**
 	 * Get the date the post was created.
 	 *
+	 * @param  string  $dateFormat
 	 * @return string
 	 */
-	public function created_at()
+	public function created_at($dateFormat = null)
 	{
-		return ExpressiveDate::make($this->created_at)->getRelativeDate();
+		$date = new Carbon($this->created_at);
+
+		if (is_null($dateFormat))
+		{
+			return $date->diffForHumans();
+		}
+
+		return $date->format($dateFormat);
 	}
 
 	/**

@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\Carbon;
+
 class Post extends Eloquent {
 
 	/**
@@ -78,11 +80,11 @@ class Post extends Eloquent {
 	 */
 	public function created_at($dateFormat = null)
 	{
-		$date = ExpressiveDate::make($this->created_at);
+		$date = new Carbon($this->created_at);
 
 		if (is_null($dateFormat))
 		{
-			return $date->getRelativeDate();
+			return $date->diffForHumans();
 		}
 
 		return $date->format($dateFormat);
@@ -96,11 +98,11 @@ class Post extends Eloquent {
 	 */
 	public function updated_at($dateFormat = null)
 	{
-		$date = ExpressiveDate::make($this->updated_at);
+		$date = new Carbon($this->updated_at);
 
 		if (is_null($dateFormat))
 		{
-			return $date->getRelativeDate();
+			return $date->diffForHumans();
 		}
 
 		return $date->format($dateFormat);
