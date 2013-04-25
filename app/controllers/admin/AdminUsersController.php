@@ -209,7 +209,11 @@ class AdminUsersController extends AdminController {
 			}
 
 			// Get the current user groups
-			$userGroups = $user->groups()->lists('group_id');
+			$userGroups = $user->groups()->lists('group_id', 'group_id');
+
+			var_dump($userGroups);
+
+			die;
 
 			// Get the selected groups
 			$selectedGroups = Input::get('groups', array());
