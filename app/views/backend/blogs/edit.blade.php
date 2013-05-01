@@ -1,4 +1,4 @@
-@extends('backend.layouts.default')
+@extends('backend/layouts/default')
 
 {{-- Page title --}}
 @section('title')
@@ -95,7 +95,7 @@ Blog Post Update ::
 	<!-- Form Actions -->
 	<div class="control-group">
 		<div class="controls">
-			<a class="btn btn-link" href="{{ URL::to('admin/blog') }}">Cancel</a>
+			<a class="btn btn-link" href="{{ URL::to('admin/blogs') }}">Cancel</a>
 
 			<button type="reset" class="btn">Reset</button>
 
