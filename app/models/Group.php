@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Cartalyst\Sentry\Groups\Eloquent\Group as SentryGroupModel;
 
 class Group extends SentryGroupModel {
