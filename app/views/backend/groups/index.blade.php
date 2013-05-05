@@ -32,7 +32,7 @@ Group Management ::
 		<tr>
 			<td>{{ $group->name }}</td>
 			<td>{{ $group->users()->count() }}</td>
-			<td>{{ $group->created_at() }}</td>
+			<td>{{ $group->created_at->diffForHumans() }}</td>
 			<td>
 				<a href="{{ URL::to("admin/groups/{$group->id}/edit") }}" class="btn btn-mini">@lang('button.edit')</a>
 				<a href="{{ URL::to("admin/groups/{$group->id}/delete") }}" class="btn btn-mini btn-danger">@lang('button.delete')</a>

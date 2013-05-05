@@ -13,28 +13,37 @@ Route::group(array('prefix' => 'admin'), function()
 {
 
 	# Blog Management
-	Route::get('blogs', 'AdminBlogsController@getIndex');
-	Route::get('blogs/create', 'AdminBlogsController@getCreate');
-	Route::post('blogs/create', 'AdminBlogsController@postCreate');
-	Route::get('blogs/{blogId}/edit', 'AdminBlogsController@getEdit');
-	Route::post('blogs/{blogId}/edit', 'AdminBlogsController@postEdit');
-	Route::get('blogs/{blogId}/delete', 'AdminBlogsController@getDelete');
+	Route::group(array('prefix' => 'blogs'), function()
+	{
+		Route::get('/', 'AdminBlogsController@getIndex');
+		Route::get('create', 'AdminBlogsController@getCreate');
+		Route::post('create', 'AdminBlogsController@postCreate');
+		Route::get('{blogId}/edit', 'AdminBlogsController@getEdit');
+		Route::post('{blogId}/edit', 'AdminBlogsController@postEdit');
+		Route::get('{blogId}/delete', 'AdminBlogsController@getDelete');
+	});
 
 	# User Management
-	Route::get('users', 'AdminUsersController@getIndex');
-	Route::get('users/create', 'AdminUsersController@getCreate');
-	Route::post('users/create', 'AdminUsersController@postCreate');
-	Route::get('users/{userId}/edit', 'AdminUsersController@getEdit');
-	Route::post('users/{userId}/edit', 'AdminUsersController@postEdit');
-	Route::get('users/{userId}/delete', 'AdminUsersController@getDelete');
+	Route::group(array('prefix' => 'users'), function()
+	{
+		Route::get('/', 'AdminUsersController@getIndex');
+		Route::get('create', 'AdminUsersController@getCreate');
+		Route::post('create', 'AdminUsersController@postCreate');
+		Route::get('{userId}/edit', 'AdminUsersController@getEdit');
+		Route::post('{userId}/edit', 'AdminUsersController@postEdit');
+		Route::get('{userId}/delete', 'AdminUsersController@getDelete');
+	});
 
 	# Group Management
-	Route::get('groups', 'AdminGroupsController@getIndex');
-	Route::get('groups/create', 'AdminGroupsController@getCreate');
-	Route::post('groups/create', 'AdminGroupsController@postCreate');
-	Route::get('groups/{groupId}/edit', 'AdminGroupsController@getEdit');
-	Route::post('groups/{groupId}/edit', 'AdminGroupsController@postEdit');
-	Route::get('groups/{groupId}/delete', 'AdminGroupsController@getDelete');
+	Route::group(array('prefix' => 'groups'), function()
+	{
+		Route::get('/', 'AdminGroupsController@getIndex');
+		Route::get('create', 'AdminGroupsController@getCreate');
+		Route::post('create', 'AdminGroupsController@postCreate');
+		Route::get('{groupId}/edit', 'AdminGroupsController@getEdit');
+		Route::post('{groupId}/edit', 'AdminGroupsController@postEdit');
+		Route::get('{groupId}/delete', 'AdminGroupsController@getDelete');
+	});
 
 	# Admin Dashboard
 	Route::get('/', array('as' => 'admin', 'uses' => 'AdminDashboardController@getIndex'));
@@ -50,7 +59,7 @@ Route::group(array('prefix' => 'admin'), function()
 |
 */
 
-Route::group(array('prefix' => 'account'), function()
+Route::group(array('prefix' => 'auth'), function()
 {
 
 	# Login
@@ -86,21 +95,25 @@ Route::group(array('prefix' => 'account'), function()
 |
 */
 
-# Profile
-Route::get('account/profile', array('as' => 'profile', 'uses' => 'AccountProfileController@getIndex'));
-Route::post('account/profile', 'AccountProfileController@postIndex');
+Route::group(array('prefix' => 'account'), function()
+{
 
-# Change Password
-Route::get('account/change-password', array('as' => 'change-password', 'uses' => 'AccountChangePasswordController@getIndex'));
-Route::post('account/change-password', 'AccountChangePasswordController@postIndex');
+	# Account Dashboard
+	Route::get('/', array('as' => 'account', 'uses' => 'AccountDashboardController@getIndex'));
 
-# Change Email
-Route::get('account/change-email', array('as' => 'change-email', 'uses' => 'AccountChangeEmailController@getIndex'));
-Route::post('account/change-email', 'AccountChangeEmailController@postIndex');
+	# Profile
+	Route::get('profile', array('as' => 'profile', 'uses' => 'AccountProfileController@getIndex'));
+	Route::post('profile', 'AccountProfileController@postIndex');
 
-# Dashboard
-Route::get('account', array('as' => 'account', 'uses' => 'AccountDashboardController@getIndex'));
+	# Change Password
+	Route::get('change-password', array('as' => 'change-password', 'uses' => 'AccountChangePasswordController@getIndex'));
+	Route::post('change-password', 'AccountChangePasswordController@postIndex');
 
+	# Change Email
+	Route::get('change-email', array('as' => 'change-email', 'uses' => 'AccountChangeEmailController@getIndex'));
+	Route::post('change-email', 'AccountChangeEmailController@postIndex');
+
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -122,16 +135,7 @@ Route::get('about-us', function()
 Route::get('contact-us', array('as' => 'contact-us', 'uses' => 'ContactUsController@getIndex'));
 Route::post('contact-us', 'ContactUsController@postIndex');
 
-
 Route::get('blog/{postSlug}', array('as' => 'view-post', 'uses' => 'BlogController@getView'));
 Route::post('blog/{postSlug}', 'BlogController@postView');
 
 Route::get('/', array('as' => 'home', 'uses' => 'BlogController@getIndex'));
-
-# routes for handling social authentication via opauth
-Route::get('social/auth/{network?}', 'SocialController@auth');
-Route::get('social/callback', 'SocialController@callback');
-
-Route::get('social/auth/{network?}/int_callback', 'SocialController@auth');
-Route::get('social/auth/{network?}/oauth2callback', 'SocialController@auth');
-Route::get('social/auth/{network?}/oauth_callback', 'SocialController@auth');

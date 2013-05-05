@@ -1,26 +1,16 @@
 <?php
 
-use Carbon\Carbon;
-
 class Comment extends Eloquent {
 
 	/**
-	 * Get the date the post was created.
+	 * The date fields for the model.
 	 *
-	 * @param  string  $dateFormat
-	 * @return string
+	 * @var array
 	 */
-	public function created_at($dateFormat = null)
-	{
-		$date = new Carbon($this->created_at);
-
-		if (is_null($dateFormat))
-		{
-			return $date->diffForHumans();
-		}
-
-		return $date->format($dateFormat);
-	}
+	protected $dates = array(
+		'created_at',
+		'updated_at',
+	);
 
 	/**
 	 * Get the comment's content.

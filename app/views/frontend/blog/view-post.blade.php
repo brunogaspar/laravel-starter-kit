@@ -31,7 +31,7 @@
 <p>{{ $post->content() }}</p>
 
 <div>
-	<span class="badge badge-info" title="{{ $post->created_at }}">Posted {{ $post->created_at() }}</span>
+	<span class="badge badge-info" title="{{ $post->created_at }}">Posted {{ $post->created_at->diffForHumans() }}</span>
 </div>
 
 <hr />
@@ -50,7 +50,7 @@
 			<div class="span11">
 				<span class="muted">{{ $comment->author->fullName() }}</span>
 				&bull;
-				<span title="{{ $comment->created_at }}">{{ $comment->created_at() }}</span>
+				<span title="{{ $comment->created_at }}">{{ $comment->created_at->diffForHumans() }}</span>
 
 				<hr />
 

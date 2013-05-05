@@ -32,7 +32,7 @@ Blog Management ::
 		<tr>
 			<td>{{ $post->title }}</td>
 			<td>{{ $post->comments()->count() }}</td>
-			<td>{{ $post->created_at() }}</td>
+			<td>{{ $post->created_at->diffForHumans() }}</td>
 			<td>
 				<a href="{{ URL::to("admin/blogs/{$post->id}/edit") }}" class="btn btn-mini">@lang('button.edit')</a>
 				<a href="{{ URL::to("admin/blogs/{$post->id}/delete") }}" class="btn btn-mini btn-danger">@lang('button.delete')</a>

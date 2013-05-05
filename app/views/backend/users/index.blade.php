@@ -38,7 +38,7 @@ User Management ::
 			<td>{{ $user->email }}</td>
 			<td>{{ implode(', ', array_map(function($group) { return $group->name; }, $user->groups->all())) }}</td>
 			<td>@lang('general.' . ($user->isActivated() ? 'yes' : 'no'))</td>
-			<td>{{ $user->created_at() }}</td>
+			<td>{{ $user->created_at->diffForHumans() }}</td>
 			<td>
 				<a href="{{ URL::to("admin/users/{$user->id}/edit") }}" class="btn btn-mini">@lang('button.edit')</a>
 

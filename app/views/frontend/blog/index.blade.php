@@ -31,7 +31,7 @@
 				<p></p>
 				<p>
 					<i class="icon-user"></i> by <span class="muted">{{ $post->author->first_name }}</span>
-					| <i class="icon-calendar"></i> {{ $post->created_at() }}
+					| <i class="icon-calendar"></i> {{ $post->created_at->diffForHumans() }}
 					| <i class="icon-comment"></i> <a href="{{ $post->url() }}#comments">{{ $post->comments()->count() }} Comments</a>
 				</p>
 			</div>
