@@ -16,6 +16,7 @@ packages, like the awesome [Sentry 2](https://github.com/cartalyst/sentry) packa
 	* 403 for forbidden page access
 	* 404 for not found pages
 	* 500 for internal server errors
+	* 503 to show the maintenance page
 * Cartalyst Sentry 2 for Authentication and Authorization
 * Back-end
 	* User and Group management
