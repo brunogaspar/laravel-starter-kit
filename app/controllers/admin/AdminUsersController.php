@@ -8,8 +8,18 @@ class AdminUsersController extends AdminController {
 	 * @var array
 	 */
 	protected $permissions = array(
-		'superuser' => 'Super user',
-		'admin'     => 'Admin Access',
+		'Global' => array(
+			array(
+				'permission' => 'superuser',
+				'label'      => 'Super User',
+			),
+		),
+		'Admin' => array(
+			array(
+				'permission' => 'admin',
+				'label'      => 'Admin Rights',
+			),
+		),
 	);
 
 	/**
@@ -128,17 +138,19 @@ class AdminUsersController extends AdminController {
 			// Get the user information
 			$user = Sentry::getUserProvider()->findById($userId);
 
-			// Get the user groups
+			// Get this user groups
 			$userGroups = $user->groups()->lists('name', 'group_id');
 
-			// Get all the available groups
+			// Get this user permissions
+			$userPermissions = array_merge(Input::old('permissions', array('superuser' => -1)), $user->getPermissions());
+			$this->encodePermissions($userPermissions);
+
+			// Get a list of all the available groups
 			$groups = Sentry::getGroupProvider()->findAll();
 
 			// Get all the available permissions
 			$permissions = $this->permissions;
-
-			// Get this user permissions
-			$userPermissions = $user->getPermissions();
+			$this->encodeAllPermissions($permissions);
 		}
 		catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
 		{
