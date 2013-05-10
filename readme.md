@@ -17,17 +17,16 @@ packages, like the awesome [Sentry 2](https://github.com/cartalyst/sentry) packa
 	* 404 for not found pages
 	* 500 for internal server errors
 	* 503 to show the maintenance page
-* Cartalyst Sentry 2 for Authentication and Authorization
 * Back-end
 	* User and Group management
 	* Manage blog posts and comments
 * Front-end
 	* User login, registration, activation and forgot password
 	* User account area
-	* Blog functionality
+	* Blog functionality with commentaries
 	* Contact us page
 * Packages included:
-	* [Cartalyst Sentry 2](https://github.com/cartalyst/sentry)
+	* [Cartalyst Sentry 2 - Authentication and Authorization package](https://github.com/cartalyst/sentry)
 
 -----
 
@@ -66,7 +65,15 @@ After the database is created, open the file `app/config/database.php` and updat
 
 -----
 
-### 4) Use custom CLI Installer Command
+### 4) Setup Mail Settings
+
+Now, you need to setup your mail settings by just opening and updating the following file `app\config\mail.php`.
+
+This will be used to send emails to your users, when they register and they request a password reset.
+
+-----
+
+### 5) Use custom CLI Installer Command
 
 Now, you need to create yourself a user and finish the installation.
 
@@ -76,7 +83,7 @@ Use the following command to create your default user, user groups and run all t
 
 -----
 
-### 5) Accessing the Administration
+### 6) Accessing the Administration
 
 To access the administration page, you just need to access `http://your-host/public/admin` on your browser and it will automatically redirect you to the login page, in the login page, just fill in and submit the form.
 
