@@ -14,9 +14,6 @@
 		]
 	},
 	"scripts": {
-		"pre-install-cmd": [
-			"php artisan clear-compiled"
-		],
 		"pre-update-cmd": [
 			"php artisan clear-compiled"
 		],
