@@ -13,7 +13,7 @@ Create a User ::
 		Create a New User
 
 		<div class="pull-right">
-			<a href="{{ URL::to('admin/users') }}" class="btn btn-small btn-inverse"><i class="icon-circle-arrow-left icon-white"></i> Back</a>
+			<a href="{{ route('users') }}" class="btn btn-small btn-inverse"><i class="icon-circle-arrow-left icon-white"></i> Back</a>
 		</div>
 	</h3>
 </div>
@@ -126,7 +126,7 @@ Create a User ::
 	<!-- Form Actions -->
 	<div class="control-group">
 		<div class="controls">
-			<a class="btn btn-link" href="{{ URL::to('admin/users') }}">Cancel</a>
+			<a class="btn btn-link" href="{{ route('users') }}">Cancel</a>
 
 			<button type="reset" class="btn">Reset</button>
 

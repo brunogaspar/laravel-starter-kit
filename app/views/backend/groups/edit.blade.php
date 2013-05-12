@@ -13,7 +13,7 @@ Group Update ::
 		Group Update
 
 		<div class="pull-right">
-			<a href="{{ URL::to('admin/groups') }}" class="btn btn-small btn-inverse"><i class="icon-circle-arrow-left icon-white"></i> Back</a>
+			<a href="{{ route('groups') }}" class="btn btn-small btn-inverse"><i class="icon-circle-arrow-left icon-white"></i> Back</a>
 		</div>
 	</h3>
 </div>
@@ -61,7 +61,7 @@ Group Update ::
 	<!-- Form Actions -->
 	<div class="control-group">
 		<div class="controls">
-			<a class="btn btn-link" href="{{ URL::to('admin/groups') }}">Cancel</a>
+			<a class="btn btn-link" href="{{ route('groups') }}">Cancel</a>
 
 			<button type="reset" class="btn">Reset</button>
 

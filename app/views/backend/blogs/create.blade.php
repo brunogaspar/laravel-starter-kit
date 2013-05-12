@@ -13,7 +13,7 @@ Create a New Blog Post ::
 		Create a New Blog Post
 
 		<div class="pull-right">
-			<a href="{{ URL::to('admin/blogs') }}" class="btn btn-small btn-inverse"><i class="icon-circle-arrow-left icon-white"></i> Back</a>
+			<a href="{{ route('blogs') }}" class="btn btn-small btn-inverse"><i class="icon-circle-arrow-left icon-white"></i> Back</a>
 		</div>
 	</h3>
 </div>
@@ -36,8 +36,21 @@ Create a New Blog Post ::
 			<div class="control-group {{ $errors->has('title') ? 'error' : '' }}">
 				<label class="control-label" for="title">Post Title</label>
 				<div class="controls">
-					<input type="text" name="title" id="title" value="{{ Input::old('title') }}" />
+					<input class="span10" type="text" name="title" id="title" value="{{ Input::old('title') }}" />
 					{{ $errors->first('title', '<span class="help-inline">:message</span>') }}
+				</div>
+			</div>
+
+			<!-- Post Slug -->
+			<div class="control-group">
+				<label class="control-label" for="slug">Slug</label>
+				<div class="controls">
+					<div class="input-prepend">
+						<span class="add-on">
+							{{ str_finish(URL::to('/'), '/') }}
+						</span>
+						<input class="span6" type="text" name="slug" id="slug" value="{{ Input::old('slug') }}">
+					</div>
 				</div>
 			</div>
 
@@ -45,7 +58,7 @@ Create a New Blog Post ::
 			<div class="control-group {{ $errors->has('content') ? 'error' : '' }}">
 				<label class="control-label" for="content">Content</label>
 				<div class="controls">
-					<textarea class="full-width span10" name="content" value="content" rows="10">{{ Input::old('content') }}</textarea>
+					<textarea class="span10" name="content" id="content" value="content" rows="10">{{ Input::old('content') }}</textarea>
 					{{ $errors->first('content', '<span class="help-inline">:message</span>') }}
 				</div>
 			</div>
@@ -57,7 +70,7 @@ Create a New Blog Post ::
 			<div class="control-group {{ $errors->has('meta-title') ? 'error' : '' }}">
 				<label class="control-label" for="meta-title">Meta Title</label>
 				<div class="controls">
-					<input type="text" name="meta-title" id="meta-title" value="{{ Input::old('meta-title') }}" />
+					<input class="span10" type="text" name="meta-title" id="meta-title" value="{{ Input::old('meta-title') }}" />
 					{{ $errors->first('meta-title', '<span class="help-inline">:message</span>') }}
 				</div>
 			</div>
@@ -66,7 +79,7 @@ Create a New Blog Post ::
 			<div class="control-group {{ $errors->has('meta-description') ? 'error' : '' }}">
 				<label class="control-label" for="meta-description">Meta Description</label>
 				<div class="controls">
-					<input type="text" name="meta-description" id="meta-description" value="{{ Input::old('meta-description') }}" />
+					<input class="span10" type="text" name="meta-description" id="meta-description" value="{{ Input::old('meta-description') }}" />
 					{{ $errors->first('meta-description', '<span class="help-inline">:message</span>') }}
 				</div>
 			</div>
@@ -75,7 +88,7 @@ Create a New Blog Post ::
 			<div class="control-group {{ $errors->has('meta-keywords') ? 'error' : '' }}">
 				<label class="control-label" for="meta-keywords">Meta Keywords</label>
 				<div class="controls">
-					<input type="text" name="meta-keywords" id="meta-keywords" value="{{ Input::old('meta-keywords') }}" />
+					<input class="span10" type="text" name="meta-keywords" id="meta-keywords" value="{{ Input::old('meta-keywords') }}" />
 					{{ $errors->first('meta-keywords', '<span class="help-inline">:message</span>') }}
 				</div>
 			</div>
@@ -85,7 +98,7 @@ Create a New Blog Post ::
 	<!-- Form actions -->
 	<div class="control-group">
 		<div class="controls">
-			<a class="btn btn-link" href="{{ URL::to('admin/blogs') }}">Cancel</a>
+			<a class="btn btn-link" href="{{ route('blogs') }}">Cancel</a>
 
 			<button type="reset" class="btn">Reset</button>
 
