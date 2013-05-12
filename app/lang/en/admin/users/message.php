@@ -2,25 +2,26 @@
 
 return array(
 
-	'already_exists'    => 'User already exists!',
-	'does_not_exist'    => 'User does not exist.',
-	'login_required'    => 'The login field is required',
-	'password_required' => 'The password is required.',
+	'user_exists'              => 'User already exists!',
+	'user_does_not_exist'      => 'User [:id] does not exist.',
+	'user_login_required'      => 'The login field is required',
+	'user_password_required'   => 'The password is required.',
+	'insufficient_permissions' => 'Insufficient Permissions.',
 
-	'create' => array(
-		'error'   => 'User was not created, please try again.',
-		'success' => 'User created successfully.',
+	'success' => array(
+		'create'    => 'User was successfully created.',
+		'update'    => 'User was successfully updated.',
+		'delete'    => 'User was successfully deleted.',
+		'ban'       => 'User was successfully banned.',
+		'unban'     => 'User was successfully unbanned.',
+		'suspend'   => 'User was successfully suspended.',
+		'unsuspend' => 'User was successfully unsuspended.',
 	),
 
-	'update' => array(
-		'error'   => 'User was not updated, please try again',
-		'success' => 'User updated successfully.',
-	),
-
-	'delete' => array(
-		'impossible' => 'You cannot delete yourself.',
-		'error'      => 'There was an issue deleting the user. Please try again.',
-		'success'    => 'The user was deleted successfully.',
+	'error' => array(
+		'create' => 'There was an issue creating the user. Please try again.',
+		'update' => 'There was an issue updating the user. Please try again.',
+		'delete' => 'There was an issue deleting the user. Please try again.',
 	),
 
 );

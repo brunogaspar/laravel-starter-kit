@@ -1,6 +1,15 @@
-<?php
+<?php namespace Controllers\Admin;
 
-class AdminBlogsController extends AdminController {
+use AdminController;
+use Input;
+use Lang;
+use Post;
+use Redirect;
+use Sentry;
+use Validator;
+use View;
+
+class BlogsController extends AdminController {
 
 	/**
 	 * Show a list of all the blog posts.
@@ -13,7 +22,7 @@ class AdminBlogsController extends AdminController {
 		$posts = Post::orderBy('created_at', 'DESC')->paginate(10);
 
 		// Show the page
-		return View::make('backend.blogs.index', compact('posts'));
+		return View::make('backend/blogs/index', compact('posts'));
 	}
 
 	/**
@@ -24,7 +33,7 @@ class AdminBlogsController extends AdminController {
 	public function getCreate()
 	{
 		// Show the page
-		return View::make('backend.blogs.create');
+		return View::make('backend/blogs/create');
 	}
 
 	/**
@@ -89,7 +98,7 @@ class AdminBlogsController extends AdminController {
 		}
 
 		// Show the page
-		return View::make('backend.blogs.edit', compact('post'));
+		return View::make('backend/blogs/edit', compact('post'));
 	}
 
 	/**

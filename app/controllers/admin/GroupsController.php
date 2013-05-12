@@ -1,6 +1,18 @@
-<?php
+<?php namespace Controllers\Admin;
 
-class AdminGroupsController extends AdminController {
+use AdminController;
+use Cartalyst\Sentry\Groups\GroupExistsException;
+use Cartalyst\Sentry\Groups\GroupNotFoundException;
+use Cartalyst\Sentry\Groups\NameRequiredException;
+use Group;
+use Input;
+use Lang;
+use Redirect;
+use Sentry;
+use Validator;
+use View;
+
+class GroupsController extends AdminController {
 
 	/**
 	 * Holds some static permissions
@@ -23,7 +35,7 @@ class AdminGroupsController extends AdminController {
 		$groups = Group::paginate(10);
 
 		// Show the page
-		return View::make('backend.groups.index', compact('groups'));
+		return View::make('backend/groups/index', compact('groups'));
 	}
 
 	/**
@@ -40,7 +52,7 @@ class AdminGroupsController extends AdminController {
 		$selectedPermissions = Input::old('permissions', array());
 
 		// Show the page
-		return View::make('backend.groups.create', compact('permissions', 'selectedPermissions'));
+		return View::make('backend/groups/create', compact('permissions', 'selectedPermissions'));
 	}
 
 	/**
@@ -80,11 +92,11 @@ class AdminGroupsController extends AdminController {
 			// Redirect to the new group page
 			return Redirect::to('admin/groups/create')->with('error', Lang::get('admin/groups/message.create.error'));
 		}
-		catch (Cartalyst\Sentry\Groups\NameRequiredException $e)
+		catch (NameRequiredException $e)
 		{
 			$error = 'name_required';
 		}
-		catch (Cartalyst\Sentry\Groups\GroupExistsException $e)
+		catch (GroupExistsException $e)
 		{
 			$error = 'already_exists';
 		}
@@ -112,7 +124,7 @@ class AdminGroupsController extends AdminController {
 			// Get this group permissions
 			$groupPermissions = $group->getPermissions();
 		}
-		catch (Cartalyst\Sentry\Groups\GroupNotFoundException $e)
+		catch (GroupNotFoundException $e)
 		{
 			// Redirect to the groups management page
 			return Redirect::to('admin/groups')->with('error', Lang::get('admin/groups/message.does_not_exist'));
@@ -135,7 +147,7 @@ class AdminGroupsController extends AdminController {
 			// Get the group information
 			$group = Sentry::getGroupProvider()->findById($groupId);
 		}
-		catch (Cartalyst\Sentry\Groups\GroupNotFoundException $e)
+		catch (GroupNotFoundException $e)
 		{
 			// Redirect to the groups management page
 			return Rediret::to('admin/groups')->with('error', Lang::get('admin/groups/message.does_not_exist'));
@@ -174,7 +186,7 @@ class AdminGroupsController extends AdminController {
 				return Redirect::to("admin/groups/$groupId/edit")->with('error', Lang::get('admin/groups/message.update.error'));
 			}
 		}
-		catch (Cartalyst\Sentry\Groups\NameRequiredException $e)
+		catch (NameRequiredException $e)
 		{
 			$error = Lang::get('admin/group/message.name_required');
 		}
@@ -202,7 +214,7 @@ class AdminGroupsController extends AdminController {
 			// Redirect to the group management page
 			return Redirect::to('admin/groups')->with('success', Lang::get('admin/groups/message.delete.success'));
 		}
-		catch (Cartalyst\Sentry\Groups\GroupNotFoundException $e)
+		catch (GroupNotFoundException $e)
 		{
 			// Redirect to the group management page
 			return Redirect::to('admin/groups')->with('error', Lang::get('admin/groups/message.not_found'));

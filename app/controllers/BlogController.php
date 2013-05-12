@@ -2,6 +2,11 @@
 
 class BlogController extends BaseController {
 
+
+	protected $parents  = array();
+	protected $children = array();
+
+
 	/**
 	 * Returns all the blog posts.
 	 *
@@ -39,8 +44,54 @@ class BlogController extends BaseController {
 		// Get this post comments
 		$comments = $post->comments()->orderBy('created_at', 'DESC')->get();
 
+		$teste = array();
+
+		foreach ($comments as $comment)
+		{
+			if (is_null($comment->parent_id))
+			{
+				$this->parents[$comment->id][] = $comment;
+			}
+			else
+			{
+				$this->children[$comment->parent_id][] = $comment;
+			}
+		}
+
 		// Show the page
 		return View::make('frontend.blog.view-post', compact('post', 'comments'));
+	}
+
+	protected function format_comment($comment, $depth)
+	{
+		for ($depth; $depth > 0; $depth --)
+		{
+			echo "\t";
+		}
+
+		echo $comment->content;
+		echo "\n";
+	}
+
+	protected function print_parent($comment, $depth = 0)
+	{
+		foreach ($comment as $c)
+		{
+			$this->format_comment($c, $depth);
+
+			if (isset($this->children[$c->id]))
+			{
+				$this->print_parent($this->children[$c->id], $depth + 1);
+			}
+		}
+	}
+
+	protected function print_comments()
+	{
+		foreach ($this->parents as $p)
+		{
+			$this->print_parent($p);
+		}
 	}
 
 	/**

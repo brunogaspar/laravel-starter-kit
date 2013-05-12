@@ -1,6 +1,19 @@
-<?php
+<?php namespace Controllers\Admin;
 
-class AdminUsersController extends AdminController {
+use AdminController;
+use Cartalyst\Sentry\Users\LoginRequiredException;
+use Cartalyst\Sentry\Users\PasswordRequiredException;
+use Cartalyst\Sentry\Users\UserExistsException;
+use Cartalyst\Sentry\Users\UserNotFoundException;
+use Input;
+use Lang;
+use Redirect;
+use Sentry;
+use User;
+use Validator;
+use View;
+
+class UsersController extends AdminController {
 
 	/**
 	 * Holds some static permissions
@@ -33,7 +46,7 @@ class AdminUsersController extends AdminController {
 		$users = User::paginate(10);
 
 		// Show the page
-		return View::make('backend.users.index', compact('users'));
+		return View::make('backend/users/index', compact('users'));
 	}
 
 	/**
@@ -56,7 +69,7 @@ class AdminUsersController extends AdminController {
 		$selectedPermissions = Input::old('permissions', array());
 
 		// Show the page
-		return View::make('backend.users.create', compact('groups', 'permissions', 'selectedGroups', 'selectedPermissions'));
+		return View::make('backend/users/create', compact('groups', 'permissions', 'selectedGroups', 'selectedPermissions'));
 	}
 
 	/**
@@ -101,28 +114,34 @@ class AdminUsersController extends AdminController {
 					$user->addGroup($group);
 				}
 
+				// Prepare the success message
+				$success = Lang::get('admin/users/message.success.create');
+
 				// Redirect to the new user page
-				return Redirect::to("admin/users/{$user->id}/edit")->with('success', Lang::get('admin/users/message.create.success'));
+				return Redirect::to("admin/users/{$user->id}/edit")->with('success', $success);
 			}
 
-			// Redirect to the new user page
-			return Redirect::to('admin/users/create')->with('error', Lang::get('admin/users/message.create.error'));
+			// Prepare the error message
+			$error = Lang::get('admin/users/message.error.create');
+
+			// Redirect to the user creation page
+			return Redirect::route('create/user')->with('error', $error);
 		}
-		catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
+		catch (LoginRequiredException $e)
 		{
-			$error = 'login_required';
+			$error = Lang::get('admin/users/message.user_login_required');
 		}
-		catch (Cartalyst\Sentry\Users\PasswordRequiredException $e)
+		catch (PasswordRequiredException $e)
 		{
-			$error = 'password_required';
+			$error = Lang::get('admin/users/message.user_password_required');
 		}
-		catch (Cartalyst\Sentry\Users\UserExistsException $e)
+		catch (UserExistsException $e)
 		{
-			$error = 'already_exists';
+			$error = Lang::get('admin/users/message.user_exists');
 		}
 
-		// Redirect to the user create page
-		return Redirect::to('admin/users/create')->withInput()->with('error', Lang::get('admin/users/message.'.$error));
+		// Redirect to the user creation page
+		return Redirect::route('create/user')->withInput()->with('error', $error);
 	}
 
 	/**
@@ -152,14 +171,17 @@ class AdminUsersController extends AdminController {
 			$permissions = $this->permissions;
 			$this->encodeAllPermissions($permissions);
 		}
-		catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+		catch (UserNotFoundException $e)
 		{
+			// Prepare the error message
+			$error = Lang::get('admin/users/message.user_does_not_exist', array('id' => $userId));
+
 			// Redirect to the user management page
-			return Redirect::to('admin/users')->with('error', Lang::get('admin/users/message.does_not_exist'));
+			return Redirect::to('admin/users')->with('error', $error);
 		}
 
 		// Show the page
-		return View::make('backend.users.edit', compact('user', 'groups', 'userGroups', 'permissions', 'userPermissions'));
+		return View::make('backend/users/edit', compact('user', 'groups', 'userGroups', 'permissions', 'userPermissions'));
 	}
 
 	/**
@@ -175,10 +197,13 @@ class AdminUsersController extends AdminController {
 			// Get the user information
 			$user = Sentry::getUserProvider()->findById($userId);
 		}
-		catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+		catch (UserNotFoundException $e)
 		{
+			// Prepare the error message
+			$error = Lang::get('admin/users/message.user_does_not_exist', array('id' => $userId));
+
 			// Redirect to the user management page
-			return Redirect::to('admin/users')->with('error', Lang::get('admin/users/message.does_not_exist'));
+			return Redirect::to('admin/users')->with('error', $error);
 		}
 
 		// Declare the rules for the form validation
@@ -250,18 +275,24 @@ class AdminUsersController extends AdminController {
 			// Was the user updated?
 			if ($user->save())
 			{
+				// Prepare the success message
+				$success = Lang::get('admin/users/message.success.update');
+
 				// Redirect to the user page
-				return Redirect::to("admin/users/$userId/edit")->with('success', Lang::get('admin/users/message.update.success'));
+				return Redirect::to("admin/users/$userId/edit")->with('success', $success);
 			}
 			else
 			{
+				// Prepare the error message
+				$error = Lang::get('admin/users/message.error.update');
+
 				// Redirect to the user page
-				return Redirect::to("admin/users/$userId/edit")->with('error', Lang::get('admin/users/message.update.error'));
+				return Redirect::to("admin/users/$userId/edit")->with('error', $error);
 			}
 		}
-		catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
+		catch (LoginRequiredException $e)
 		{
-			$error = Lang::get('admin/users/message.login_required');
+			$error = Lang::get('admin/users/message.user_login_required');
 		}
 
 		// Redirect to the user page
@@ -285,8 +316,11 @@ class AdminUsersController extends AdminController {
 			// Check if we are not trying to delete ourselves
 			if ($user->id === Sentry::getId())
 			{
+				// Prepare the error message
+				$error = Lang::get('admin/users/message.error.delete');
+
 				// Redirect to the user management page
-				return Redirect::to('admin/users')->with('error', Lang::get('admin/users/message.delete.impossible'));
+				return Redirect::to('admin/users')->with('error', $error);
 			}
 
 			// Do we have permission to delete this user?
@@ -299,13 +333,19 @@ class AdminUsersController extends AdminController {
 			// Delete the user
 			$user->delete();
 
+			// Prepare the success message
+			$success = Lang::get('admin/users/message.success.delete');
+
 			// Redirect to the user management page
-			return Redirect::to('admin/users')->with('success', Lang::get('admin/users/message.delete.success'));
+			return Redirect::to('admin/users')->with('success', $success);
 		}
-		catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+		catch (UserNotFoundException $e)
 		{
+			// Prepare the error message
+			$error = Lang::get('admin/users/message.user_does_not_exist', array('id' => $userId));
+
 			// Redirect to the user management page
-			return Redirect::to('admin/users')->with('error', Lang::get('admin/users/message.not_found'));
+			return Redirect::to('admin/users')->with('error', $error);
 		}
 	}
 

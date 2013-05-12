@@ -1,6 +1,9 @@
-<?php
+<?php namespace Controllers\Admin;
 
-class AdminDashboardController extends AdminController {
+use AdminController;
+use View;
+
+class DashboardController extends AdminController {
 
 	/**
 	 * Show the administration dashboard page.
