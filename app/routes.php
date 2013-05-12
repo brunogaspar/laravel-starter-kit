@@ -15,7 +15,7 @@ Route::group(array('prefix' => 'admin'), function()
 	# Blog Management
 	Route::group(array('prefix' => 'blogs'), function()
 	{
-		Route::get('/', 'Controllers\Admin\BlogsController@getIndex');
+		Route::get('/', array('as' => 'blogs', 'uses' => 'Controllers\Admin\BlogsController@getIndex'));
 		Route::get('create', array('as' => 'create/blog', 'uses' => 'Controllers\Admin\BlogsController@getCreate'));
 		Route::post('create', 'Controllers\Admin\BlogsController@postCreate');
 		Route::get('{blogId}/edit', array('as' => 'update/blog', 'uses' => 'Controllers\Admin\BlogsController@getEdit'));
@@ -26,7 +26,7 @@ Route::group(array('prefix' => 'admin'), function()
 	# User Management
 	Route::group(array('prefix' => 'users'), function()
 	{
-		Route::get('/', 'Controllers\Admin\UsersController@getIndex');
+		Route::get('/', array('as' => 'users', 'uses' => 'Controllers\Admin\UsersController@getIndex'));
 		Route::get('create', array('as' => 'create/user', 'uses' => 'Controllers\Admin\UsersController@getCreate'));
 		Route::post('create', 'Controllers\Admin\UsersController@postCreate');
 		Route::get('{userId}/edit', 'Controllers\Admin\UsersController@getEdit');
@@ -37,7 +37,7 @@ Route::group(array('prefix' => 'admin'), function()
 	# Group Management
 	Route::group(array('prefix' => 'groups'), function()
 	{
-		Route::get('/', 'Controllers\Admin\GroupsController@getIndex');
+		Route::get('/', array('as' => 'groups', 'uses' => 'Controllers\Admin\GroupsController@getIndex'));
 		Route::get('create', array('as' => 'create/group', 'uses' => 'Controllers\Admin\GroupsController@getCreate'));
 		Route::post('create', 'Controllers\Admin\GroupsController@postCreate');
 		Route::get('{groupId}/edit', array('as' => 'update/group', 'uses' => 'Controllers\Admin\GroupsController@getEdit'));
