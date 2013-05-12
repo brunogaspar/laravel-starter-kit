@@ -82,8 +82,8 @@
 									</ul>
 								</li>
 								@else
-								<li {{ (Request::is('signin') ? 'class="active"' : '') }}><a href="{{ route('signin') }}">Sign in</a></li>
-								<li {{ (Request::is('signup') ? 'class="active"' : '') }}><a href="{{ route('signup') }}">Sign up</a></li>
+								<li {{ (Request::is('auth/signin') ? 'class="active"' : '') }}><a href="{{ route('signin') }}">Sign in</a></li>
+								<li {{ (Request::is('auth/signup') ? 'class="active"' : '') }}><a href="{{ route('signup') }}">Sign up</a></li>
 								@endif
 							</ul>
 						</div>

@@ -13,12 +13,14 @@ User Management ::
 		User Management
 
 		<div class="pull-right">
-			<a href="{{ URL::to('admin/users/create') }}" class="btn btn-small btn-info"><i class="icon-plus-sign icon-white"></i> Create</a>
+			<a href="{{ route('create/user') }}" class="btn btn-small btn-info"><i class="icon-plus-sign icon-white"></i> Create</a>
 		</div>
 	</h3>
 </div>
 
-<table class="table table-bordered table-hover">
+{{ $users->links() }}
+
+<table class="table table-bordered table-striped table-hover">
 	<thead>
 		<tr>
 			<th class="span2">@lang('admin/users/table.first_name')</th>
@@ -40,10 +42,10 @@ User Management ::
 			<td>@lang('general.' . ($user->isActivated() ? 'yes' : 'no'))</td>
 			<td>{{ $user->created_at->diffForHumans() }}</td>
 			<td>
-				<a href="{{ URL::to("admin/users/{$user->id}/edit") }}" class="btn btn-mini">@lang('button.edit')</a>
+				<a href="{{ route('update/user', $user->id) }}" class="btn btn-mini">@lang('button.edit')</a>
 
 				@if (Sentry::getId() !== $user->id)
-				<a href="{{ URL::to("admin/users/{$user->id}/delete") }}" class="btn btn-mini btn-danger">@lang('button.delete')</a>
+				<a href="{{ route('delete/user', $user->id) }}" class="btn btn-mini btn-danger">@lang('button.delete')</a>
 				@endif
 			</td>
 		</tr>

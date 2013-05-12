@@ -13,12 +13,14 @@ Blog Management ::
 		Blog Management
 
 		<div class="pull-right">
-			<a href="{{ URL::to('admin/blogs/create') }}" class="btn btn-small btn-info"><i class="icon-plus-sign icon-white"></i> Create</a>
+			<a href="{{ route('create/blog') }}" class="btn btn-small btn-info"><i class="icon-plus-sign icon-white"></i> Create</a>
 		</div>
 	</h3>
 </div>
 
-<table class="table table-bordered table-hover">
+{{ $posts->links() }}
+
+<table class="table table-bordered table-striped table-hover">
 	<thead>
 		<tr>
 			<th class="span6">@lang('admin/blogs/table.title')</th>
@@ -34,8 +36,8 @@ Blog Management ::
 			<td>{{ $post->comments()->count() }}</td>
 			<td>{{ $post->created_at->diffForHumans() }}</td>
 			<td>
-				<a href="{{ URL::to("admin/blogs/{$post->id}/edit") }}" class="btn btn-mini">@lang('button.edit')</a>
-				<a href="{{ URL::to("admin/blogs/{$post->id}/delete") }}" class="btn btn-mini btn-danger">@lang('button.delete')</a>
+				<a href="{{ route('update/blog', $post->id) }}" class="btn btn-mini">@lang('button.edit')</a>
+				<a href="{{ route('delete/blog', $post->id) }}" class="btn btn-mini btn-danger">@lang('button.delete')</a>
 			</td>
 		</tr>
 		@endforeach
