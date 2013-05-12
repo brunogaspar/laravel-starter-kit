@@ -8,6 +8,7 @@
 			"app/commands",
 			"app/controllers",
 			"app/models",
+			"app/presenters",
 			"app/database/migrations",
 			"app/database/seeds",
 			"app/tests/TestCase.php"
