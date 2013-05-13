@@ -87,23 +87,16 @@
 								</li>
 							</ul>
 						</div>
-						<!-- ./ nav-collapse -->
 					</div>
-					<!-- ./ container-fluid -->
 				</div>
-				<!-- ./ navbar-inner -->
 			</div>
-			<!-- ./ navbar -->
 
 			<!-- Notifications -->
 			@include('frontend/notifications')
-			<!-- ./ notifications -->
 
 			<!-- Content -->
 			@yield('content')
-			<!-- ./ content -->
 		</div>
-		<!-- ./ container -->
 
 		<!-- Javascripts
 		================================================== -->

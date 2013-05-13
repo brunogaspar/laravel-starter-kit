@@ -1,4 +1,4 @@
-@extends('emails.layouts.default')
+@extends('emails/layouts/default')
 
 @section('content')
 <p>Hello {{ $user->first_name }},</p>

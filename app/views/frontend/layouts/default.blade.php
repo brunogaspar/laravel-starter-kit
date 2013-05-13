@@ -87,19 +87,15 @@
 								@endif
 							</ul>
 						</div>
-						<!-- ./ nav-collapse -->
 					</div>
 				</div>
 			</div>
-			<!-- ./ navbar -->
 
 			<!-- Notifications -->
 			@include('frontend/notifications')
-			<!-- ./ notifications -->
 
 			<!-- Content -->
 			@yield('content')
-			<!-- ./ content -->
 
 			<hr />
 
@@ -107,9 +103,7 @@
 			<footer>
 				<p>© Company 2012</p>
 			</footer>
-			<!-- ./ footer -->
 		</div>
-		<!-- ./ container -->
 
 		<!-- Javascripts
 		================================================== -->
