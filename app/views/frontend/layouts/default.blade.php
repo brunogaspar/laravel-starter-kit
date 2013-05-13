@@ -65,10 +65,6 @@
 
 							<ul class="nav pull-right">
 								@if (Sentry::check())
-								@if(Sentry::getUser()->hasAccess('admin'))
-								<li><a href="{{ route('admin') }}">Admin Dashboard</a></li>
-								<li class="divider-vertical"></li>
-								@endif
 
 								<li class="dropdown{{ (Request::is('account*') ? ' active' : '') }}">
 									<a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="{{ route('account') }}">
@@ -76,7 +72,10 @@
 										<b class="caret"></b>
 									</a>
 									<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-										<li{{ (Request::is('account/profile') ? ' class="active"' : '') }}><a href="{{ route('profile') }}"><i class="icon-cog"></i> Settings</a></li>
+										@if(Sentry::getUser()->hasAccess('admin'))
+										<li><a href="{{ route('admin') }}"><i class="icon-cog"></i> Administration</a></li>
+										@endif
+										<li{{ (Request::is('account/profile') ? ' class="active"' : '') }}><a href="{{ route('profile') }}"><i class="icon-user"></i> Your profile</a></li>
 										<li class="divider"></li>
 										<li><a href="{{ route('logout') }}"><i class="icon-off"></i> Logout</a></li>
 									</ul>
