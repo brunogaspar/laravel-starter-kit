@@ -30,7 +30,7 @@ Create a Group ::
 
 	<!-- Tabs Content -->
 	<div class="tab-content">
-		<!-- Tab General -->
+		<!-- General tab -->
 		<div class="tab-pane active" id="tab-general">
 			<!-- Name -->
 			<div class="control-group {{ $errors->has('name') ? 'error' : '' }}">

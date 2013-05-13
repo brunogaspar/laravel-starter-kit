@@ -34,7 +34,7 @@ Group Update ::
 		<div class="tab-pane active" id="tab-general">
 			<!-- Name -->
 			<div class="control-group {{ $errors->has('name') ? 'error' : '' }}">
-				<label class="control-label" for="name">First Name</label>
+				<label class="control-label" for="name">Name</label>
 				<div class="controls">
 					<input type="text" name="name" id="name" value="{{ Input::old('name', $group->name) }}" />
 					{{ $errors->first('name', '<span class="help-inline">:message</span>') }}

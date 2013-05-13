@@ -23,7 +23,6 @@ Create a User ::
 	<li class="active"><a href="#tab-general" data-toggle="tab">General</a></li>
 	<li><a href="#tab-permissions" data-toggle="tab">Permissions</a></li>
 </ul>
-<!-- ./ tabs -->
 
 <form class="form-horizontal" method="post" action="" autocomplete="off">
 	<!-- CSRF Token -->

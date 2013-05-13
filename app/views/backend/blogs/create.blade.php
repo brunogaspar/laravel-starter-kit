@@ -30,7 +30,7 @@ Create a New Blog Post ::
 
 	<!-- Tabs Content -->
 	<div class="tab-content">
-		<!-- Tab General -->
+		<!-- General tab -->
 		<div class="tab-pane active" id="tab-general">
 			<!-- Post Title -->
 			<div class="control-group {{ $errors->has('title') ? 'error' : '' }}">
