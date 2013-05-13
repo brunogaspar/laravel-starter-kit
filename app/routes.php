@@ -29,8 +29,8 @@ Route::group(array('prefix' => 'admin'), function()
 		Route::get('/', array('as' => 'users', 'uses' => 'Controllers\Admin\UsersController@getIndex'));
 		Route::get('create', array('as' => 'create/user', 'uses' => 'Controllers\Admin\UsersController@getCreate'));
 		Route::post('create', 'Controllers\Admin\UsersController@postCreate');
-		Route::get('{userId}/edit', 'Controllers\Admin\UsersController@getEdit');
-		Route::post('{userId}/edit', array('as' => 'update/user', 'uses' => 'Controllers\Admin\UsersController@postEdit'));
+		Route::get('{userId}/edit', array('as' => 'update/user', 'uses' => 'Controllers\Admin\UsersController@getEdit'));
+		Route::post('{userId}/edit', 'Controllers\Admin\UsersController@postEdit');
 		Route::get('{userId}/delete', array('as' => 'delete/user', 'uses' => 'Controllers\Admin\UsersController@getDelete'));
 	});
 
@@ -99,19 +99,19 @@ Route::group(array('prefix' => 'account'), function()
 {
 
 	# Account Dashboard
-	Route::get('/', array('as' => 'account', 'uses' => 'AccountDashboardController@getIndex'));
+	Route::get('/', array('as' => 'account', 'uses' => 'Controllers\Account\DashboardController@getIndex'));
 
 	# Profile
-	Route::get('profile', array('as' => 'profile', 'uses' => 'AccountProfileController@getIndex'));
-	Route::post('profile', 'AccountProfileController@postIndex');
+	Route::get('profile', array('as' => 'profile', 'uses' => 'Controllers\Account\ProfileController@getIndex'));
+	Route::post('profile', 'Controllers\Account\ProfileController@postIndex');
 
 	# Change Password
-	Route::get('change-password', array('as' => 'change-password', 'uses' => 'AccountChangePasswordController@getIndex'));
-	Route::post('change-password', 'AccountChangePasswordController@postIndex');
+	Route::get('change-password', array('as' => 'change-password', 'uses' => 'Controllers\Account\ChangePasswordController@getIndex'));
+	Route::post('change-password', 'Controllers\Account\ChangePasswordController@postIndex');
 
 	# Change Email
-	Route::get('change-email', array('as' => 'change-email', 'uses' => 'AccountChangeEmailController@getIndex'));
-	Route::post('change-email', 'AccountChangeEmailController@postIndex');
+	Route::get('change-email', array('as' => 'change-email', 'uses' => 'Controllers\Account\ChangeEmailController@getIndex'));
+	Route::post('change-email', 'Controllers\Account\ChangeEmailController@postIndex');
 
 });
 

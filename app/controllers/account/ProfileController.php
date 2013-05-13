@@ -1,6 +1,13 @@
-<?php
+<?php namespace Controllers\Account;
 
-class AccountProfileController extends AuthorizedController {
+use AuthorizedController;
+use Input;
+use Redirect;
+use Sentry;
+use Validator;
+use View;
+
+class ProfileController extends AuthorizedController {
 
 	/**
 	 * User profile page.

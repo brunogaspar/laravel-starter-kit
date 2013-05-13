@@ -1,6 +1,13 @@
-<?php
+<?php namespace Controllers\Account;
 
-class AccountChangePasswordController extends AuthorizedController {
+use AuthorizedController;
+use Input;
+use Redirect;
+use Sentry;
+use Validator;
+use View;
+
+class ChangePasswordController extends AuthorizedController {
 
 	/**
 	 * User change password page.

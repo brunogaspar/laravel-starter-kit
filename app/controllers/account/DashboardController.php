@@ -1,6 +1,9 @@
-<?php
+<?php namespace Controllers\Account;
 
-class AccountDashboardController extends AuthorizedController {
+use AuthorizedController;
+use Redirect;
+
+class DashboardController extends AuthorizedController {
 
 	/**
 	 * Redirect to the profile page.

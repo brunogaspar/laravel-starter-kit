@@ -1,6 +1,13 @@
-<?php
+<?php namespace Controllers\Account;
 
-class AccountChangeEmailController extends AuthorizedController {
+use AuthorizedController;
+use Input;
+use Redirect;
+use Sentry;
+use Validator;
+use View;
+
+class ChangeEmailController extends AuthorizedController {
 
 	/**
 	 * User change email page.
