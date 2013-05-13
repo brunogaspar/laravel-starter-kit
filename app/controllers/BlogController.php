@@ -2,11 +2,6 @@
 
 class BlogController extends BaseController {
 
-
-	protected $parents  = array();
-	protected $children = array();
-
-
 	/**
 	 * Returns all the blog posts.
 	 *
@@ -15,10 +10,15 @@ class BlogController extends BaseController {
 	public function getIndex()
 	{
 		// Get all the blog posts
-		$posts = Post::orderBy('created_at', 'DESC')->paginate(10);
+		$posts = Post::with(array(
+			'author' => function($query)
+			{
+			    $query->withTrashed();
+			},
+		))->orderBy('created_at', 'DESC')->paginate(10);
 
 		// Show the page
-		return View::make('frontend.blog.index', compact('posts'));
+		return View::make('frontend/blog/index', compact('posts'));
 	}
 
 	/**
@@ -31,7 +31,13 @@ class BlogController extends BaseController {
 	public function getView($slug)
 	{
 		// Get this blog post data
-		$post = Post::with('comments')->where('slug', $slug)->first();
+		$post = Post::with(array(
+			'author' => function($query)
+			{
+			    $query->withTrashed();
+			},
+			'comments',
+		))->where('slug', $slug)->first();
 
 		// Check if the blog post exists
 		if (is_null($post))
@@ -42,56 +48,15 @@ class BlogController extends BaseController {
 		}
 
 		// Get this post comments
-		$comments = $post->comments()->orderBy('created_at', 'DESC')->get();
-
-		$teste = array();
-
-		foreach ($comments as $comment)
-		{
-			if (is_null($comment->parent_id))
+		$comments = $post->comments()->with(array(
+			'author' => function($query)
 			{
-				$this->parents[$comment->id][] = $comment;
-			}
-			else
-			{
-				$this->children[$comment->parent_id][] = $comment;
-			}
-		}
+			    $query->withTrashed();
+			},
+		))->orderBy('created_at', 'DESC')->get();
 
 		// Show the page
-		return View::make('frontend.blog.view-post', compact('post', 'comments'));
-	}
-
-	protected function format_comment($comment, $depth)
-	{
-		for ($depth; $depth > 0; $depth --)
-		{
-			echo "\t";
-		}
-
-		echo $comment->content;
-		echo "\n";
-	}
-
-	protected function print_parent($comment, $depth = 0)
-	{
-		foreach ($comment as $c)
-		{
-			$this->format_comment($c, $depth);
-
-			if (isset($this->children[$c->id]))
-			{
-				$this->print_parent($this->children[$c->id], $depth + 1);
-			}
-		}
-	}
-
-	protected function print_comments()
-	{
-		foreach ($this->parents as $p)
-		{
-			$this->print_parent($p);
-		}
+		return View::make('frontend/blog/view-post', compact('post', 'comments'));
 	}
 
 	/**
