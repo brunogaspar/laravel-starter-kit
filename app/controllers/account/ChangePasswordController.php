@@ -20,7 +20,7 @@ class ChangePasswordController extends AuthorizedController {
 		$user = Sentry::getUser();
 
 		// Show the page
-		return View::make('frontend.account.change-password', compact('user'));
+		return View::make('frontend/account/change-password', compact('user'));
 	}
 
 	/**

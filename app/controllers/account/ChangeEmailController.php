@@ -20,7 +20,7 @@ class ChangeEmailController extends AuthorizedController {
 		$user = Sentry::getUser();
 
 		// Show the page
-		return View::make('frontend.account.change-email', compact('user'));
+		return View::make('frontend/account/change-email', compact('user'));
 	}
 
 	/**

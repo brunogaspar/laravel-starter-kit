@@ -20,7 +20,7 @@ class ProfileController extends AuthorizedController {
 		$user = Sentry::getUser();
 
 		// Show the page
-		return View::make('frontend.account.profile', compact('user'));
+		return View::make('frontend/account/profile', compact('user'));
 	}
 
 	/**
