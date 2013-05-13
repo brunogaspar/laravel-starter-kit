@@ -43,7 +43,16 @@ class UsersController extends AdminController {
 	public function getIndex()
 	{
 		// Grab all the users
-		$users = User::paginate(10);
+		$users = new User;
+
+		// Do we want to include the deleted users?
+		if (Input::get('withTrashed'))
+		{
+			$users = $users->withTrashed();
+		}
+
+		// Paginate the users
+		$users = $users->paginate(10);
 
 		// Show the page
 		return View::make('backend/users/index', compact('users'));
@@ -347,6 +356,28 @@ class UsersController extends AdminController {
 			// Redirect to the user management page
 			return Redirect::to('admin/users')->with('error', $error);
 		}
+	}
+
+
+	public function getRestore($userId = null)
+	{
+		$user = \User::trashed()->find($userId);
+
+		if ( ! is_null($user))
+		{
+			if ( ! is_null($user->deleted_at))
+			{
+				$user->restore();
+
+				return Redirect::to('admin/users')->with('success', 'User restored');
+			}
+		}
+
+		// Prepare the error message
+		$error = Lang::get('admin/users/message.user_does_not_exist', array('id' => $userId));
+
+		// Redirect to the user management page
+		return Redirect::to('admin/users')->with('error', $error);
 	}
 
 }

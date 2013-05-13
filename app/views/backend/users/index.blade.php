@@ -18,6 +18,8 @@ User Management ::
 	</h3>
 </div>
 
+<a href="{{ URL::to('admin/users?withTrashed=true') }}">Include Deleted</a>
+
 {{ $users->links() }}
 
 <table class="table table-bordered table-striped table-hover">
@@ -44,8 +46,12 @@ User Management ::
 			<td>
 				<a href="{{ route('update/user', $user->id) }}" class="btn btn-mini">@lang('button.edit')</a>
 
+				@if ( ! is_null($user->deleted_at))
+				<a href="{{ route('restore/user', $user->id) }}" class="btn btn-mini btn-warning">@lang('button.restore')</a>
+				@else
 				@if (Sentry::getId() !== $user->id)
 				<a href="{{ route('delete/user', $user->id) }}" class="btn btn-mini btn-danger">@lang('button.delete')</a>
+				@endif
 				@endif
 			</td>
 		</tr>
