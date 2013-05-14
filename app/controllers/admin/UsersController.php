@@ -5,6 +5,7 @@ use Cartalyst\Sentry\Users\LoginRequiredException;
 use Cartalyst\Sentry\Users\PasswordRequiredException;
 use Cartalyst\Sentry\Users\UserExistsException;
 use Cartalyst\Sentry\Users\UserNotFoundException;
+use Config;
 use Input;
 use Lang;
 use Redirect;
@@ -14,26 +15,6 @@ use Validator;
 use View;
 
 class UsersController extends AdminController {
-
-	/**
-	 * Holds some static permissions
-	 *
-	 * @var array
-	 */
-	protected $permissions = array(
-		'Global' => array(
-			array(
-				'permission' => 'superuser',
-				'label'      => 'Super User',
-			),
-		),
-		'Admin' => array(
-			array(
-				'permission' => 'admin',
-				'label'      => 'Admin Rights',
-			),
-		),
-	);
 
 	/**
 	 * Show a list of all the users.
@@ -69,7 +50,8 @@ class UsersController extends AdminController {
 		$groups = Sentry::getGroupProvider()->findAll();
 
 		// Get all the available permissions
-		$permissions = $this->permissions;
+		$permissions = Config::get('permissions');
+		$this->encodeAllPermissions($permissions);
 
 		// Selected groups
 		$selectedGroups = Input::old('groups', array());
@@ -177,7 +159,7 @@ class UsersController extends AdminController {
 			$groups = Sentry::getGroupProvider()->findAll();
 
 			// Get all the available permissions
-			$permissions = $this->permissions;
+			$permissions = Config::get('permissions');
 			$this->encodeAllPermissions($permissions);
 		}
 		catch (UserNotFoundException $e)
@@ -290,14 +272,9 @@ class UsersController extends AdminController {
 				// Redirect to the user page
 				return Redirect::to("admin/users/$userId/edit")->with('success', $success);
 			}
-			else
-			{
-				// Prepare the error message
-				$error = Lang::get('admin/users/message.error.update');
 
-				// Redirect to the user page
-				return Redirect::to("admin/users/$userId/edit")->with('error', $error);
-			}
+			// Prepare the error message
+			$error = Lang::get('admin/users/message.error.update');
 		}
 		catch (LoginRequiredException $e)
 		{
