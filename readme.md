@@ -72,7 +72,7 @@ Now that you have the Starter Kit cloned and all the dependencies installed, you
 
 ### 4) Setup Mail Settings
 
-Now, you need to setup your mail settings by just opening and updating the following file `app\config\mail.php`.
+Now, you need to setup your mail settings by just opening and updating the following file `app/config/mail.php`.
 
 This will be used to send emails to your users, when they register and they request a password reset.
 
