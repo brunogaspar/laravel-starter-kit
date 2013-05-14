@@ -88,11 +88,11 @@ class AppCommand extends Command {
 		// Run the Sentry Migrations
 		$this->call('migrate', array('--package' => 'cartalyst/sentry'));
 
-		// Create the default user and default groups.
-		$this->sentryRunner();
-
 		// Run the Migrations
 		$this->call('migrate');
+
+		// Create the default user and default groups.
+		$this->sentryRunner();
 
 		// Seed the tables with dummy data
 		$this->call('db:seed');
