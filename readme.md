@@ -30,6 +30,13 @@ packages, like the awesome [Sentry 2](https://github.com/cartalyst/sentry) packa
 
 -----
 
+## Requirements
+
+- PHP 5.3.7 or later
+- MCrypt PHP Extension
+
+-----
+
 ## How to Install
 
 ### 1) Downloading
@@ -59,9 +66,7 @@ packages, like the awesome [Sentry 2](https://github.com/cartalyst/sentry) packa
 
 ### 3) Setup Database
 
-Now that you have the Laravel 4 cloned and all the dependencies installed, you need to create a database for it.
-
-After the database is created, open the file `app/config/database.php` and update the needed entries, just like in Laravel 3.
+Now that you have the Starter Kit cloned and all the dependencies installed, you need to create a database and update the file `app/config/database.php`.
 
 -----
 
