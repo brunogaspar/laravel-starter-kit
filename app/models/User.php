@@ -19,6 +19,7 @@ class User extends SentryUserModel {
 	protected $dates = array(
 		'created_at',
 		'updated_at',
+		'deleted_at',
 	);
 
 	/**
@@ -33,13 +34,17 @@ class User extends SentryUserModel {
 	}
 
 	/**
-	 * Returns the user gravatar image url.
+	 * Returns the user Gravatar image url.
 	 *
 	 * @return string
 	 */
 	public function gravatar()
 	{
-		return '//gravatar.org/avatar/'.md5(strtolower(trim($this->gravatar)));
+		// Generate the Gravatar hash
+		$gravatar = md5(strtolower(trim($this->gravatar)));
+
+		// Return the Gravatar url
+		return "//gravatar.org/avatar/{$gravatar}";
 	}
 
 }

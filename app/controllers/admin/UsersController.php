@@ -10,11 +10,23 @@ use Input;
 use Lang;
 use Redirect;
 use Sentry;
-use User;
 use Validator;
 use View;
 
 class UsersController extends AdminController {
+
+	/**
+	 * Declare the rules for the form validation
+	 *
+	 * @var array
+	 */
+	protected $validationRules = array(
+		'first_name'       => 'required|min:3',
+		'last_name'        => 'required|min:3',
+		'email'            => 'required|email|unique:users,email',
+		'password'         => 'required|between:3,32',
+		'password_confirm' => 'required|between:3,32|same:password',
+	);
 
 	/**
 	 * Show a list of all the users.
@@ -24,7 +36,7 @@ class UsersController extends AdminController {
 	public function getIndex()
 	{
 		// Grab all the users
-		$users = new User;
+		$users = Sentry::getUserProvider()->createModel();
 
 		// Do we want to include the deleted users?
 		if (Input::get('withTrashed'))
@@ -49,18 +61,19 @@ class UsersController extends AdminController {
 		// Get all the available groups
 		$groups = Sentry::getGroupProvider()->findAll();
 
+		// Selected groups
+		$selectedGroups = Input::old('groups', array());
+
 		// Get all the available permissions
 		$permissions = Config::get('permissions');
 		$this->encodeAllPermissions($permissions);
 
-		// Selected groups
-		$selectedGroups = Input::old('groups', array());
-
 		// Selected permissions
-		$selectedPermissions = Input::old('permissions', array());
+		$selectedPermissions = Input::old('permissions', array('superuser' => -1));
+		$this->encodePermissions($selectedPermissions);
 
 		// Show the page
-		return View::make('backend/users/create', compact('groups', 'permissions', 'selectedGroups', 'selectedPermissions'));
+		return View::make('backend/users/create', compact('groups', 'selectedGroups', 'permissions', 'selectedPermissions'));
 	}
 
 	/**
@@ -70,17 +83,8 @@ class UsersController extends AdminController {
 	 */
 	public function postCreate()
 	{
-		// Declare the rules for the form validation
-		$rules = array(
-			'first_name'       => 'required|min:3',
-			'last_name'        => 'required|min:3',
-			'email'            => 'required|email|unique:users,email',
-			'password'         => 'required|between:3,32',
-			'password_confirm' => 'required|between:3,32|same:password',
-		);
-
 		// Create a new validator instance from our validation rules
-		$validator = Validator::make(Input::all(), $rules);
+		$validator = Validator::make(Input::all(), $this->validationRules);
 
 		// If validation fails, we'll exit the operation now.
 		if ($validator->fails())
@@ -91,6 +95,12 @@ class UsersController extends AdminController {
 
 		try
 		{
+			// We need to reverse the UI specific logic for our
+			// permissions here before we create the user.
+			$permissions = Input::get('permissions', array());
+			$this->decodePermissions($permissions);
+			app('request')->request->set('permissions', $permissions);
+
 			// Get the inputs, with some exceptions
 			$inputs = Input::except('csrf_token', 'password_confirm', 'groups');
 
@@ -109,7 +119,7 @@ class UsersController extends AdminController {
 				$success = Lang::get('admin/users/message.success.create');
 
 				// Redirect to the new user page
-				return Redirect::to("admin/users/{$user->id}/edit")->with('success', $success);
+				return Redirect::route('update/user', $user->id)->with('success', $success);
 			}
 
 			// Prepare the error message
@@ -138,15 +148,15 @@ class UsersController extends AdminController {
 	/**
 	 * User update.
 	 *
-	 * @param  int
+	 * @param  int  $id
 	 * @return View
 	 */
-	public function getEdit($userId = null)
+	public function getEdit($id = null)
 	{
 		try
 		{
 			// Get the user information
-			$user = Sentry::getUserProvider()->findById($userId);
+			$user = Sentry::getUserProvider()->findById($id);
 
 			// Get this user groups
 			$userGroups = $user->groups()->lists('name', 'group_id');
@@ -165,10 +175,10 @@ class UsersController extends AdminController {
 		catch (UserNotFoundException $e)
 		{
 			// Prepare the error message
-			$error = Lang::get('admin/users/message.user_does_not_exist', array('id' => $userId));
+			$error = Lang::get('admin/users/message.user_not_found', compact('id'));
 
 			// Redirect to the user management page
-			return Redirect::to('admin/users')->with('error', $error);
+			return Redirect::route('users')->with('error', $error);
 		}
 
 		// Show the page
@@ -178,41 +188,45 @@ class UsersController extends AdminController {
 	/**
 	 * User update form processing page.
 	 *
-	 * @param  int
+	 * @param  int  $id
 	 * @return Redirect
 	 */
-	public function postEdit($userId = null)
+	public function postEdit($id = null)
 	{
+		// We need to reverse the UI specific logic for our
+		// permissions here before we update the user.
+		$permissions = Input::get('permissions', array());
+		$this->decodePermissions($permissions);
+		app('request')->request->set('permissions', $permissions);
+
 		try
 		{
 			// Get the user information
-			$user = Sentry::getUserProvider()->findById($userId);
+			$user = Sentry::getUserProvider()->findById($id);
 		}
 		catch (UserNotFoundException $e)
 		{
 			// Prepare the error message
-			$error = Lang::get('admin/users/message.user_does_not_exist', array('id' => $userId));
+			$error = Lang::get('admin/users/message.user_not_found', compact('id'));
 
 			// Redirect to the user management page
-			return Redirect::to('admin/users')->with('error', $error);
+			return Redirect::route('users')->with('error', $error);
 		}
 
-		// Declare the rules for the form validation
-		$rules = array(
-			'first_name' => 'required|min:3',
-			'last_name'  => 'required|min:3',
-			'email'      => "required|email|unique:users,email,{$user->email},email",
-		);
+		//
+		$this->validationRules['email'] = "required|email|unique:users,email,{$user->email},email";
 
 		// Do we want to update the user password?
-		if (Input::get('password'))
+		if ( ! $password = Input::get('password'))
 		{
-			$rules['password']         = 'required|between:3,32';
-			$rules['password_confirm'] = 'required|between:3,32|same:password';
+			unset($this->validationRules['password']);
+			unset($this->validationRules['password_confirm']);
+			#$this->validationRules['password']         = 'required|between:3,32';
+			#$this->validationRules['password_confirm'] = 'required|between:3,32|same:password';
 		}
 
 		// Create a new validator instance from our validation rules
-		$validator = Validator::make(Input::all(), $rules);
+		$validator = Validator::make(Input::all(), $this->validationRules);
 
 		// If validation fails, we'll exit the operation now.
 		if ($validator->fails())
@@ -231,7 +245,7 @@ class UsersController extends AdminController {
 			$user->permissions = Input::get('permissions');
 
 			// Do we want to update the user password?
-			if ($password = Input::get('password'))
+			if ($password)
 			{
 				$user->password = $password;
 			}
@@ -270,7 +284,7 @@ class UsersController extends AdminController {
 				$success = Lang::get('admin/users/message.success.update');
 
 				// Redirect to the user page
-				return Redirect::to("admin/users/$userId/edit")->with('success', $success);
+				return Redirect::route('update/user', $id)->with('success', $success);
 			}
 
 			// Prepare the error message
@@ -282,22 +296,21 @@ class UsersController extends AdminController {
 		}
 
 		// Redirect to the user page
-		return Redirect::to("admin/users/$userId/edit")->withInput()->with('error', $error);
+		return Redirect::route('update/user', $id)->withInput()->with('error', $error);
 	}
 
 	/**
-	 * Delete the given user, beware that the logged in user
-	 * can't be deleted, makes sense, right?
+	 * Delete the given user.
 	 *
-	 * @param  int  $userId
+	 * @param  int  $id
 	 * @return Redirect
 	 */
-	public function getDelete($userId = null)
+	public function getDelete($id = null)
 	{
 		try
 		{
 			// Get user information
-			$user = Sentry::getUserProvider()->findById($userId);
+			$user = Sentry::getUserProvider()->findById($id);
 
 			// Check if we are not trying to delete ourselves
 			if ($user->id === Sentry::getId())
@@ -306,14 +319,14 @@ class UsersController extends AdminController {
 				$error = Lang::get('admin/users/message.error.delete');
 
 				// Redirect to the user management page
-				return Redirect::to('admin/users')->with('error', $error);
+				return Redirect::route('users')->with('error', $error);
 			}
 
 			// Do we have permission to delete this user?
 			if ($user->isSuperUser() and ! Sentry::getUser()->isSuperUser())
 			{
 				// Redirect to the user management page
-				return Redirect::to('admin/users')->with('error', 'Insufficient permissions!');
+				return Redirect::route('users')->with('error', 'Insufficient permissions!');
 			}
 
 			// Delete the user
@@ -323,38 +336,48 @@ class UsersController extends AdminController {
 			$success = Lang::get('admin/users/message.success.delete');
 
 			// Redirect to the user management page
-			return Redirect::to('admin/users')->with('success', $success);
+			return Redirect::route('users')->with('success', $success);
 		}
 		catch (UserNotFoundException $e)
 		{
 			// Prepare the error message
-			$error = Lang::get('admin/users/message.user_does_not_exist', array('id' => $userId));
+			$error = Lang::get('admin/users/message.user_not_found', compact('id' ));
 
 			// Redirect to the user management page
-			return Redirect::to('admin/users')->with('error', $error);
+			return Redirect::route('users')->with('error', $error);
 		}
 	}
 
-
-	public function getRestore($userId = null)
+	/**
+	 * Restore a deleted user.
+	 *
+	 * @param  int  $id
+	 * @return Redirect
+	 */
+	public function getRestore($id = null)
 	{
-		$user = \User::trashed()->find($userId);
-
-		if ( ! is_null($user))
+		try
 		{
-			if ( ! is_null($user->deleted_at))
-			{
-				$user->restore();
+			// Get user information
+			$user = Sentry::getUserProvider()->createModel()->withTrashed()->find($id);
 
-				return Redirect::to('admin/users')->with('success', 'User restored');
-			}
+			// Restore the user
+			$user->restore();
+
+			// Prepare the success message
+			$success = Lang::get('admin/users/message.success.restored');
+
+			// Redirect to the user management page
+			return Redirect::route('users')->with('success', $success);
 		}
+		catch (UserNotFoundException $e)
+		{
+			// Prepare the error message
+			$error = Lang::get('admin/users/message.user_not_found', compact('id'));
 
-		// Prepare the error message
-		$error = Lang::get('admin/users/message.user_does_not_exist', array('id' => $userId));
-
-		// Redirect to the user management page
-		return Redirect::to('admin/users')->with('error', $error);
+			// Redirect to the user management page
+			return Redirect::route('users')->with('error', $error);
+		}
 	}
 
 }

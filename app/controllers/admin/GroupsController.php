@@ -4,7 +4,7 @@ use AdminController;
 use Cartalyst\Sentry\Groups\GroupExistsException;
 use Cartalyst\Sentry\Groups\GroupNotFoundException;
 use Cartalyst\Sentry\Groups\NameRequiredException;
-use Group;
+use Config;
 use Input;
 use Lang;
 use Redirect;
@@ -15,16 +15,6 @@ use View;
 class GroupsController extends AdminController {
 
 	/**
-	 * Holds some static permissions
-	 *
-	 * @var array
-	 */
-	protected $permissions = array(
-		'superuser' => 'Super user',
-		'admin'     => 'Admin Access',
-	);
-
-	/**
 	 * Show a list of all the groups.
 	 *
 	 * @return View
@@ -32,7 +22,7 @@ class GroupsController extends AdminController {
 	public function getIndex()
 	{
 		// Grab all the groups
-		$groups = Group::paginate(10);
+		$groups = Sentry::getGroupProvider()->createModel()->paginate(10);
 
 		// Show the page
 		return View::make('backend/groups/index', compact('groups'));
@@ -46,10 +36,12 @@ class GroupsController extends AdminController {
 	public function getCreate()
 	{
 		// Get all the available permissions
-		$permissions = $this->permissions;
+		$permissions = Config::get('permissions');
+		$this->encodeAllPermissions($permissions);
 
 		// Selected permissions
 		$selectedPermissions = Input::old('permissions', array());
+		$this->encodePermissions($selectedPermissions);
 
 		// Show the page
 		return View::make('backend/groups/create', compact('permissions', 'selectedPermissions'));
@@ -86,48 +78,50 @@ class GroupsController extends AdminController {
 			if ($group = Sentry::getGroupProvider()->create($inputs))
 			{
 				// Redirect to the new group page
-				return Redirect::to("admin/groups/{$group->id}/edit")->with('success', Lang::get('admin/groups/message.create.success'));
+				return Redirect::route('edit/group', $group->id)->with('success', Lang::get('admin/groups/message.success.create'));
 			}
 
 			// Redirect to the new group page
-			return Redirect::to('admin/groups/create')->with('error', Lang::get('admin/groups/message.create.error'));
+			return Redirect::route('create/group')->with('error', Lang::get('admin/groups/message.error.create'));
 		}
 		catch (NameRequiredException $e)
 		{
-			$error = 'name_required';
+			$error = 'group_name_required';
 		}
 		catch (GroupExistsException $e)
 		{
-			$error = 'already_exists';
+			$error = 'group_exists';
 		}
 
 		// Redirect to the group create page
-		return Redirect::to('admin/groups/create')->withInput()->with('error', Lang::get('admin/groups/message.'.$error));
+		return Redirect::route('create/group')->withInput()->with('error', Lang::get('admin/groups/message.'.$error));
 	}
 
 	/**
 	 * Group update.
 	 *
-	 * @param  int  $groupId
+	 * @param  int  $id
 	 * @return View
 	 */
-	public function getEdit($groupId = null)
+	public function getEdit($id = null)
 	{
 		try
 		{
 			// Get the group information
-			$group = Sentry::getGroupProvider()->findById($groupId);
+			$group = Sentry::getGroupProvider()->findById($id);
 
 			// Get all the available permissions
-			$permissions = $this->permissions;
+			$permissions = Config::get('permissions');
+			$this->encodeAllPermissions($permissions);
 
 			// Get this group permissions
 			$groupPermissions = $group->getPermissions();
+			$this->encodePermissions($groupPermissions);
 		}
 		catch (GroupNotFoundException $e)
 		{
 			// Redirect to the groups management page
-			return Redirect::to('admin/groups')->with('error', Lang::get('admin/groups/message.does_not_exist'));
+			return Redirect::route('groups')->with('error', Lang::get('admin/groups/message.group_not_found', compact('id')));
 		}
 
 		// Show the page
@@ -137,20 +131,26 @@ class GroupsController extends AdminController {
 	/**
 	 * Group update form processing page.
 	 *
-	 * @param  int  $groupId
+	 * @param  int  $id
 	 * @return Redirect
 	 */
-	public function postEdit($groupId = null)
+	public function postEdit($id = null)
 	{
+		// We need to reverse the UI specific logic for our
+		// permissions here before we update the group.
+		$permissions = Input::get('permissions', array());
+		$this->decodePermissions($permissions);
+		app('request')->request->set('permissions', $permissions);
+
 		try
 		{
 			// Get the group information
-			$group = Sentry::getGroupProvider()->findById($groupId);
+			$group = Sentry::getGroupProvider()->findById($id);
 		}
 		catch (GroupNotFoundException $e)
 		{
 			// Redirect to the groups management page
-			return Rediret::to('admin/groups')->with('error', Lang::get('admin/groups/message.does_not_exist'));
+			return Rediret::route('groups')->with('error', Lang::get('admin/groups/message.group_not_found', compact('id')));
 		}
 
 		// Declare the rules for the form validation
@@ -178,46 +178,46 @@ class GroupsController extends AdminController {
 			if ($group->save())
 			{
 				// Redirect to the group page
-				return Redirect::to("admin/groups/$groupId/edit")->with('success', Lang::get('admin/groups/message.update.success'));
+				return Redirect::route('update/group', $id)->with('success', Lang::get('admin/groups/message.update.success'));
 			}
 			else
 			{
 				// Redirect to the group page
-				return Redirect::to("admin/groups/$groupId/edit")->with('error', Lang::get('admin/groups/message.update.error'));
+				return Redirect::route('update/group', $id)->with('error', Lang::get('admin/groups/message.update.error'));
 			}
 		}
 		catch (NameRequiredException $e)
 		{
-			$error = Lang::get('admin/group/message.name_required');
+			$error = Lang::get('admin/group/message.group_name_required');
 		}
 
 		// Redirect to the group page
-		return Redirect::to("admin/groups/{$groupId}/edit")->withInput()->with('error', $error);
+		return Redirect::route('update/group', $id)->withInput()->with('error', $error);
 	}
 
 	/**
 	 * Delete the given group.
 	 *
-	 * @param  int  $groupId
+	 * @param  int  $id
 	 * @return Redirect
 	 */
-	public function getDelete($groupId = null)
+	public function getDelete($id = null)
 	{
 		try
 		{
 			// Get group information
-			$group = Sentry::getGroupProvider()->findById($groupId);
+			$group = Sentry::getGroupProvider()->findById($id);
 
 			// Delete the group
 			$group->delete();
 
 			// Redirect to the group management page
-			return Redirect::to('admin/groups')->with('success', Lang::get('admin/groups/message.delete.success'));
+			return Redirect::route('groups')->with('success', Lang::get('admin/groups/message.success.delete'));
 		}
 		catch (GroupNotFoundException $e)
 		{
 			// Redirect to the group management page
-			return Redirect::to('admin/groups')->with('error', Lang::get('admin/groups/message.not_found'));
+			return Redirect::route('groups')->with('error', Lang::get('admin/groups/message.group_not_found', compact('id')));
 		}
 	}
 

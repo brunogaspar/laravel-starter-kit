@@ -2,23 +2,20 @@
 
 return array(
 
-	'already_exists' => 'Group already exists!',
-	'does_not_exist' => 'Group does not exist.',
-	'name_required'  => 'The name field is required',
+	'group_exists'        => 'Group already exists!',
+	'group_not_found'     => 'Group [:id] does not exist.',
+	'group_name_required' => 'The name field is required',
 
-	'create' => array(
-		'error'   => 'Group was not created, please try again.',
-		'success' => 'Group created successfully.'
-	),
-
-	'update' => array(
-		'error'   => 'Group was not updated, please try again',
-		'success' => 'Group updated successfully.'
+	'success' => array(
+		'create' => 'Group was successfully created.',
+		'update' => 'Group was successfully updated.',
+		'delete' => 'Group was successfully deleted.',
 	),
 
 	'delete' => array(
-		'error'   => 'There was an issue deleting the group. Please try again.',
-		'success' => 'The group was deleted successfully.'
-	)
+		'create' => 'There was an issue creating the group. Please try again.',
+		'update' => 'There was an issue updating the group. Please try again.',
+		'delete' => 'There was an issue deleting the group. Please try again.',
+	),
 
 );

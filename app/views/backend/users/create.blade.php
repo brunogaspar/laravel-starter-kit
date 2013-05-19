@@ -110,13 +110,34 @@ Create a User ::
 		<div class="tab-pane" id="tab-permissions">
 			<div class="control-group">
 				<div class="controls">
-					@foreach ($permissions as $permissionId => $permissionName)
-					<label>
-						<input type="hidden" id="permissions[{{ $permissionId }}]" name="permissions[{{ $permissionId }}]" value="0" />
-						<input type="checkbox" id="permissions[{{ $permissionId }}]" name="permissions[{{ $permissionId }}]" value="1"{{ ( ! empty($selectedPermissions[ $permissionId ]) ? ' checked="checked"' : '') }} />
-						{{ $permissionName }}
-					</label>
+
+					@foreach ($permissions as $area => $permissions)
+					<fieldset>
+						<legend>{{ $area }}</legend>
+
+						@foreach ($permissions as $permission)
+						<div class="control-group">
+							<label class="control-group">{{ $permission['label'] }}</label>
+
+							<div class="radio inline">
+								<label for="{{ $permission['permission'] }}_allow" onclick="">
+									<input type="radio" value="1" id="{{ $permission['permission'] }}_allow" name="permissions[{{ $permission['permission'] }}]"{{ (array_get($selectedPermissions, $permission['permission']) === 1 ? ' checked="checked"' : '') }}>
+								Allow</label>
+
+								<input type="radio" value="-1" id="{{ $permission['permission'] }}_deny" name="permissions[{{ $permission['permission'] }}]"{{ (array_get($selectedPermissions, $permission['permission']) === -1 ? ' checked="checked"' : '') }}>
+								<label for="{{ $permission['permission'] }}_deny" onclick="">Deny</label>
+
+								@if ($permission['can_inherit'])
+									<input type="radio" value="0" id="{{ $permission['permission'] }}_inherit" name="permissions[{{ $permission['permission'] }}]"{{ ( ! array_get($selectedPermissions, $permission['permission']) ? ' checked="checked"' : '') }}>
+									<label for="{{ $permission['permission'] }}_inherit" onclick="">Inherit</label>
+								@endif
+							</div>
+						</div>
+						@endforeach
+
+					</fieldset>
 					@endforeach
+
 				</div>
 			</div>
 		</div>

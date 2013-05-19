@@ -31,7 +31,7 @@ class UpdateUsersTable extends Migration {
 		// Update the users table
 		Schema::table('users', function($table)
 		{
-			$table->dropColumns('website', 'country', 'gravatar');
+			$table->dropColumns('deleted_at', 'website', 'country', 'gravatar');
 		});
 	}
 
