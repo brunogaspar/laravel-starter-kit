@@ -13,7 +13,7 @@ class BlogController extends BaseController {
 		$posts = Post::with(array(
 			'author' => function($query)
 			{
-			    $query->withTrashed();
+				$query->withTrashed();
 			},
 		))->orderBy('created_at', 'DESC')->paginate(10);
 
@@ -34,7 +34,7 @@ class BlogController extends BaseController {
 		$post = Post::with(array(
 			'author' => function($query)
 			{
-			    $query->withTrashed();
+				$query->withTrashed();
 			},
 			'comments',
 		))->where('slug', $slug)->first();
@@ -51,7 +51,7 @@ class BlogController extends BaseController {
 		$comments = $post->comments()->with(array(
 			'author' => function($query)
 			{
-			    $query->withTrashed();
+				$query->withTrashed();
 			},
 		))->orderBy('created_at', 'DESC')->get();
 
