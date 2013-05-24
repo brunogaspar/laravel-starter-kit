@@ -11,12 +11,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cartalyst/sentry.git",
-                "reference": "4d74fbed685f85194f6c60c5345f274c65257b0f"
+                "reference": "4489c1de255ff6e12e39a134dbaf3a16fbfd2e3c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cartalyst/sentry/zipball/4d74fbed685f85194f6c60c5345f274c65257b0f",
-                "reference": "4d74fbed685f85194f6c60c5345f274c65257b0f",
+                "url": "https://api.github.com/repos/cartalyst/sentry/zipball/4489c1de255ff6e12e39a134dbaf3a16fbfd2e3c",
+                "reference": "4489c1de255ff6e12e39a134dbaf3a16fbfd2e3c",
                 "shasum": ""
             },
             "require": {
@@ -102,7 +102,7 @@
                 "laravel",
                 "security"
             ],
-            "time": "2013-05-17 02:29:22"
+            "time": "2013-05-23 18:35:34"
         },
         {
             "name": "classpreloader/classpreloader",
@@ -364,12 +364,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/common.git",
-                "reference": "2.4.0-RC2"
+                "reference": "1459223adae87305d07c9ea5f742a7fd6c8a740e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/common/zipball/2.4.0-RC2",
-                "reference": "2.4.0-RC2",
+                "url": "https://api.github.com/repos/doctrine/common/zipball/1459223adae87305d07c9ea5f742a7fd6c8a740e",
+                "reference": "1459223adae87305d07c9ea5f742a7fd6c8a740e",
                 "shasum": ""
             },
             "require": {
@@ -415,7 +415,7 @@
                     "email": "kontakt@beberlei.de"
                 },
                 {
-                    "name": "Johannes M. Schmitt",
+                    "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
                     "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
@@ -430,7 +430,7 @@
                 "persistence",
                 "spl"
             ],
-            "time": "2013-05-09 21:35:24"
+            "time": "2013-05-21 02:44:34"
         },
         {
             "name": "doctrine/dbal",
@@ -438,12 +438,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "d69ecc73c7b3d8d3b54d6a8bbb0dae46409acdd1"
+                "reference": "d3456743629fae7a560ce741b680a0998f6f8c06"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/d69ecc73c7b3d8d3b54d6a8bbb0dae46409acdd1",
-                "reference": "d69ecc73c7b3d8d3b54d6a8bbb0dae46409acdd1",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/d3456743629fae7a560ce741b680a0998f6f8c06",
+                "reference": "d3456743629fae7a560ce741b680a0998f6f8c06",
                 "shasum": ""
             },
             "require": {
@@ -500,7 +500,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2013-05-15 15:45:26"
+            "time": "2013-05-21 05:52:08"
         },
         {
             "name": "doctrine/inflector",
@@ -723,12 +723,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "81477fe43465d877acf2add88d2858d92f87e038"
+                "reference": "03e148768fb74306721486cfb7d68897b13328ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/81477fe43465d877acf2add88d2858d92f87e038",
-                "reference": "81477fe43465d877acf2add88d2858d92f87e038",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/03e148768fb74306721486cfb7d68897b13328ab",
+                "reference": "03e148768fb74306721486cfb7d68897b13328ab",
                 "shasum": ""
             },
             "require": {
@@ -825,7 +825,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2013-05-19 18:25:19"
+            "time": "2013-05-24 18:14:52"
         },
         {
             "name": "monolog/monolog",
@@ -833,12 +833,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "ae8500e5b1604963ee63d7bccd6c85808bfea974"
+                "reference": "bda5757cdecae6e280f5914be18812d8c5db7756"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/ae8500e5b1604963ee63d7bccd6c85808bfea974",
-                "reference": "ae8500e5b1604963ee63d7bccd6c85808bfea974",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/bda5757cdecae6e280f5914be18812d8c5db7756",
+                "reference": "bda5757cdecae6e280f5914be18812d8c5db7756",
                 "shasum": ""
             },
             "require": {
@@ -860,7 +860,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.5.x-dev"
+                    "dev-master": "1.6.x-dev"
                 }
             },
             "autoload": {
@@ -887,7 +887,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2013-05-13 14:29:58"
+            "time": "2013-05-21 19:11:01"
         },
         {
             "name": "nesbot/carbon",
@@ -938,12 +938,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "bc9ab604f644c377d69d26dd8367cc7ae27bca16"
+                "reference": "5ccf6196d6925e66568e3b8460c262e9512e4b92"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/bc9ab604f644c377d69d26dd8367cc7ae27bca16",
-                "reference": "bc9ab604f644c377d69d26dd8367cc7ae27bca16",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/5ccf6196d6925e66568e3b8460c262e9512e4b92",
+                "reference": "5ccf6196d6925e66568e3b8460c262e9512e4b92",
                 "shasum": ""
             },
             "require": {
@@ -974,20 +974,20 @@
                 "parser",
                 "php"
             ],
-            "time": "2013-05-17 15:14:14"
+            "time": "2013-05-23 13:17:59"
         },
         {
             "name": "patchwork/utf8",
-            "version": "v1.1.5",
+            "version": "v1.1.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nicolas-grekas/Patchwork-UTF8.git",
-                "reference": "v1.1.5"
+                "reference": "v1.1.8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nicolas-grekas/Patchwork-UTF8/zipball/v1.1.5",
-                "reference": "v1.1.5",
+                "url": "https://api.github.com/repos/nicolas-grekas/Patchwork-UTF8/zipball/v1.1.8",
+                "reference": "v1.1.8",
                 "shasum": ""
             },
             "require": {
@@ -1019,7 +1019,7 @@
                 "utf-8",
                 "utf8"
             ],
-            "time": "2013-05-13 13:48:55"
+            "time": "2013-05-24 12:11:22"
         },
         {
             "name": "predis/predis",
@@ -1745,12 +1745,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Routing.git",
-                "reference": "v2.3.0-RC1"
+                "reference": "255e1163b74a22cd83d3fd51d63c0588afe0bc56"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Routing/zipball/v2.3.0-RC1",
-                "reference": "v2.3.0-RC1",
+                "url": "https://api.github.com/repos/symfony/Routing/zipball/255e1163b74a22cd83d3fd51d63c0588afe0bc56",
+                "reference": "255e1163b74a22cd83d3fd51d63c0588afe0bc56",
                 "shasum": ""
             },
             "require": {
@@ -1794,7 +1794,7 @@
             ],
             "description": "Symfony Routing Component",
             "homepage": "http://symfony.com",
-            "time": "2013-05-13 14:36:40"
+            "time": "2013-05-20 08:57:26"
         },
         {
             "name": "symfony/translation",
@@ -1803,12 +1803,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Translation.git",
-                "reference": "70fddb8499919f459322b9857ada7824722db9df"
+                "reference": "ed0c7257bfc533205dff78f9d247c2544c830ddc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Translation/zipball/70fddb8499919f459322b9857ada7824722db9df",
-                "reference": "70fddb8499919f459322b9857ada7824722db9df",
+                "url": "https://api.github.com/repos/symfony/Translation/zipball/ed0c7257bfc533205dff78f9d247c2544c830ddc",
+                "reference": "ed0c7257bfc533205dff78f9d247c2544c830ddc",
                 "shasum": ""
             },
             "require": {
@@ -1825,7 +1825,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.3-dev"
+                    "dev-master": "2.4-dev"
                 }
             },
             "autoload": {
@@ -1849,7 +1849,7 @@
             ],
             "description": "Symfony Translation Component",
             "homepage": "http://symfony.com",
-            "time": "2013-05-13 14:36:40"
+            "time": "2013-05-16 07:54:39"
         }
     ],
     "packages-dev": [
