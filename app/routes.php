@@ -21,6 +21,7 @@ Route::group(array('prefix' => 'admin'), function()
 		Route::get('{blogId}/edit', array('as' => 'update/blog', 'uses' => 'Controllers\Admin\BlogsController@getEdit'));
 		Route::post('{blogId}/edit', 'Controllers\Admin\BlogsController@postEdit');
 		Route::get('{blogId}/delete', array('as' => 'delete/blog', 'uses' => 'Controllers\Admin\BlogsController@getDelete'));
+		Route::get('{blogId}/restore', array('as' => 'restore/blog', 'uses' => 'Controllers\Admin\BlogsController@getRestore'));
 	});
 
 	# User Management
@@ -44,6 +45,7 @@ Route::group(array('prefix' => 'admin'), function()
 		Route::get('{groupId}/edit', array('as' => 'update/group', 'uses' => 'Controllers\Admin\GroupsController@getEdit'));
 		Route::post('{groupId}/edit', 'Controllers\Admin\GroupsController@postEdit');
 		Route::get('{groupId}/delete', array('as' => 'delete/group', 'uses' => 'Controllers\Admin\GroupsController@getDelete'));
+		Route::get('{groupId}/restore', array('as' => 'restore/group', 'uses' => 'Controllers\Admin\GroupsController@getRestore'));
 	});
 
 	# Dashboard
