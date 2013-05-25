@@ -33,8 +33,8 @@ class BootstrapPresenter {
 	 */
 	public function __construct(Paginator $paginator)
 	{
-		$this->paginator = $paginator;
-		$this->lastPage = $this->paginator->getLastPage();
+		$this->paginator   = $paginator;
+		$this->lastPage    = $this->paginator->getLastPage();
 		$this->currentPage = $this->paginator->getCurrentPage();
 	}
 
@@ -268,7 +268,7 @@ class BootstrapPresenter {
 		$totalResults = $this->paginator->getTotal();
 
 		$upper = min($totalResults, $currentPage * $perPage);
-		$lower = ($currentPage - 1) * $perPage + 1;
+		$lower = $totalResults >= 1 ? ($currentPage - 1) * $perPage + 1 : 0;
 
 		return sprintf('%d - %d of %d Results', $lower, $upper, $totalResults);
 	}
