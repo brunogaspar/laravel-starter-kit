@@ -37,11 +37,10 @@ class GroupsController extends AdminController {
 	{
 		// Get all the available permissions
 		$permissions = Config::get('permissions');
-		$this->encodeAllPermissions($permissions);
+		$this->encodeAllPermissions($permissions, true);
 
 		// Selected permissions
 		$selectedPermissions = Input::old('permissions', array());
-		$this->encodePermissions($selectedPermissions);
 
 		// Show the page
 		return View::make('backend/groups/create', compact('permissions', 'selectedPermissions'));
@@ -71,6 +70,12 @@ class GroupsController extends AdminController {
 
 		try
 		{
+			// We need to reverse the UI specific logic for our
+			// permissions here before we create the user.
+			$permissions = Input::get('permissions', array());
+			$this->decodePermissions($permissions);
+			app('request')->request->set('permissions', $permissions);
+
 			// Get the inputs, with some exceptions
 			$inputs = Input::except('_token');
 
@@ -78,7 +83,7 @@ class GroupsController extends AdminController {
 			if ($group = Sentry::getGroupProvider()->create($inputs))
 			{
 				// Redirect to the new group page
-				return Redirect::route('edit/group', $group->id)->with('success', Lang::get('admin/groups/message.success.create'));
+				return Redirect::route('update/group', $group->id)->with('success', Lang::get('admin/groups/message.success.create'));
 			}
 
 			// Redirect to the new group page
@@ -112,11 +117,12 @@ class GroupsController extends AdminController {
 
 			// Get all the available permissions
 			$permissions = Config::get('permissions');
-			$this->encodeAllPermissions($permissions);
+			$this->encodeAllPermissions($permissions, true);
 
 			// Get this group permissions
 			$groupPermissions = $group->getPermissions();
 			$this->encodePermissions($groupPermissions);
+			$groupPermissions = array_merge($groupPermissions, Input::old('permissions', array()));
 		}
 		catch (GroupNotFoundException $e)
 		{
@@ -178,12 +184,12 @@ class GroupsController extends AdminController {
 			if ($group->save())
 			{
 				// Redirect to the group page
-				return Redirect::route('update/group', $id)->with('success', Lang::get('admin/groups/message.update.success'));
+				return Redirect::route('update/group', $id)->with('success', Lang::get('admin/groups/message.success.update'));
 			}
 			else
 			{
 				// Redirect to the group page
-				return Redirect::route('update/group', $id)->with('error', Lang::get('admin/groups/message.update.error'));
+				return Redirect::route('update/group', $id)->with('error', Lang::get('admin/groups/message.error.update'));
 			}
 		}
 		catch (NameRequiredException $e)
