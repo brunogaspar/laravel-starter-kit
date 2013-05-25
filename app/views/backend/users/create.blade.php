@@ -122,14 +122,19 @@ Create a User ::
 							<div class="radio inline">
 								<label for="{{ $permission['permission'] }}_allow" onclick="">
 									<input type="radio" value="1" id="{{ $permission['permission'] }}_allow" name="permissions[{{ $permission['permission'] }}]"{{ (array_get($selectedPermissions, $permission['permission']) === 1 ? ' checked="checked"' : '') }}>
-								Allow</label>
+									Allow
+								</label>
 
-								<input type="radio" value="-1" id="{{ $permission['permission'] }}_deny" name="permissions[{{ $permission['permission'] }}]"{{ (array_get($selectedPermissions, $permission['permission']) === -1 ? ' checked="checked"' : '') }}>
-								<label for="{{ $permission['permission'] }}_deny" onclick="">Deny</label>
+								<label for="{{ $permission['permission'] }}_deny" onclick="">
+									<input type="radio" value="-1" id="{{ $permission['permission'] }}_deny" name="permissions[{{ $permission['permission'] }}]"{{ (array_get($selectedPermissions, $permission['permission']) === -1 ? ' checked="checked"' : '') }}>
+									Deny
+								</label>
 
 								@if ($permission['can_inherit'])
+								<label for="{{ $permission['permission'] }}_inherit" onclick="">
 									<input type="radio" value="0" id="{{ $permission['permission'] }}_inherit" name="permissions[{{ $permission['permission'] }}]"{{ ( ! array_get($selectedPermissions, $permission['permission']) ? ' checked="checked"' : '') }}>
-									<label for="{{ $permission['permission'] }}_inherit" onclick="">Inherit</label>
+									Inherit
+								</label>
 								@endif
 							</div>
 						</div>

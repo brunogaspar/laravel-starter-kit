@@ -120,15 +120,21 @@ User Update ::
 							<label class="control-group">{{ $permission['label'] }}</label>
 
 							<div class="radio inline">
-								<input type="radio" value="1" id="{{ $permission['permission'] }}_allow" name="permissions[{{ $permission['permission'] }}]"{{ (array_get($userPermissions, $permission['permission']) === 1 ? ' checked="checked"' : '') }}>
-								<label for="{{ $permission['permission'] }}_allow" onclick="">Allow</label>
+								<label for="{{ $permission['permission'] }}_allow" onclick="">
+									<input type="radio" value="1" id="{{ $permission['permission'] }}_allow" name="permissions[{{ $permission['permission'] }}]"{{ (array_get($userPermissions, $permission['permission']) === 1 ? ' checked="checked"' : '') }}>
+									Allow
+								</label>
 
-								<input type="radio" value="-1" id="{{ $permission['permission'] }}_deny" name="permissions[{{ $permission['permission'] }}]"{{ (array_get($userPermissions, $permission['permission']) === -1 ? ' checked="checked"' : '') }}>
-								<label for="{{ $permission['permission'] }}_deny" onclick="">Deny</label>
+								<label for="{{ $permission['permission'] }}_deny" onclick="">
+									<input type="radio" value="-1" id="{{ $permission['permission'] }}_deny" name="permissions[{{ $permission['permission'] }}]"{{ (array_get($userPermissions, $permission['permission']) === -1 ? ' checked="checked"' : '') }}>
+									Deny
+								</label>
 
 								@if ($permission['can_inherit'])
+								<label for="{{ $permission['permission'] }}_inherit" onclick="">
 									<input type="radio" value="0" id="{{ $permission['permission'] }}_inherit" name="permissions[{{ $permission['permission'] }}]"{{ ( ! array_get($userPermissions, $permission['permission']) ? ' checked="checked"' : '') }}>
-									<label for="{{ $permission['permission'] }}_inherit" onclick="">Inherit</label>
+									Inherit
+								</label>
 								@endif
 
 								<a class="slide-button"></a>
