@@ -110,12 +110,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/mtdowling/ClassPreloader.git",
-                "reference": "123af46f171da5b1e6fa0be061e2fc40ce118c5e"
+                "reference": "62c99d52ce2f1b0b8449c61e2d94f48d918222eb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mtdowling/ClassPreloader/zipball/123af46f171da5b1e6fa0be061e2fc40ce118c5e",
-                "reference": "123af46f171da5b1e6fa0be061e2fc40ce118c5e",
+                "url": "https://api.github.com/repos/mtdowling/ClassPreloader/zipball/62c99d52ce2f1b0b8449c61e2d94f48d918222eb",
+                "reference": "62c99d52ce2f1b0b8449c61e2d94f48d918222eb",
                 "shasum": ""
             },
             "require": {
@@ -149,7 +149,7 @@
                 "class",
                 "preload"
             ],
-            "time": "2013-03-03 02:54:09"
+            "time": "2013-05-26 16:10:36"
         },
         {
             "name": "doctrine/annotations",
@@ -297,12 +297,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/collections.git",
-                "reference": "df2138bcb467533bfe6b3a01301d480aec008b93"
+                "reference": "3db3ab843ff76774bee4679d4cb3a10cffb0a935"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/collections/zipball/df2138bcb467533bfe6b3a01301d480aec008b93",
-                "reference": "df2138bcb467533bfe6b3a01301d480aec008b93",
+                "url": "https://api.github.com/repos/doctrine/collections/zipball/3db3ab843ff76774bee4679d4cb3a10cffb0a935",
+                "reference": "3db3ab843ff76774bee4679d4cb3a10cffb0a935",
                 "shasum": ""
             },
             "require": {
@@ -311,7 +311,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1.x-dev"
+                    "dev-master": "1.2.x-dev"
                 }
             },
             "autoload": {
@@ -356,7 +356,7 @@
                 "collections",
                 "iterator"
             ],
-            "time": "2013-03-17 14:01:33"
+            "time": "2013-05-26 05:21:22"
         },
         {
             "name": "doctrine/common",
@@ -438,12 +438,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "d3456743629fae7a560ce741b680a0998f6f8c06"
+                "reference": "b139fc51d36dda53261f30e9159a942346b65aa3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/d3456743629fae7a560ce741b680a0998f6f8c06",
-                "reference": "d3456743629fae7a560ce741b680a0998f6f8c06",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/b139fc51d36dda53261f30e9159a942346b65aa3",
+                "reference": "b139fc51d36dda53261f30e9159a942346b65aa3",
                 "shasum": ""
             },
             "require": {
@@ -500,7 +500,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2013-05-21 05:52:08"
+            "time": "2013-05-26 05:58:25"
         },
         {
             "name": "doctrine/inflector",
@@ -723,12 +723,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "17f7fa8359d43f6bfde2c3eab57b90020fe9f0a7"
+                "reference": "966b6225abb348a9adc9d94f3cb8e91988f15904"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/17f7fa8359d43f6bfde2c3eab57b90020fe9f0a7",
-                "reference": "17f7fa8359d43f6bfde2c3eab57b90020fe9f0a7",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/966b6225abb348a9adc9d94f3cb8e91988f15904",
+                "reference": "966b6225abb348a9adc9d94f3cb8e91988f15904",
                 "shasum": ""
             },
             "require": {
@@ -825,7 +825,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2013-05-25 18:27:48"
+            "time": "2013-05-26 19:20:35"
         },
         {
             "name": "monolog/monolog",
