@@ -43,9 +43,17 @@ class UsersController extends AdminController {
 		{
 			$users = $users->withTrashed();
 		}
+		else if (Input::get('onlyTrashed'))
+		{
+			$users = $users->onlyTrashed();
+		}
 
 		// Paginate the users
-		$users = $users->paginate(10);
+		$users = $users->paginate()
+			->appends(array(
+				'withTrashed' => Input::get('withTrashed'),
+				'onlyTrashed' => Input::get('onlyTrashed'),
+			));
 
 		// Show the page
 		return View::make('backend/users/index', compact('users'));

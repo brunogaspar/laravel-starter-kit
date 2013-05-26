@@ -22,7 +22,7 @@ class GroupsController extends AdminController {
 	public function getIndex()
 	{
 		// Grab all the groups
-		$groups = Sentry::getGroupProvider()->createModel()->paginate(10);
+		$groups = Sentry::getGroupProvider()->createModel()->paginate();
 
 		// Show the page
 		return View::make('backend/groups/index', compact('groups'));

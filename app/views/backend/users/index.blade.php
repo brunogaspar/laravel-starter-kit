@@ -19,6 +19,7 @@ User Management ::
 </div>
 
 <a class="btn btn-medium" href="{{ URL::to('admin/users?withTrashed=true') }}">Include Deleted Users</a>
+<a class="btn btn-medium" href="{{ URL::to('admin/users?onlyTrashed=true') }}">Include Only Deleted Users</a>
 
 {{ $users->links() }}
 

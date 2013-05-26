@@ -12,17 +12,6 @@ class User extends SentryUserModel {
 	protected $softDelete = true;
 
 	/**
-	 * The date fields for the model.
-	 *
-	 * @var array
-	 */
-	protected $dates = array(
-		'created_at',
-		'updated_at',
-		'deleted_at',
-	);
-
-	/**
 	 * Returns the user full name, it simply concatenates
 	 * the user first and last name.
 	 *
