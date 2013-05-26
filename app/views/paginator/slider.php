@@ -4,7 +4,15 @@
 
 <div class="pagination">
 	<ul class="pull left">
-		<li><?php echo $presenter->getResultsOf(); ?></li>
+		<li>
+		Showing
+		<?php echo $presenter->getFrom(); ?>
+		-
+		<?php echo $presenter->getTo(); ?>
+		of
+		<?php echo $paginator->getTotal(); ?>
+		items
+		</li>
 	</ul>
 
 	<ul class="pull-right">

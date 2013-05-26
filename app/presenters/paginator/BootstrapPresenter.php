@@ -257,20 +257,31 @@ class BootstrapPresenter {
 	}
 
 	/**
-	 * Return
+	 * Returns the index for the first item on the page.
 	 *
-	 * @return string
+	 * @return int
 	 */
-	public function getResultsOf()
+	public function getFrom()
 	{
-		$currentPage  = $this->paginator->getCurrentPage();
-		$perPage      = $this->paginator->getPerPage();
-		$totalResults = $this->paginator->getTotal();
+		$currentPage    = $this->paginator->getCurrentPage();
+		$resultsPerPage = $this->paginator->getPerPage();
+		$totalResults   = $this->paginator->getTotal();
 
-		$upper = min($totalResults, $currentPage * $perPage);
-		$lower = $totalResults >= 1 ? ($currentPage - 1) * $perPage + 1 : 0;
+		return $totalResults >= 1 ? ($currentPage - 1) * $resultsPerPage + 1 : 0;
+	}
 
-		return sprintf('%d - %d of %d Results', $lower, $upper, $totalResults);
+	/**
+	 * Returns the index for the last item on the page.
+	 *
+	 * @return int
+	 */
+	public function getTo()
+	{
+		$currentPage    = $this->paginator->getCurrentPage();
+		$resultsPerPage = $this->paginator->getPerPage();
+		$totalResults   = $this->paginator->getTotal();
+
+		return min($totalResults, $currentPage * $resultsPerPage);
 	}
 
 }
