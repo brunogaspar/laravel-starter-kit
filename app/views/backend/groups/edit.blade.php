@@ -60,7 +60,9 @@ Group Update ::
 									<input type="radio" value="1" id="{{ $permission['permission'] }}_allow" name="permissions[{{ $permission['permission'] }}]"{{ (array_get($groupPermissions, $permission['permission']) === 1 ? ' checked="checked"' : '') }}>
 									Allow
 								</label>
+							</div>
 
+							<div class="radio inline">
 								<label for="{{ $permission['permission'] }}_deny" onclick="">
 									<input type="radio" value="0" id="{{ $permission['permission'] }}_deny" name="permissions[{{ $permission['permission'] }}]"{{ ( ! array_get($groupPermissions, $permission['permission']) ? ' checked="checked"' : '') }}>
 									Deny
