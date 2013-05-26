@@ -73,18 +73,7 @@
 							<ul class="nav pull-right">
 								<li><a href="{{ URL::to('/') }}">View Homepage</a></li>
 								<li class="divider-vertical"></li>
-								<li>
-									<div class="btn-group">
-										<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-											<i class="icon-user"></i> admin	<span class="caret"></span>
-										</a>
-										<ul class="dropdown-menu">
-											<li><a href="#"><i class="icon-wrench"></i> Settings</a></li>
-											<li class="divider"></li>
-											<li><a href="#"><i class="icon-share"></i> Logout</a></li>
-										</ul>
-									</div>
-								</li>
+								<li><a href="{{ route('logout') }}">Logout</a></li>
 							</ul>
 						</div>
 					</div>
