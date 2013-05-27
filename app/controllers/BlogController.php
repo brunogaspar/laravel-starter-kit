@@ -94,7 +94,7 @@ class BlogController extends BaseController {
 		// Save the comment
 		$comment = new Comment;
 		$comment->user_id = Sentry::getUser()->id;
-		$comment->content = Input::get('comment');
+		$comment->content = e(Input::get('comment'));
 
 		// Was the comment saved with success?
 		if($post->comments()->save($comment))

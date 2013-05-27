@@ -65,11 +65,11 @@ class BlogsController extends AdminController {
 
 		// Update the blog post data
 		$post->title            = e(Input::get('title'));
-		$post->slug             = Str::slug(Input::get('title'));
-		$post->content          = Input::get('content');
-		$post->meta_title       = Input::get('meta-title');
-		$post->meta_description = Input::get('meta-description');
-		$post->meta_keywords    = Input::get('meta-keywords');
+		$post->slug             = e(Str::slug(Input::get('title')));
+		$post->content          = e(Input::get('content'));
+		$post->meta_title       = e(Input::get('meta-title'));
+		$post->meta_description = e(Input::get('meta-description'));
+		$post->meta_keywords    = e(Input::get('meta-keywords'));
 		$post->user_id          = Sentry::getId();
 
 		// Was the blog post created?
@@ -135,11 +135,11 @@ class BlogsController extends AdminController {
 
 		// Update the blog post data
 		$post->title            = e(Input::get('title'));
-		$post->slug             = Str::slug(Input::get('title'));
-		$post->content          = Input::get('content');
-		$post->meta_title       = Input::get('meta-title');
-		$post->meta_description = Input::get('meta-description');
-		$post->meta_keywords    = Input::get('meta-keywords');
+		$post->slug             = e(Str::slug(Input::get('title')));
+		$post->content          = e(Input::get('content'));
+		$post->meta_title       = e(Input::get('meta-title'));
+		$post->meta_description = e(Input::get('meta-description'));
+		$post->meta_keywords    = e(Input::get('meta-keywords'));
 
 		// Was the blog post updated?
 		if($post->save())
