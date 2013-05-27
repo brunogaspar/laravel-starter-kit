@@ -6,9 +6,9 @@
 	<ul class="pull left">
 		<li>
 		Showing
-		<?php echo $presenter->getFrom(); ?>
+		<?php echo $paginator->getFrom(); ?>
 		-
-		<?php echo $presenter->getTo(); ?>
+		<?php echo $paginator->getTo(); ?>
 		of
 		<?php echo $paginator->getTotal(); ?>
 		items

@@ -256,32 +256,4 @@ class BootstrapPresenter {
 		$this->lastPage = $page;
 	}
 
-	/**
-	 * Returns the index for the first item on the page.
-	 *
-	 * @return int
-	 */
-	public function getFrom()
-	{
-		$currentPage    = $this->paginator->getCurrentPage();
-		$resultsPerPage = $this->paginator->getPerPage();
-		$totalResults   = $this->paginator->getTotal();
-
-		return $totalResults >= 1 ? ($currentPage - 1) * $resultsPerPage + 1 : 0;
-	}
-
-	/**
-	 * Returns the index for the last item on the page.
-	 *
-	 * @return int
-	 */
-	public function getTo()
-	{
-		$currentPage    = $this->paginator->getCurrentPage();
-		$resultsPerPage = $this->paginator->getPerPage();
-		$totalResults   = $this->paginator->getTotal();
-
-		return min($totalResults, $currentPage * $resultsPerPage);
-	}
-
 }
