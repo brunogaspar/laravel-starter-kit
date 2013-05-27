@@ -438,12 +438,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "b139fc51d36dda53261f30e9159a942346b65aa3"
+                "reference": "4e31bb0f3570999d2b9cd1625a4436b7175d32a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/b139fc51d36dda53261f30e9159a942346b65aa3",
-                "reference": "b139fc51d36dda53261f30e9159a942346b65aa3",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/4e31bb0f3570999d2b9cd1625a4436b7175d32a9",
+                "reference": "4e31bb0f3570999d2b9cd1625a4436b7175d32a9",
                 "shasum": ""
             },
             "require": {
@@ -500,7 +500,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2013-05-26 05:58:25"
+            "time": "2013-05-27 15:51:14"
         },
         {
             "name": "doctrine/inflector",
@@ -723,12 +723,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "966b6225abb348a9adc9d94f3cb8e91988f15904"
+                "reference": "2edc2ea956c8d54c69a9c29dc16c9be63e5751df"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/966b6225abb348a9adc9d94f3cb8e91988f15904",
-                "reference": "966b6225abb348a9adc9d94f3cb8e91988f15904",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/2edc2ea956c8d54c69a9c29dc16c9be63e5751df",
+                "reference": "2edc2ea956c8d54c69a9c29dc16c9be63e5751df",
                 "shasum": ""
             },
             "require": {
@@ -825,7 +825,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2013-05-26 19:20:35"
+            "time": "2013-05-27 15:10:34"
         },
         {
             "name": "monolog/monolog",
@@ -1217,12 +1217,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Console.git",
-                "reference": "b549bdf72455c53a28a8b49a21d54a42f75aeb30"
+                "reference": "561b426decb8993832fe571f7ca399799b4ac148"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Console/zipball/b549bdf72455c53a28a8b49a21d54a42f75aeb30",
-                "reference": "b549bdf72455c53a28a8b49a21d54a42f75aeb30",
+                "url": "https://api.github.com/repos/symfony/Console/zipball/561b426decb8993832fe571f7ca399799b4ac148",
+                "reference": "561b426decb8993832fe571f7ca399799b4ac148",
                 "shasum": ""
             },
             "require": {
@@ -1261,7 +1261,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "http://symfony.com",
-            "time": "2013-05-22 03:09:47"
+            "time": "2013-05-27 14:49:36"
         },
         {
             "name": "symfony/css-selector",
@@ -1531,12 +1531,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Finder.git",
-                "reference": "v2.3.0-RC1"
+                "reference": "cc53e89d247eca7acb21f1c41bc3c318fbc7e4ed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Finder/zipball/v2.3.0-RC1",
-                "reference": "v2.3.0-RC1",
+                "url": "https://api.github.com/repos/symfony/Finder/zipball/cc53e89d247eca7acb21f1c41bc3c318fbc7e4ed",
+                "reference": "cc53e89d247eca7acb21f1c41bc3c318fbc7e4ed",
                 "shasum": ""
             },
             "require": {
@@ -1569,7 +1569,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "http://symfony.com",
-            "time": "2013-04-25 12:12:10"
+            "time": "2013-05-27 14:49:21"
         },
         {
             "name": "symfony/http-foundation",
