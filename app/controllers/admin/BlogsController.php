@@ -6,6 +6,7 @@ use Lang;
 use Post;
 use Redirect;
 use Sentry;
+use Str;
 use Validator;
 use View;
 
