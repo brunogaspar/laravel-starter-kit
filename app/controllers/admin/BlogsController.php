@@ -64,7 +64,7 @@ class BlogsController extends AdminController {
 		$post = new Post;
 
 		// Update the blog post data
-		$post->title            = Input::get('title');
+		$post->title            = e(Input::get('title'));
 		$post->slug             = Str::slug(Input::get('title'));
 		$post->content          = Input::get('content');
 		$post->meta_title       = Input::get('meta-title');
@@ -134,7 +134,7 @@ class BlogsController extends AdminController {
 		}
 
 		// Update the blog post data
-		$post->title            = Input::get('title');
+		$post->title            = e(Input::get('title'));
 		$post->slug             = Str::slug(Input::get('title'));
 		$post->content          = Input::get('content');
 		$post->meta_title       = Input::get('meta-title');
