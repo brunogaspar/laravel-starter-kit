@@ -364,12 +364,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/common.git",
-                "reference": "1459223adae87305d07c9ea5f742a7fd6c8a740e"
+                "reference": "2169b0ce1d253d448c60b7d40bbe4e4b5afe22fe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/common/zipball/1459223adae87305d07c9ea5f742a7fd6c8a740e",
-                "reference": "1459223adae87305d07c9ea5f742a7fd6c8a740e",
+                "url": "https://api.github.com/repos/doctrine/common/zipball/2169b0ce1d253d448c60b7d40bbe4e4b5afe22fe",
+                "reference": "2169b0ce1d253d448c60b7d40bbe4e4b5afe22fe",
                 "shasum": ""
             },
             "require": {
@@ -417,7 +417,7 @@
                 {
                     "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "https://github.com/schmittjoh",
+                    "homepage": "http://jmsyst.com",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -430,7 +430,7 @@
                 "persistence",
                 "spl"
             ],
-            "time": "2013-05-21 02:44:34"
+            "time": "2013-05-27 19:11:46"
         },
         {
             "name": "doctrine/dbal",
@@ -438,12 +438,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "4e31bb0f3570999d2b9cd1625a4436b7175d32a9"
+                "reference": "da9564df54d248de03f9fd3d31e5eade86f8f747"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/4e31bb0f3570999d2b9cd1625a4436b7175d32a9",
-                "reference": "4e31bb0f3570999d2b9cd1625a4436b7175d32a9",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/da9564df54d248de03f9fd3d31e5eade86f8f747",
+                "reference": "da9564df54d248de03f9fd3d31e5eade86f8f747",
                 "shasum": ""
             },
             "require": {
@@ -500,7 +500,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2013-05-27 15:51:14"
+            "time": "2013-05-27 19:17:11"
         },
         {
             "name": "doctrine/inflector",
@@ -723,12 +723,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "6b635eb530de2d483b3a288bcc3919b1da7a8514"
+                "reference": "2dcd0b9d95cc61b00bb267a7deab16d9d585cdaf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/6b635eb530de2d483b3a288bcc3919b1da7a8514",
-                "reference": "6b635eb530de2d483b3a288bcc3919b1da7a8514",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/2dcd0b9d95cc61b00bb267a7deab16d9d585cdaf",
+                "reference": "2dcd0b9d95cc61b00bb267a7deab16d9d585cdaf",
                 "shasum": ""
             },
             "require": {
@@ -825,7 +825,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2013-05-27 18:56:37"
+            "time": "2013-05-27 20:02:45"
         },
         {
             "name": "monolog/monolog",
