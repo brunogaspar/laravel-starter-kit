@@ -100,7 +100,7 @@
 
 			<!-- Footer -->
 			<footer>
-				<p>&copy; Company <?=date('y');?></p>
+				<p>&copy; Company {{ date('y') }}</p>
 			</footer>
 		</div>
 
