@@ -11,12 +11,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cartalyst/sentry.git",
-                "reference": "4489c1de255ff6e12e39a134dbaf3a16fbfd2e3c"
+                "reference": "f9f5934948ed81039108d4c30eee1aa9ee6b402c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cartalyst/sentry/zipball/4489c1de255ff6e12e39a134dbaf3a16fbfd2e3c",
-                "reference": "4489c1de255ff6e12e39a134dbaf3a16fbfd2e3c",
+                "url": "https://api.github.com/repos/cartalyst/sentry/zipball/f9f5934948ed81039108d4c30eee1aa9ee6b402c",
+                "reference": "f9f5934948ed81039108d4c30eee1aa9ee6b402c",
                 "shasum": ""
             },
             "require": {
@@ -30,11 +30,8 @@
                 "mockery/mockery": "0.7.2"
             },
             "suggest": {
-                "dhorrigan/capsule": "Capsule is a small utility for managing database connections given to illuminate/database outside of Laravel 4.",
-                "illuminate/cookie": "Sentry provides an Illuminate cookie driver for cookie integration.",
-                "illuminate/database": "Sentry provides Eloquent models for User, Group and Throttle providers.",
-                "illuminate/session": "Sentry provides an Illuminate session driver for storage integration.",
-                "ircmaxell/password-compat": "A forward-compatible PHP 5.5 password package for password_* functions can be used as a hasher (NativeHasher) in Sentry."
+                "illuminate/database": "Default sentry user, group and throttling implementations.",
+                "ircmaxell/password-compat": "Default hashing uses PHP 5.5 password_* functions, with forward-compatible support."
             },
             "type": "library",
             "extra": {
@@ -102,7 +99,7 @@
                 "laravel",
                 "security"
             ],
-            "time": "2013-05-23 18:35:34"
+            "time": "2013-05-27 23:29:19"
         },
         {
             "name": "classpreloader/classpreloader",
@@ -723,12 +720,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "2dcd0b9d95cc61b00bb267a7deab16d9d585cdaf"
+                "reference": "84a99e0e0ef41a24f5c73ddbba9261aaa72e4ebb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/2dcd0b9d95cc61b00bb267a7deab16d9d585cdaf",
-                "reference": "2dcd0b9d95cc61b00bb267a7deab16d9d585cdaf",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/84a99e0e0ef41a24f5c73ddbba9261aaa72e4ebb",
+                "reference": "84a99e0e0ef41a24f5c73ddbba9261aaa72e4ebb",
                 "shasum": ""
             },
             "require": {
@@ -794,7 +791,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.0-dev"
+                    "dev-master": "4.1-dev"
                 }
             },
             "autoload": {
@@ -825,7 +822,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2013-05-27 20:02:45"
+            "time": "2013-05-28 20:37:43"
         },
         {
             "name": "monolog/monolog",
