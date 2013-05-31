@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "a58960d24d8f0e5cbdcfacd22606f536",
+    "hash": "c3de0c8b71eda383e5e54da69fde63d7",
     "packages": [
         {
             "name": "cartalyst/sentry",
@@ -720,12 +720,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "9f7a7e7375292d12dff9eb9986a4a88e14d9cac1"
+                "reference": "6b7a8d8696a0c1d43ff2059e6b720d380e52f431"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/9f7a7e7375292d12dff9eb9986a4a88e14d9cac1",
-                "reference": "9f7a7e7375292d12dff9eb9986a4a88e14d9cac1",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/6b7a8d8696a0c1d43ff2059e6b720d380e52f431",
+                "reference": "6b7a8d8696a0c1d43ff2059e6b720d380e52f431",
                 "shasum": ""
             },
             "require": {
@@ -822,7 +822,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2013-05-30 00:38:34"
+            "time": "2013-05-31 14:49:22"
         },
         {
             "name": "monolog/monolog",
@@ -1024,12 +1024,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nrk/predis.git",
-                "reference": "d6fa4a32920e340159ecbc9a5cabaa0e192df021"
+                "reference": "7e0ec1a26508714e0feec54931be2591f7e8e4b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nrk/predis/zipball/d6fa4a32920e340159ecbc9a5cabaa0e192df021",
-                "reference": "d6fa4a32920e340159ecbc9a5cabaa0e192df021",
+                "url": "https://api.github.com/repos/nrk/predis/zipball/7e0ec1a26508714e0feec54931be2591f7e8e4b3",
+                "reference": "7e0ec1a26508714e0feec54931be2591f7e8e4b3",
                 "shasum": ""
             },
             "require": {
@@ -1063,7 +1063,7 @@
                 "predis",
                 "redis"
             ],
-            "time": "2013-03-30 15:16:13"
+            "time": "2013-05-31 09:52:47"
         },
         {
             "name": "psr/log",
