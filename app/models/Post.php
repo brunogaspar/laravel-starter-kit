@@ -3,16 +3,6 @@
 class Post extends Eloquent {
 
 	/**
-	 * The date fields for the model.
-	 *
-	 * @var array
-	 */
-	protected $dates = array(
-		'created_at',
-		'updated_at',
-	);
-
-	/**
 	 * Deletes a blog post and all the associated comments.
 	 *
 	 * @return bool

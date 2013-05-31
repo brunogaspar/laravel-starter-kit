@@ -3,16 +3,6 @@
 class Comment extends Eloquent {
 
 	/**
-	 * The date fields for the model.
-	 *
-	 * @var array
-	 */
-	protected $dates = array(
-		'created_at',
-		'updated_at',
-	);
-
-	/**
 	 * Get the comment's content.
 	 *
 	 * @return string
