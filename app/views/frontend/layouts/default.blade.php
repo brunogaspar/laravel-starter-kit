@@ -100,7 +100,7 @@
 
 			<!-- Footer -->
 			<footer>
-				<p>© Company 2012</p>
+				<p>&copy; Company {{ date('y') }}</p>
 			</footer>
 		</div>
 
