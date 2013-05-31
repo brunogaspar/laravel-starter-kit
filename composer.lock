@@ -720,12 +720,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "c613ac394877eae6d15bb2c8dfb3701a3ff78c9f"
+                "reference": "9f7a7e7375292d12dff9eb9986a4a88e14d9cac1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/c613ac394877eae6d15bb2c8dfb3701a3ff78c9f",
-                "reference": "c613ac394877eae6d15bb2c8dfb3701a3ff78c9f",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/9f7a7e7375292d12dff9eb9986a4a88e14d9cac1",
+                "reference": "9f7a7e7375292d12dff9eb9986a4a88e14d9cac1",
                 "shasum": ""
             },
             "require": {
@@ -822,7 +822,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2013-05-29 14:16:16"
+            "time": "2013-05-30 00:38:34"
         },
         {
             "name": "monolog/monolog",
@@ -1214,12 +1214,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Console.git",
-                "reference": "561b426decb8993832fe571f7ca399799b4ac148"
+                "reference": "36e238358617de042f7c1d93e012f06b3d7e5f40"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Console/zipball/561b426decb8993832fe571f7ca399799b4ac148",
-                "reference": "561b426decb8993832fe571f7ca399799b4ac148",
+                "url": "https://api.github.com/repos/symfony/Console/zipball/36e238358617de042f7c1d93e012f06b3d7e5f40",
+                "reference": "36e238358617de042f7c1d93e012f06b3d7e5f40",
                 "shasum": ""
             },
             "require": {
@@ -1258,7 +1258,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "http://symfony.com",
-            "time": "2013-05-27 14:49:36"
+            "time": "2013-05-30 05:11:26"
         },
         {
             "name": "symfony/css-selector",
