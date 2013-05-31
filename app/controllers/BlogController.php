@@ -15,7 +15,7 @@ class BlogController extends BaseController {
 			{
 				$query->withTrashed();
 			},
-		))->orderBy('created_at', 'DESC')->paginate(10);
+		))->orderBy('created_at', 'DESC')->paginate();
 
 		// Show the page
 		return View::make('frontend/blog/index', compact('posts'));
