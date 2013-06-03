@@ -15,9 +15,9 @@ class UpdateUsersTable extends Migration {
 		Schema::table('users', function($table)
 		{
 			$table->softDeletes();
-			$table->string('website');
-			$table->string('country');
-			$table->string('gravatar');
+			$table->string('website')->nullable();
+			$table->string('country')->nullable();
+			$table->string('gravatar')->nullable();
 		});
 	}
 
