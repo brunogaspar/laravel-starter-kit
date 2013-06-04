@@ -1,5 +1,5 @@
 <?php
-	$presenter = new Presenters\Paginator\BootstrapPresenter($paginator);
+	$presenter = new Illuminate\Pagination\BootstrapPresenter($paginator);
 
 	$trans = $environment->getTranslator();
 ?>
