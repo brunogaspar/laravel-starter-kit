@@ -8,12 +8,12 @@ return array(
 	'account_suspended'      => 'This user account is suspended.',
 	'account_banned'         => 'This user account is banned.',
 
-	'login' => array(
+	'signin' => array(
 		'error'   => 'There was a problem while trying to log you in, please try again.',
 		'success' => 'You have successfully logged in.',
 	),
 
-	'register' => array(
+	'signup' => array(
 		'error'   => 'There was a problem while trying to create your account, please try again.',
 		'success' => 'Account sucessfully created.',
 	),
