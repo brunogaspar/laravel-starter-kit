@@ -11,12 +11,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cartalyst/sentry.git",
-                "reference": "v2.0.0-RC1"
+                "reference": "b3d38ea3fa381a47f26d3f4e20012e17e40221ae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cartalyst/sentry/zipball/v2.0.0-RC1",
-                "reference": "v2.0.0-RC1",
+                "url": "https://api.github.com/repos/cartalyst/sentry/zipball/b3d38ea3fa381a47f26d3f4e20012e17e40221ae",
+                "reference": "b3d38ea3fa381a47f26d3f4e20012e17e40221ae",
                 "shasum": ""
             },
             "require": {
@@ -99,7 +99,7 @@
                 "laravel",
                 "security"
             ],
-            "time": "2013-06-03 03:48:59"
+            "time": "2013-06-07 01:42:51"
         },
         {
             "name": "classpreloader/classpreloader",
@@ -225,12 +225,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/cache.git",
-                "reference": "45123145f70dd79618963a72a5271b4f389712e4"
+                "reference": "89493d2c6e1362f581f9de1c1871cc52eb29c030"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/cache/zipball/45123145f70dd79618963a72a5271b4f389712e4",
-                "reference": "45123145f70dd79618963a72a5271b4f389712e4",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/89493d2c6e1362f581f9de1c1871cc52eb29c030",
+                "reference": "89493d2c6e1362f581f9de1c1871cc52eb29c030",
                 "shasum": ""
             },
             "require": {
@@ -276,7 +276,7 @@
                 {
                     "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
+                    "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -286,7 +286,7 @@
                 "cache",
                 "caching"
             ],
-            "time": "2013-05-13 02:51:07"
+            "time": "2013-06-07 14:54:47"
         },
         {
             "name": "doctrine/collections",
@@ -713,12 +713,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "236c8e5c6955c88b9713e77c9df9b8205211fc00"
+                "reference": "6b29fc338b97781d88aa5501313d6db8bd2228a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/236c8e5c6955c88b9713e77c9df9b8205211fc00",
-                "reference": "236c8e5c6955c88b9713e77c9df9b8205211fc00",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/6b29fc338b97781d88aa5501313d6db8bd2228a7",
+                "reference": "6b29fc338b97781d88aa5501313d6db8bd2228a7",
                 "shasum": ""
             },
             "require": {
@@ -815,7 +815,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2013-06-04 04:17:40"
+            "time": "2013-06-10 01:14:21"
         },
         {
             "name": "monolog/monolog",
@@ -1311,12 +1311,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Debug.git",
-                "reference": "965bb01e95365f6e797e57d76860e39f0e02bdf1"
+                "reference": "v2.3.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Debug/zipball/965bb01e95365f6e797e57d76860e39f0e02bdf1",
-                "reference": "965bb01e95365f6e797e57d76860e39f0e02bdf1",
+                "url": "https://api.github.com/repos/symfony/Debug/zipball/v2.3.0",
+                "reference": "v2.3.0",
                 "shasum": ""
             },
             "require": {
@@ -1367,12 +1367,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/DomCrawler.git",
-                "reference": "3cf81e7a021853183aa303181afc6e6868bf48ce"
+                "reference": "v2.3.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/DomCrawler/zipball/3cf81e7a021853183aa303181afc6e6868bf48ce",
-                "reference": "3cf81e7a021853183aa303181afc6e6868bf48ce",
+                "url": "https://api.github.com/repos/symfony/DomCrawler/zipball/v2.3.0",
+                "reference": "v2.3.0",
                 "shasum": ""
             },
             "require": {
