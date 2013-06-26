@@ -18,16 +18,16 @@ return array(
 		'success' => 'Account sucessfully created.',
 	),
 
-	'reset-password' => array(
-		'error'   => 'There was a problem while trying to get a reset password code, please try again.',
-		'success' => 'Password recovery email successfully sent.',
-	),
-/*
-	'reste-password-confirm' => array(
-		'error'   => 'There was a problem while trying to reset your password, please try again.',
-		'success' => 'Your password has been successfully reseted.',
-	),
-*/
+        'forgot-password' => array(
+            'error'   => 'There was a problem while trying to get a reset password code, please try again.',
+            'success' => 'Password recovery email successfully sent.',
+        ),
+
+        'forgot-password-confirm' => array(
+            'error'   => 'There was a problem while trying to reset your password, please try again.',
+            'success' => 'Your password has been successfully reset.',
+        ),
+    
 	'activate' => array(
 		'error'   => 'There was a problem while trying to activate your account, please try again.',
 		'success' => 'Your account has been successfully activated.',
