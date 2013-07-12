@@ -89,7 +89,7 @@
 
 		<!-- Javascripts
 		================================================== -->
-		<script src="{{ asset('assets/js/jquery.v1.9.1.min.js') }}"></script>
+		<script src="{{ asset('assets/js/jquery.v1.10.2.min.js') }}"></script>
 		<script src="{{ asset('assets/js/bootstrap/bootstrap.min.js') }}"></script>
 	</body>
 </html>
