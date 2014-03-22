@@ -1,3 +1,7 @@
+# Please don't send any PR's as i'm not accepting them at this moment!
+
+---
+
 ## Laravel 4 - Starter Kit
 
 This is a Laravel 4 Starter Kit and it will help you getting started with Laravel 4.
